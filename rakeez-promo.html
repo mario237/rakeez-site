@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rakeez — Promo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cairo:wght@600;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#0E5E58;--teal-2:#14746C;--teal-deep:#0A423E;--night:#0B1E1B;
+    --ochre:#E3A31C;--ochre-soft:#F0C15F;--ink:#1B2523;--sand:#F5F1E7;--mist:#D9ECE8;
+    --paper:#FBF9F3;--line:#E7E0D2;--muted:#5A625F;--on:#EAF3F0;--on-mut:#9DB7B1;--ok:#54e0a0;
+    --fl:'Plus Jakarta Sans',system-ui,sans-serif;--fa:'Cairo',sans-serif;--fm:'Space Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;}
+  body{background:#060f0e;font-family:var(--fl);overflow:hidden;}
+  .stage{position:fixed;inset:0;background:radial-gradient(1200px 800px at 70% 20%,#12312C,var(--night) 60%),var(--night);overflow:hidden;}
+  .stage::after{content:"";position:absolute;inset:0;opacity:.4;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:30px 30px;mask-image:radial-gradient(circle at 50% 45%,#000,transparent 75%);}
+  .scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6vw;opacity:0;visibility:hidden;pointer-events:none;}
+  .scene.active{opacity:1;visibility:visible;}
+  .scene.leaving{opacity:0;transition:opacity .5s ease;}
+
+  .eyebrow{font-size:clamp(.7rem,1.4vw,.9rem);font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--ochre-soft);}
+  .big{font-size:clamp(2.2rem,6.4vw,5rem);font-weight:800;letter-spacing:-.03em;color:#fff;line-height:1.02;}
+  .big .em{color:var(--ochre-soft);}
+  .sub{font-size:clamp(1rem,2.2vw,1.5rem);color:var(--on-mut);margin-top:2vh;max-width:20ch;}
+  .ar{font-family:var(--fa);}
+
+  .reveal-el{opacity:0;}
+  .scene.active .reveal-el{animation:fadeUp .85s cubic-bezier(.2,.7,.25,1) both;}
+  .d1{animation-delay:.14s!important}.d2{animation-delay:.28s!important}.d3{animation-delay:.42s!important}
+  .d4{animation-delay:.56s!important}.d5{animation-delay:.70s!important}.d6{animation-delay:.84s!important}.d7{animation-delay:1s!important}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:none;}}
+  @keyframes pop{from{opacity:0;transform:scale(.85);}to{opacity:1;transform:none;}}
+  @keyframes floaty{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+
+  /* intro mark draw */
+  .markbox{width:clamp(90px,13vw,140px);height:clamp(90px,13vw,140px);}
+  .scene.active .mk-tile{animation:pop .7s cubic-bezier(.2,1.3,.4,1) both;}
+  .mk-stroke{stroke-dasharray:80;stroke-dashoffset:80;}
+  .scene.active .mk-stroke{animation:draw .7s .35s ease forwards;}
+  .scene.active .mk-leg{animation:draw .5s .8s ease forwards;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  .wordmark{font-size:clamp(2.6rem,7vw,5.5rem);font-weight:800;letter-spacing:-.04em;color:#fff;margin-top:2.4vh;}
+
+  /* problem words */
+  .plist{display:flex;flex-direction:column;gap:1.4vh;}
+  .plist .p{font-size:clamp(1.6rem,4.6vw,3.4rem);font-weight:800;letter-spacing:-.02em;color:var(--on-mut);}
+  .plist .p.hot{color:#fff;}
+  .solve{font-size:clamp(1.8rem,5vw,3.6rem);font-weight:800;color:#fff;letter-spacing:-.02em;}
+  .solve .em{color:var(--ochre-soft);}
+
+  /* mini dashboard */
+  .browser{width:min(78vw,860px);background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 50px 90px -30px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.1);}
+  .bbar{display:flex;align-items:center;gap:12px;padding:11px 14px;background:#EEE8DB;border-bottom:1px solid var(--line);}
+  .bdots{display:flex;gap:6px;}.bdots i{width:10px;height:10px;border-radius:50%;background:#CFC7B6;}
+  .burl{flex:1;background:#fff;border-radius:7px;font-family:var(--fm);font-size:.72rem;color:var(--muted);padding:.35em .8em;text-align:center;}
+  .dapp{display:grid;grid-template-columns:150px 1fr;min-height:min(42vh,340px);background:var(--paper);text-align:start;}
+  .dside{background:var(--night);padding:14px 10px;}
+  .dsb{display:flex;align-items:center;gap:8px;color:#fff;font-weight:800;font-size:.9rem;margin:2px 4px 14px;}
+  .dnav{display:flex;flex-direction:column;gap:6px;}
+  .dnav span{height:9px;border-radius:5px;background:rgba(255,255,255,.1);}
+  .dnav span.on{background:var(--ochre);width:70%;}
+  .dnav span:nth-child(2){width:60%}.dnav span:nth-child(3){width:80%}.dnav span:nth-child(4){width:55%}.dnav span:nth-child(5){width:72%}
+  .dmain{padding:16px 18px;}
+  .dstat{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px;}
+  .dcard{background:#fff;border:1px solid var(--line);border-radius:11px;padding:11px;}
+  .dcard .cl{font-size:.62rem;color:var(--muted);}
+  .dcard .cv{font-family:var(--fm);font-weight:700;font-size:1.05rem;color:var(--ink);margin-top:3px;}
+  .dcard .cv.tl{color:var(--teal);}
+  .dbars{display:flex;align-items:flex-end;gap:12px;height:110px;background:#fff;border:1px solid var(--line);border-radius:11px;padding:14px;}
+  .dbars .col{flex:1;background:linear-gradient(180deg,var(--teal-2),var(--teal));border-radius:5px 5px 0 0;}
+
+  /* phone */
+  .phone{width:min(58vw,230px);background:var(--night);border-radius:30px;padding:10px;box-shadow:0 40px 80px -26px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.09);}
+  .scene.active .phone{animation:floaty 6s ease-in-out infinite;}
+  .pscreen{background:var(--paper);border-radius:22px;padding:16px 13px;text-align:start;}
+  .pmap{height:96px;border-radius:12px;margin-bottom:10px;position:relative;background:linear-gradient(0deg,rgba(14,94,88,.06),rgba(14,94,88,.06)),repeating-linear-gradient(0deg,var(--mist) 0 1px,transparent 1px 22px),repeating-linear-gradient(90deg,var(--mist) 0 1px,transparent 1px 22px),#EDF5F2;border:1px solid var(--line);}
+  .pmap .pin{position:absolute;top:42%;left:47%;width:15px;height:15px;border-radius:50%;background:var(--ochre);border:3px solid #fff;}
+  .pmap .rad{position:absolute;top:calc(42% - 16px);left:calc(47% - 16px);width:48px;height:48px;border-radius:50%;border:2px solid rgba(227,163,28,.55);}
+  .pbtn{background:var(--teal);color:#fff;text-align:center;font-weight:700;font-size:.85rem;border-radius:11px;padding:.75em;}
+  .pmeta{font-size:.7rem;color:var(--muted);text-align:center;margin-top:8px;}
+  .pcardm{background:#fff;border:1px solid var(--line);border-radius:13px;padding:13px;margin-bottom:9px;}
+  .pcardm .l{font-size:.68rem;color:var(--muted);}.pcardm .a{font-family:var(--fm);font-weight:700;font-size:1.15rem;color:var(--teal);}
+
+  /* payroll card */
+  .paycard{width:min(70vw,420px);background:linear-gradient(180deg,#12312C,#0E2621);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:22px;box-shadow:0 40px 80px -22px rgba(0,0,0,.6);text-align:start;}
+  .scene.active .paycard{animation:pop .7s cubic-bezier(.2,.9,.3,1) both;}
+  .pcTop{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+  .pcTop b{color:#fff;font-size:1rem;}.pcTop .pl{font-family:var(--fm);font-size:.7rem;color:var(--on-mut);border:1px solid rgba(255,255,255,.14);border-radius:7px;padding:.25em .6em;}
+  .chk{display:flex;align-items:center;gap:10px;color:var(--on-mut);font-size:.9rem;margin-bottom:8px;opacity:0;}
+  .scene.active .chk{animation:fadeUp .4s both;}
+  .scene.active .chk.k1{animation-delay:.4s}.scene.active .chk.k2{animation-delay:.7s}.scene.active .chk.k3{animation-delay:1s}.scene.active .chk.k4{animation-delay:1.3s}
+  .chk .cb{width:22px;height:22px;border-radius:6px;background:rgba(84,224,160,.16);display:grid;place-items:center;}
+  .chk .cb svg{width:13px;height:13px;stroke:var(--ok);fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;}
+  .netrow{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:rgba(227,163,28,.1);border:1px solid rgba(227,163,28,.28);border-radius:12px;margin-top:12px;}
+  .netrow .nl{color:var(--on-mut);font-size:.85rem;}.netrow .nv{font-family:var(--fm);font-weight:700;font-size:1.4rem;color:var(--ochre-soft);}
+  .stamp{margin-top:12px;display:inline-flex;align-items:center;gap:8px;font-size:.82rem;font-weight:700;color:var(--ok);background:rgba(84,224,160,.1);border:1px solid rgba(84,224,160,.3);border-radius:999px;padding:.5em 1em;opacity:0;}
+  .scene.active .stamp{animation:pop .5s 1.7s both;}
+  .stamp svg{width:15px;height:15px;stroke:var(--ok);fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;}
+
+  /* montage */
+  .montage{display:flex;flex-wrap:wrap;gap:14px 18px;justify-content:center;max-width:70vw;}
+  .montage .m{font-size:clamp(1.3rem,3.6vw,2.6rem);font-weight:800;letter-spacing:-.02em;color:#fff;opacity:0;}
+  .montage .m em{color:var(--ochre-soft);font-style:normal;}
+  .scene.active .montage .m{animation:pop .5s both;}
+  .scene.active .m:nth-child(1){animation-delay:.1s}.scene.active .m:nth-child(2){animation-delay:.28s}.scene.active .m:nth-child(3){animation-delay:.46s}
+  .scene.active .m:nth-child(4){animation-delay:.64s}.scene.active .m:nth-child(5){animation-delay:.82s}.scene.active .m:nth-child(6){animation-delay:1s}
+
+  /* outro */
+  .cta-pill{margin-top:3vh;display:inline-flex;align-items:center;gap:.6em;background:var(--ochre);color:var(--ink);font-weight:700;font-size:clamp(1rem,2vw,1.25rem);padding:.75em 1.6em;border-radius:14px;}
+  .credit{margin-top:2.4vh;font-size:.9rem;color:var(--on-mut);}
+
+  /* controls + progress */
+  .progress{position:fixed;left:0;top:0;height:3px;width:0;background:linear-gradient(90deg,var(--ochre),var(--ochre-soft));z-index:20;}
+  .ctrl{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:20;display:flex;gap:10px;align-items:center;}
+  .ctrl button{font-family:var(--fl);font-size:.82rem;font-weight:700;color:var(--on);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:.5em 1em;cursor:pointer;display:flex;align-items:center;gap:.5em;}
+  .ctrl button:hover{background:rgba(255,255,255,.16);}
+  .ctrl button svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.2;}
+  .tip{position:fixed;bottom:24px;right:22px;z-index:20;font-size:.72rem;color:var(--on-mut);max-width:220px;text-align:end;opacity:.8;}
+  .brandmark{position:fixed;top:18px;left:20px;z-index:20;display:flex;align-items:center;gap:8px;color:#fff;font-weight:800;opacity:.85;}
+</style>
+</head>
+<body>
+<div class="progress" id="prog"></div>
+<div class="brandmark"><svg viewBox="0 0 120 120" width="26" height="26"><rect width="120" height="120" rx="28" fill="#0E5E58"/><path d="M46 36 L46 90" stroke="#fff" stroke-width="12" stroke-linecap="round"/><path d="M46 36 L59 36 A13 13 0 0 1 59 62 L46 62" stroke="#fff" stroke-width="12" stroke-linecap="round" fill="none"/><path d="M53 60 L75 90" stroke="#E3A31C" stroke-width="12" stroke-linecap="round"/></svg><span>Rakeez</span></div>
+
+<div class="stage">
+
+  <!-- 1. intro -->
+  <section class="scene" data-dur="3400">
+    <svg class="markbox reveal-el" viewBox="0 0 120 120">
+      <rect class="mk-tile" width="120" height="120" rx="28" fill="#0E5E58"/>
+      <path class="mk-stroke" d="M46 36 L46 90" stroke="#fff" stroke-width="12" stroke-linecap="round" fill="none"/>
+      <path class="mk-stroke" d="M46 36 L59 36 A13 13 0 0 1 59 62 L46 62" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <path class="mk-leg" d="M53 60 L75 90" stroke="#E3A31C" stroke-width="12" stroke-linecap="round" fill="none" style="stroke-dasharray:60;stroke-dashoffset:60;"/>
+    </svg>
+    <div class="wordmark reveal-el d4">Rakeez</div>
+    <div class="sub reveal-el d6" style="max-width:32ch;">HR &amp; payroll, built for Egypt's real estate teams</div>
+  </section>
+
+  <!-- 2. problem -->
+  <section class="scene" data-dur="4400">
+    <div class="plist">
+      <div class="p reveal-el">Many branches.</div>
+      <div class="p reveal-el d1">Agents in the field.</div>
+      <div class="p reveal-el d2">Sales commissions.</div>
+      <div class="p reveal-el d3">A brand-new labor law.</div>
+      <div class="solve reveal-el d5" style="margin-top:2vh;">One system <span class="em">handles it all.</span></div>
+    </div>
+  </section>
+
+  <!-- 3. dashboard -->
+  <section class="scene" data-dur="4000">
+    <div class="eyebrow reveal-el">Every branch, one control room</div>
+    <div class="browser reveal-el d2" style="margin-top:2.4vh;">
+      <div class="bbar"><div class="bdots"><i></i><i></i><i></i></div><div class="burl">app.rakeez.co / dashboard</div></div>
+      <div class="dapp">
+        <div class="dside"><div class="dsb"><svg viewBox="0 0 120 120" width="20" height="20"><rect width="120" height="120" rx="28" fill="#0E5E58"/><path d="M46 36 L46 90" stroke="#fff" stroke-width="12" stroke-linecap="round"/><path d="M46 36 L59 36 A13 13 0 0 1 59 62 L46 62" stroke="#fff" stroke-width="12" stroke-linecap="round" fill="none"/><path d="M53 60 L75 90" stroke="#E3A31C" stroke-width="12" stroke-linecap="round"/></svg>Rakeez</div><div class="dnav"><span class="on"></span><span></span><span></span><span></span><span></span></div></div>
+        <div class="dmain">
+          <div class="dstat">
+            <div class="dcard"><div class="cl">Employees</div><div class="cv">248</div></div>
+            <div class="dcard"><div class="cl">Branches</div><div class="cv">12</div></div>
+            <div class="dcard"><div class="cl">March payroll</div><div class="cv tl">EGP 3.9M</div></div>
+            <div class="dcard"><div class="cl">On-time</div><div class="cv">94%</div></div>
+          </div>
+          <div class="dbars"><div class="col" style="height:100%"></div><div class="col" style="height:56%"></div><div class="col" style="height:64%"></div><div class="col" style="height:47%"></div><div class="col" style="height:42%"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. mobile -->
+  <section class="scene" data-dur="4000">
+    <div class="eyebrow reveal-el">In every agent's pocket</div>
+    <div style="display:flex;gap:3vw;align-items:center;margin-top:2.4vh;flex-wrap:wrap;justify-content:center;">
+      <div class="phone reveal-el d2"><div class="pscreen">
+        <div class="pmap"><div class="rad"></div><div class="pin"></div></div>
+        <div class="pbtn">Check in here</div>
+        <div class="pmeta">Sheikh Zayed branch · 40m away</div>
+      </div></div>
+      <div class="phone reveal-el d4"><div class="pscreen">
+        <div class="pcardm"><div class="l">March payslip · Net</div><div class="a">EGP 15,240</div></div>
+        <div class="pcardm" style="padding:11px 13px;"><div class="l">Incl. commission</div><div class="a" style="font-size:.98rem;color:var(--ochre);">EGP 4,100</div></div>
+      </div></div>
+    </div>
+    <div class="sub reveal-el d5" style="margin-top:2.2vh;">Check in, view payslips, request leave — in Arabic</div>
+  </section>
+
+  <!-- 5. payroll + compliance -->
+  <section class="scene" data-dur="4600">
+    <div class="eyebrow reveal-el">Payroll that knows the law</div>
+    <div class="paycard" style="margin-top:2.4vh;">
+      <div class="pcTop"><b>Payroll run</b><span class="pl">March 2026</span></div>
+      <div class="chk k1"><span class="cb"><svg viewBox="0 0 24 24"><polyline points="5 12 10 17 19 7"/></svg></span>Social insurance calculated</div>
+      <div class="chk k2"><span class="cb"><svg viewBox="0 0 24 24"><polyline points="5 12 10 17 19 7"/></svg></span>Income &amp; martyrs tax withheld</div>
+      <div class="chk k3"><span class="cb"><svg viewBox="0 0 24 24"><polyline points="5 12 10 17 19 7"/></svg></span>3% annual increment applied</div>
+      <div class="chk k4"><span class="cb"><svg viewBox="0 0 24 24"><polyline points="5 12 10 17 19 7"/></svg></span>Commission added</div>
+      <div class="netrow"><span class="nl">Net pay</span><span class="nv">EGP 15,240</span></div>
+      <div class="stamp"><svg viewBox="0 0 24 24"><polyline points="5 12 10 17 19 7"/></svg>Compliant · Law 14 / 2025</div>
+    </div>
+  </section>
+
+  <!-- 6. montage -->
+  <section class="scene" data-dur="3800">
+    <div class="eyebrow reveal-el">One platform for every HR job</div>
+    <div class="montage" style="margin-top:3vh;">
+      <span class="m">Payroll<em>.</em></span>
+      <span class="m">Attendance<em>.</em></span>
+      <span class="m">Commissions<em>.</em></span>
+      <span class="m">Contracts<em>.</em></span>
+      <span class="m">Leave<em>.</em></span>
+      <span class="m">Reports<em>.</em></span>
+    </div>
+  </section>
+
+  <!-- 7. outro -->
+  <section class="scene" data-dur="6000">
+    <svg class="markbox reveal-el" viewBox="0 0 120 120" style="width:clamp(72px,10vw,110px)"><rect width="120" height="120" rx="28" fill="#0E5E58"/><path d="M46 36 L46 90" stroke="#fff" stroke-width="12" stroke-linecap="round"/><path d="M46 36 L59 36 A13 13 0 0 1 59 62 L46 62" stroke="#fff" stroke-width="12" stroke-linecap="round" fill="none"/><path d="M53 60 L75 90" stroke="#E3A31C" stroke-width="12" stroke-linecap="round"/></svg>
+    <div class="big reveal-el d1" style="margin-top:2vh;">Meet <span class="em">Rakeez.</span></div>
+    <div class="sub reveal-el d3" style="max-width:34ch;">The compliant backbone for Egyptian payroll &amp; HR.</div>
+    <div class="cta-pill reveal-el d4">Book a demo <svg viewBox="0 0 24 24" width="18" height="18" style="stroke:var(--ink);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg></div>
+    <div class="credit reveal-el d6">Developed by Mario Mamdouh</div>
+  </section>
+
+</div>
+
+<div class="ctrl">
+  <button id="replay"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.5 15a9 9 0 1 0 2.1-9.4L1 10"/></svg>Replay</button>
+</div>
+<div class="tip">Press play-fullscreen (F11) and screen-record to export as an MP4.</div>
+
+<script>
+  const scenes=[...document.querySelectorAll('.scene')];
+  const prog=document.getElementById('prog');
+  const durs=scenes.map(s=>+s.dataset.dur);
+  const total=durs.reduce((a,b)=>a+b,0);
+  let idx=0,timer=null;
+
+  function show(n){
+    scenes.forEach((s,k)=>{s.classList.remove('active','leaving');});
+    scenes[n].classList.add('active');
+  }
+  function step(){
+    if(idx<scenes.length-1){
+      timer=setTimeout(()=>{ scenes[idx].classList.add('leaving'); idx++; setTimeout(()=>{show(idx);step();},60); }, durs[idx]);
+    }
+  }
+  function startProgress(){
+    prog.style.transition='none'; prog.style.width='0%';
+    void prog.offsetWidth;
+    prog.style.transition='width '+total+'ms linear'; prog.style.width='100%';
+  }
+  function play(){
+    clearTimeout(timer); idx=0; show(0); step(); startProgress();
+  }
+  document.getElementById('replay').addEventListener('click',play);
+  window.addEventListener('load',()=>setTimeout(play,300));
+</script>
+</body>
+</html>
