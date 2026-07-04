@@ -2534,6 +2534,15 @@
                 <option>4–10</option>
                 <option>10+</option>
               </select>
+              <select name="employees" required>
+                <option value="" data-i18n="ph_emp">Number of employees</option>
+                <option>1–20</option>
+                <option>21–100</option>
+                <option>101–500</option>
+                <option>500+</option>
+              </select>
+            </div>
+            <div class="row">
               <input type="email" name="email" placeholder="Work email" data-i18n-ph="ph_email" required>
             </div>
             <button type="submit" class="btn btn-primary" data-i18n="join_btn">Book my demo</button>
@@ -2608,7 +2617,7 @@
       mF_h: "التحليلات والتحكّم", mF_1: "لوحات لكل فرع", mF_2: "تحليل تكلفة الرواتب", mF_3: "تقارير العدد والحضور", mF_4: "سجل التدقيق", mF_5: "تصدير البيانات (Excel / PDF)", mF_6: "عربي وإنجليزي، RTL كامل",
       join_eyebrow: "احجز عرضًا", join_h2: "شاهد ركيز يدير فروعك.",
       join_p: "أعطنا فروعك وعدد موظفيك ونعرض لك ركيز مهيّأً لشركتك — حضور وعمولات ورواتب وامتثال، مباشرة.",
-      ph_name: "اسمك", ph_company: "الشركة", ph_branch: "عدد الفروع", ph_email: "البريد الإلكتروني للعمل",
+      ph_name: "اسمك", ph_company: "الشركة", ph_branch: "عدد الفروع", ph_emp: "عدد الموظفين", ph_email: "البريد الإلكتروني للعمل",
       join_btn: "احجز عرضي", join_note: "سنتواصل معك خلال يوم عمل واحد.",
       join_success: "تمام — سنتواصل معك خلال يوم عمل واحد لتجهيز العرض.",
       foot_tag: "رواتب وموارد بشرية مبنية لعقارات مصر.", foot_copy: "© ٢٠٢٦ ركيز. جميع الحقوق محفوظة.", foot_made: "تطوير: ماريو ممدوح"
@@ -2646,9 +2655,29 @@
       pio.observe(embed);
     })();
 
-    document.getElementById('joinForm').addEventListener('submit', function (e) {
-      e.preventDefault(); this.style.display = 'none'; document.getElementById('joinSuccess').classList.add('on');
-      // Wire live: fetch('https://formspree.io/f/XXXX',{method:'POST',headers:{'Accept':'application/json'},body:new FormData(this)})
+    // ── Demo form submission ──────────────────────────────────────────────
+    // 1) Create a form at https://formspree.io  2) paste your endpoint below:
+    const FORM_ENDPOINT = "https://formspree.io/f/xbdvqnyn";
+    const joinForm = document.getElementById('joinForm');
+    joinForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const btn = joinForm.querySelector('button[type=submit]');
+      const label = btn.textContent;
+      btn.disabled = true; btn.style.opacity = .7; btn.textContent = '…';
+      try {
+        const res = await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(joinForm)
+        });
+        if (!res.ok) throw new Error('submit failed');
+        joinForm.style.display = 'none';
+        document.getElementById('joinSuccess').classList.add('on');
+      } catch (err) {
+        btn.disabled = false; btn.style.opacity = 1; btn.textContent = label;
+        const note = joinForm.querySelector('.fnote');
+        if (note) { note.textContent = "Couldn't send just now — please try again."; note.style.color = '#f0a3a3'; }
+      }
     });
   </script>
 </body>
