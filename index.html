@@ -12,32 +12,52 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Rubik:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;700&display=swap"
     rel="stylesheet">
   <style>
     :root {
-      --teal: #0E5E58;
-      --teal-2: #14746C;
-      --teal-deep: #0A423E;
-      --night: #0B1E1B;
-      --night-2: #0F2723;
-      --ochre: #E3A31C;
-      --ochre-soft: #F0C15F;
-      --ink: #1B2523;
-      --sand: #F5F1E7;
-      --mist: #D9ECE8;
-      --paper: #FBF9F3;
-      --line: #E7E0D2;
-      --muted: #5A625F;
-      --on-dark: #EAF3F0;
-      --on-dark-mut: #9DB7B1;
-      --ok: #2E9E6B;
-      --ok-soft: #E4F4EC;
-      --warn: #C67A12;
-      --warn-soft: #FBEED6;
-      --f-latin: 'Plus Jakarta Sans', system-ui, sans-serif;
-      --f-arabic: 'Cairo', system-ui, sans-serif;
-      --f-mono: 'Space Mono', ui-monospace, monospace;
+      /* DIRECTION "SIGNAL" — see rakeez-portal/docs/brand/RAKEEZ-DESIGN-SYSTEM.md,
+         which is the source of truth, and its §6 copied to
+         rakeez-portal/resources/css/tokens.css. Every ratio here is computed.
+
+         ⚠️ THE VARIABLE NAMES ARE THE OLD ONES ON PURPOSE. They are referenced
+         159 times across this file; renaming them would be a large diff that
+         changes nothing a reader sees. What changed is what each name MEANS,
+         so read the comments rather than the name. Rename them in a pass of
+         their own if it ever matters. */
+
+      --teal: #121212;        /* was the brand teal; now carbon — text AND dark fills */
+      --teal-2: #494A45;      /* carbon-700 */
+      --teal-deep: #282826;   /* carbon-900 */
+      --night: #121212;       /* the ground */
+      --night-2: #1A1A19;     /* card on the ground */
+
+      /* THE SIGNAL. Lime is the primary action and nothing else (invariant I1),
+         and it is a FILL that takes carbon type — never white on it (1.31), never
+         itself as text on a light ground (1.31). The one place it is text is the
+         nav hover, which sits on the dark hero: 14.27 there. */
+      --ochre: #C7F04A;
+      --ochre-soft: #D3F371;  /* signal-300 · the hover step */
+
+      --ink: #121212;         /* 16.82 on cloud */
+      --sand: #EFEFEE;        /* carbon-50 · raised light surfaces */
+      --mist: #ECEDFD;        /* cobalt-50 · info tint */
+      --paper: #F2F3F0;       /* cloud · the light canvas */
+      --line: #D4D5D3;        /* carbon-100 · hairlines */
+      --muted: #595B54;       /* carbon-600 · secondary text on cloud · 6.18 */
+      --on-dark: #F2F3F0;     /* cloud on carbon · 16.82 */
+      --on-dark-mut: #9FA09B; /* carbon-300 on carbon · 7.12 */
+
+      /* States get their own hues so lime never doubles as "this went right"
+         (design system §2.2). Light twins, because this page is cloud-first. */
+      --ok: #177A52;          /* 4.78 on cloud */
+      --ok-soft: #E7F4ED;
+      --warn: #8C5808;        /* 5.36 on cloud */
+      --warn-soft: #FBF1DD;
+
+      --f-latin: 'Archivo', system-ui, sans-serif;
+      --f-arabic: 'Rubik', system-ui, sans-serif;
+      --f-mono: 'IBM Plex Mono', ui-monospace, monospace;
       --f: var(--f-latin);
       --maxw: 1180px;
     }
@@ -143,7 +163,6 @@
     .btn-primary {
       background: var(--ochre);
       color: var(--ink);
-      box-shadow: 0 8px 22px rgba(227, 163, 28, .28);
     }
 
     .btn-primary:hover {
@@ -882,7 +901,7 @@
       justify-content: center;
       gap: 16px;
       cursor: pointer;
-      background: radial-gradient(760px 420px at 62% 30%, #12312C, var(--night) 62%), var(--night);
+      background: radial-gradient(760px 420px at 62% 30%, #1A1A19, var(--night) 62%), var(--night);
       color: #fff;
       transition: opacity .3s;
     }
@@ -1561,11 +1580,11 @@
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
       <g id="mark">
-        <rect width="120" height="120" rx="28" fill="#0E5E58" />
+        <rect width="120" height="120" rx="28" fill="#121212" />
         <path d="M46 36 L46 90" stroke="#fff" stroke-width="12" stroke-linecap="round" />
         <path d="M46 36 L59 36 A13 13 0 0 1 59 62 L46 62" stroke="#fff" stroke-width="12" stroke-linecap="round"
           stroke-linejoin="round" fill="none" />
-        <path d="M53 60 L75 90" stroke="#E3A31C" stroke-width="12" stroke-linecap="round" />
+        <path d="M53 60 L75 90" stroke="#C7F04A" stroke-width="12" stroke-linecap="round" />
       </g>
     </defs>
   </svg>
