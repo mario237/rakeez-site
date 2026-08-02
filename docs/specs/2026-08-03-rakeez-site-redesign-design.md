@@ -148,13 +148,14 @@ as designed by a person.
 | 1 | **Header** — pill nav, bilingual toggle, one gold *Book a demo* | Establishes the system's own vocabulary before any copy is read |
 | 2 | **Hero** — asymmetric, not centred. Left: claim, subhead, one gold action, one ghost. Right: **the dark tile** — a live payroll sheet, figures counting up once | Claim and proof in one screen |
 | 3 | **Trust strip** — Built for Egypt · Arabic and English · Five-year retention · Your data scoped to you. **No logo wall** | Credibility without invention |
+| — | ~~**Watch** — the 30-second promo~~ **CUT.** `rakeez-promo.html` still carries the old lime identity and out-of-date product. A stale tour is worse than no tour, so the section, its play button and its three strings are gone. Restoring it is: re-add the section, put `'watch'` back in the gold-owner list, and re-add `w_eye` / `w_h` / `w_play` to the Arabic dictionary | Held until a new promo exists |
 | 4 | **The five headaches** — attendance argued over WhatsApp; commission recalculated in a spreadsheet nobody trusts; a contract retyped for every hire; salary history nobody can reconstruct; a month-end that lives in one person's head | Recognition, on general Egyptian pain rather than real-estate pain |
 | 5 | **Payroll — the pitch** ⭐ | `net − deductions = payable`, then the **March-in-July demonstration** (§6.3). The section that sells the product's actual philosophy |
 | 6 | **Capability bento** — People & org · Attendance, shifts & geo check-in · Leave & requests · Payroll · Commission · Expenses & budget · Contracts from your own `.docx` · Documents · Announcements · Recruitment · Reports & Excel | Breadth, mapped only to what ships (§4.1) |
 | 7 | **The employee app** — real phone screens: check-in, my pay, my leave | The surface staff actually touch |
 | 8 | **Arabic, properly** — full RTL, Arabic contracts, «أجر» used correctly | The differentiator against imported HR products |
 | 9 | **Your data** — row-level tenant scoping, signed expiring document links, five-year retention | Answers the CFO's question |
-| 10 | **Taylor** — one real customer, one real sentence | Proof, singular |
+| 10 | **Tailor Investments** — one real customer, one real sentence | Proof, singular |
 | 11 | **CTA** — the existing Formspree demo form, re-skinned | Conversion |
 | 12 | **Footer** | |
 
@@ -185,15 +186,29 @@ the action.
 The rule: **the gold belongs to whatever is the visitor's next step at that scroll
 position.**
 
-- While the hero is in view, the hero's action is gold and the header's CTA is a
-  **ghost** button — carbon type, hairline border, no fill.
-- Once the hero has scrolled away, the header's CTA takes the gold fill, in the same
-  120ms state transition the header already uses to condense.
+- While a section that owns a gold action is in view, that section's action is gold and
+  the header's CTA is a **ghost** — carbon type, hairline border, no fill.
+- In the gaps between those sections, the header's CTA takes the gold fill.
 - They are never both gold at any scroll offset, including mid-transition.
 
-The same arithmetic applies section by section: any section containing a gold action
-must not be tall enough to share a viewport with another one. Verified by scrolling,
-not by intention (§8).
+**Implementation note, added after building it.** The first cut compared `scrollY`
+against the hero's height. That was wrong, and the browser audit found it: an offset
+comparison only knows about the hero, so the armed header CTA ended up sharing viewports
+with the play button, the app's check-in button, the demo form's submit, and five gold
+rules in the problem cards. The correct version is an `IntersectionObserver` over every
+section that owns a gold action; the header arms only when that set is empty.
+
+Two things that scan cannot see, and which must be maintained by hand:
+
+- **Pseudo-elements.** The month scrubber's thumb is gold and is a
+  `::-webkit-slider-thumb`, so no sweep of `backgroundColor` will ever find it.
+  `#payroll` is in the owner list because of it.
+- **Decoration masquerading as signal.** The five 34×2px rules in the problem cards were
+  gold. They are decoration, and the brand book is explicit that gold is for actions and
+  never decoration — they are carbon now.
+
+Verified by scrolling the whole page in a real browser and counting, not by intention
+(§8).
 
 ### 4.3 The logo, in both directions
 

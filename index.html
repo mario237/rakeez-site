@@ -4,73 +4,117 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rakeez — HR &amp; payroll for Egypt's real estate teams</title>
-  <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20120%20120'%3E%3Crect%20width='120'%20height='120'%20rx='28'%20fill='%230E5E58'/%3E%3Cpath%20d='M46%2036%20L46%2090'%20stroke='%23fff'%20stroke-width='12'%20stroke-linecap='round'%20fill='none'/%3E%3Cpath%20d='M46%2036%20L59%2036%20A13%2013%200%200%201%2059%2062%20L46%2062'%20stroke='%23fff'%20stroke-width='12'%20stroke-linecap='round'%20stroke-linejoin='round'%20fill='none'/%3E%3Cpath%20d='M53%2060%20L75%2090'%20stroke='%23E3A31C'%20stroke-width='12'%20stroke-linecap='round'%20fill='none'/%3E%3C/svg%3E">
+  <title>Rakeez — HR and payroll for Egyptian companies</title>
+  <link rel="icon" type="image/svg+xml" href="rakeez-favicon.svg">
+  <link rel="apple-touch-icon" href="rakeez-appicon-carbon.svg">
   <meta name="description"
-    content="One system for every branch: geo attendance, sales commissions, payroll, and full Egyptian labor-law compliance — with an app for every agent.">
+    content="One record for your people, your time and your money. Attendance, leave, commission, expenses and a payroll sheet that records your accountant's figures instead of inventing its own. Arabic and English.">
+  <meta property="og:title" content="Rakeez — HR and payroll for Egyptian companies">
+  <meta property="og:description"
+    content="Your accountant's figures, recorded and paid. One system of record for people, time and money.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#F5F4F0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Rubik:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Rubik:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
     rel="stylesheet">
+
   <style>
+    /* ══════════════════════════════════════════════════════════════════
+       RAKEEZ — SIGNAL GOLD v3.0, 1 August 2026.
+       Source of truth: rakeez-portal/docs/brand/signal-gold-2026-08-01.html
+       Spec for this page:  docs/specs/2026-08-03-rakeez-site-redesign-design.md
+
+       Token names mean what they say this time. The previous file's names
+       were two brand generations stale and carried an apology in a comment.
+
+       INVARIANTS THIS FILE IS HELD TO
+       I1  One gold element per viewport. Nothing else is gold.
+       I2  Gold is a FILL that takes carbon type. Never white on gold.
+       I3  Gold is never text on a light ground (1.48 — it fails).
+       I4  The ramp is authored longhand. Never derived.
+       I5  Every figure is Plex Mono, tabular.
+       I6  One dark tile per view.
+       ══════════════════════════════════════════════════════════════════ */
+
     :root {
-      /* DIRECTION "SIGNAL" — see rakeez-portal/docs/brand/RAKEEZ-DESIGN-SYSTEM.md,
-         which is the source of truth, and its §6 copied to
-         rakeez-portal/resources/css/tokens.css. Every ratio here is computed.
+      /* ── Gold · authored longhand (I4). #F5C518 is the signal and the only
+         one that acts. The rest are tints and shades, never actions. */
+      --rk-gold-50: #FEFBE8;
+      --rk-gold-100: #FDF3BF;
+      --rk-gold-200: #FBEA93;
+      --rk-gold-300: #F8DC5C;
+      --rk-gold-400: #F5C518;
+      --rk-gold-500: #D4A710;
+      --rk-gold-600: #B08A0B;
+      --rk-gold-700: #8C6D08;
+      --rk-gold-800: #6B5306;
+      --rk-gold-900: #4C3B04;
+      --rk-gold-950: #2E2302;
 
-         ⚠️ THE VARIABLE NAMES ARE THE OLD ONES ON PURPOSE. They are referenced
-         159 times across this file; renaming them would be a large diff that
-         changes nothing a reader sees. What changed is what each name MEANS,
-         so read the comments rather than the name. Rename them in a pass of
-         their own if it ever matters. */
+      /* ── Light · the default and the page-level ground */
+      --rk-canvas: #F5F4F0;
+      --rk-card: #FFFFFF;
+      --rk-raised: #EFEEE9;
+      --rk-hair: #E3E1DA;
+      --rk-divider: #CFCDC4;
+      --rk-carbon: #121212;
+      --rk-t2: #595B54;
+      --rk-t3: #6A6C64;
+      --rk-cobalt: #2A3BE8;
 
-      --teal: #121212;        /* was the brand teal; now carbon — text AND dark fills */
-      --teal-2: #494A45;      /* carbon-700 */
-      --teal-deep: #282826;   /* carbon-900 */
-      --night: #121212;       /* the ground */
-      --night-2: #1A1A19;     /* card on the ground */
+      /* ── Dark · the one dark tile and the two carbon bands */
+      --rk-dark-canvas: #121212;
+      --rk-dark-card: #1A1A19;
+      --rk-on-dark: #F5F4F0;
+      --rk-on-dark-2: #9FA09B;
+      --rk-on-dark-3: #858680;
+      --rk-cobalt-400: #6B76EF;
 
-      /* THE SIGNAL. Lime is the primary action and nothing else (invariant I1),
-         and it is a FILL that takes carbon type — never white on it (1.31), never
-         itself as text on a light ground (1.31). The one place it is text is the
-         nav hover, which sits on the dark hero: 14.27 there. */
-      --ochre: #C7F04A;
-      --ochre-soft: #D3F371;  /* signal-300 · the hover step */
+      /* ── States · light twins. Never gold, and gold is never a state.
+         #F2A93B is NEVER restored — 10.9° from gold, it read as a dim action. */
+      --rk-ok: #177A52;
+      --rk-ok-tint: #E7F4ED;
+      --rk-warn: #A34A06;
+      --rk-warn-tint: #FBF1E4;
+      --rk-bad: #B33023;
+      --rk-bad-tint: #FBEAE7;
+      --rk-ok-d: #4CC77C;
+      --rk-warn-d: #F08A34;
+      --rk-bad-d: #EE6152;
 
-      --ink: #121212;         /* 16.82 on cloud */
-      --sand: #EFEFEE;        /* carbon-50 · raised light surfaces */
-      --mist: #ECEDFD;        /* cobalt-50 · info tint */
-      --paper: #F2F3F0;       /* cloud · the light canvas */
-      --line: #D4D5D3;        /* carbon-100 · hairlines */
-      --muted: #595B54;       /* carbon-600 · secondary text on cloud · 6.18 */
-      --on-dark: #F2F3F0;     /* cloud on carbon · 16.82 */
-      --on-dark-mut: #9FA09B; /* carbon-300 on carbon · 7.12 */
+      /* ── Geometry · four radii, two elevations, no others */
+      --r-card: 18px;
+      --r-btn: 12px;
+      --r-chip: 8px;
+      --r-pill: 999px;
+      --e1: 0 1px 2px rgba(18, 18, 18, .04), 0 8px 24px rgba(18, 18, 18, .06);
+      --e2: 0 2px 4px rgba(18, 18, 18, .06), 0 16px 40px rgba(18, 18, 18, .10);
 
-      /* States get their own hues so lime never doubles as "this went right"
-         (design system §2.2). Light twins, because this page is cloud-first. */
-      --ok: #177A52;          /* 4.78 on cloud */
-      --ok-soft: #E7F4ED;
-      --warn: #8C5808;        /* 5.36 on cloud */
-      --warn-soft: #FBF1DD;
+      /* ── Motion · §9. No spring, no elastic, no overshoot. */
+      --t-state: 120ms;
+      --t-panel: 200ms;
+      --t-section: 320ms;
+      --ease-in: cubic-bezier(.2, 0, 0, 1);
+      --ease-out: cubic-bezier(.4, 0, 1, 1);
 
+      /* ── Type · three faces, 1.25 scale */
       --f-latin: 'Archivo', system-ui, sans-serif;
       --f-arabic: 'Rubik', system-ui, sans-serif;
       --f-mono: 'IBM Plex Mono', ui-monospace, monospace;
       --f: var(--f-latin);
-      --maxw: 1180px;
+      --maxw: 1200px;
     }
 
+    /* Rubik is swapped by dir, never by locale. */
     html[dir="rtl"] {
       --f: var(--f-arabic);
     }
 
-    .mono {
-      font-family: var(--f-mono);
-    }
-
-    * {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -78,30 +122,75 @@
 
     html {
       scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
     }
 
     body {
       font-family: var(--f);
-      background: var(--paper);
-      color: var(--ink);
-      line-height: 1.7;
+      background: var(--rk-canvas);
+      color: var(--rk-carbon);
+      font-size: 17px;
+      line-height: 1.55;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
-    h1,
-    h2,
-    h3 {
-      line-height: 1.06;
-      letter-spacing: -.025em;
-      font-weight: 800;
+    /* The one permitted gradient: a warm radial wash on the canvas,
+       top-right, under 4%. Never on a card, never behind a figure. */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(60vw 60vw at 88% -6%, rgba(245, 197, 24, .038), transparent 62%);
     }
 
+    html[dir="rtl"] body::before {
+      background: radial-gradient(60vw 60vw at 12% -6%, rgba(245, 197, 24, .038), transparent 62%);
+    }
+
+    /* ── Type scale ─────────────────────────────────────────────── */
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-weight: 700;
+      line-height: 1.06;
+      letter-spacing: -.03em;
+    }
+
+    .display {
+      font-size: clamp(38px, 5.4vw, 64px);
+      letter-spacing: -.035em;
+      line-height: 1.02;
+    }
+
+    h2 {
+      font-size: clamp(27px, 3.1vw, 40px);
+      line-height: 1.08;
+    }
+
+    h3 {
+      font-size: 21px;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      line-height: 1.22;
+    }
+
+    /* Arabic: +0.15 line-height, zero tracking always, never faux-bold. */
     html[dir="rtl"] h1,
     html[dir="rtl"] h2,
-    html[dir="rtl"] h3 {
+    html[dir="rtl"] h3,
+    html[dir="rtl"] h4,
+    html[dir="rtl"] .display {
       letter-spacing: 0;
-      line-height: 1.24;
+      line-height: 1.28;
+      font-weight: 700;
+    }
+
+    html[dir="rtl"] body {
+      line-height: 1.7;
     }
 
     a {
@@ -113,1431 +202,1477 @@
       display: block;
     }
 
+    ul {
+      list-style: none;
+    }
+
+    /* Focus ring is 2px cobalt at 2px offset. Never gold — a focus ring
+       is not an action. */
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 2px solid var(--rk-cobalt);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    .dark a:focus-visible,
+    .dark button:focus-visible {
+      outline-color: var(--rk-cobalt-400);
+    }
+
+    /* ── Figures · I5. Every one of them. ───────────────────────── */
+    .num {
+      font-family: var(--f-mono);
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum" 1;
+      letter-spacing: -.01em;
+    }
+
+    /* Numbers do not mirror. */
+    html[dir="rtl"] .num {
+      direction: ltr;
+      unicode-bidi: embed;
+    }
+
+    .eyebrow {
+      font-family: var(--f-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--rk-t3);
+    }
+
+    html[dir="rtl"] .eyebrow {
+      letter-spacing: 0;
+      font-family: var(--f-arabic);
+      font-size: 12px;
+    }
+
+    .dark .eyebrow {
+      color: var(--rk-on-dark-3);
+    }
+
+    .lead {
+      font-size: clamp(17px, 1.35vw, 19px);
+      color: var(--rk-t2);
+      line-height: 1.62;
+    }
+
+    .dark .lead {
+      color: var(--rk-on-dark-2);
+    }
+
     .wrap {
       max-width: var(--maxw);
       margin: 0 auto;
       padding: 0 24px;
+      position: relative;
+      z-index: 1;
     }
 
-    .eyebrow {
-      font-size: .74rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .16em;
-      color: var(--teal);
-      display: inline-flex;
-      align-items: center;
-      gap: .6em;
+    section {
+      position: relative;
+      z-index: 1;
     }
 
-    .eyebrow::before {
-      content: "";
-      width: 22px;
-      height: 1.5px;
-      background: var(--ochre);
+    .band {
+      padding: clamp(64px, 8.5vw, 118px) 0;
     }
 
-    html[dir="rtl"] .eyebrow {
-      letter-spacing: .02em;
+    .tint {
+      background: rgba(255, 255, 255, .45);
+      border-block: 1px solid var(--rk-hair);
     }
 
+    .dark {
+      background: var(--rk-dark-canvas);
+      color: var(--rk-on-dark);
+    }
+
+    /* ── Buttons ────────────────────────────────────────────────────
+       One gold per viewport. Gold is a fill taking CARBON type (I2). */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: .55em;
-      font-family: var(--f);
-      font-size: 1rem;
-      font-weight: 700;
-      padding: .9em 1.6em;
-      border-radius: 12px;
-      border: 1.5px solid transparent;
+      gap: 9px;
+      height: 50px;
+      padding: 0 24px;
+      border: 0;
+      border-radius: var(--r-btn);
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -.01em;
       cursor: pointer;
-      transition: transform .15s, background .2s, border-color .2s, box-shadow .2s;
+      white-space: nowrap;
+      transition: background var(--t-state) var(--ease-in),
+        color var(--t-state) var(--ease-in),
+        border-color var(--t-state) var(--ease-in),
+        transform var(--t-state) var(--ease-in);
     }
 
-    .btn:active {
+    html[dir="rtl"] .btn {
+      letter-spacing: 0;
+    }
+
+    .btn-gold {
+      background: var(--rk-gold-400);
+      color: var(--rk-carbon);
+    }
+
+    .btn-gold:hover {
+      background: var(--rk-gold-300);
+    }
+
+    .btn-gold:active {
       transform: translateY(1px);
     }
 
-    .btn-primary {
-      background: var(--ochre);
-      color: var(--ink);
-    }
-
-    .btn-primary:hover {
-      background: var(--ochre-soft);
-    }
-
-    .btn-ghost-d {
+    .btn-ghost {
       background: transparent;
-      color: var(--on-dark);
-      border-color: rgba(255, 255, 255, .24);
+      color: var(--rk-carbon);
+      border: 1px solid var(--rk-divider);
     }
 
-    .btn-ghost-d:hover {
-      border-color: var(--on-dark);
+    .btn-ghost:hover {
+      background: var(--rk-raised);
+      border-color: var(--rk-t3);
     }
 
-    :focus-visible {
-      outline: 3px solid var(--ochre);
-      outline-offset: 3px;
-      border-radius: 8px;
+    .dark .btn-ghost {
+      color: var(--rk-on-dark);
+      border-color: #33332F;
     }
 
-    header {
+    .dark .btn-ghost:hover {
+      background: #202020;
+      border-color: #4A4A45;
+    }
+
+    .btn-sm {
+      height: 40px;
+      padding: 0 17px;
+      font-size: 14px;
+    }
+
+    /* ── Cards ──────────────────────────────────────────────────────
+       A white card on the warm canvas separates at only 1.10 — the
+       SHADOW is what makes it a card. That is why the depths are fixed. */
+    .card {
+      background: var(--rk-card);
+      border-radius: var(--r-card);
+      box-shadow: var(--e1);
+    }
+
+    .tile-dark {
+      background: var(--rk-carbon);
+      color: var(--rk-on-dark);
+      border-radius: var(--r-card);
+      box-shadow: var(--e2);
+    }
+
+    /* ── State pills · a pill with coloured type AND ITS WORD.
+       Colour alone never carries anything here. ────────────────── */
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 26px;
+      padding: 0 11px;
+      border-radius: var(--r-pill);
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: -.005em;
+      white-space: nowrap;
+    }
+
+    html[dir="rtl"] .pill {
+      letter-spacing: 0;
+    }
+
+    .pill-ok {
+      background: var(--rk-ok-tint);
+      color: var(--rk-ok);
+    }
+
+    .pill-warn {
+      background: var(--rk-warn-tint);
+      color: var(--rk-warn);
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      flex: none;
+    }
+
+    /* ── Icons · Lucide geometry. Carbon on light, cloud on dark,
+       NEVER gold — gold is for actions, not decoration. ────────── */
+    .ico {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      stroke-width: 1.5;
+      stroke-linecap: butt;
+      stroke-linejoin: miter;
+      fill: none;
+      flex: none;
+    }
+
+    .ico-20 {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* ══ HEADER ══════════════════════════════════════════════════ */
+    .hdr {
       position: fixed;
-      inset: 0 0 auto 0;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 60;
-      transition: background .3s, border-color .3s;
+      height: 74px;
+      display: flex;
+      align-items: center;
       border-bottom: 1px solid transparent;
+      transition: height var(--t-panel) var(--ease-in),
+        background var(--t-panel) var(--ease-in),
+        border-color var(--t-panel) var(--ease-in);
     }
 
-    header.scrolled {
-      background: rgba(251, 249, 243, .88);
-      backdrop-filter: blur(12px);
-      border-color: var(--line);
+    .hdr.scrolled {
+      height: 62px;
+      background: rgba(245, 244, 240, .88);
+      backdrop-filter: blur(14px) saturate(1.4);
+      -webkit-backdrop-filter: blur(14px) saturate(1.4);
+      border-bottom-color: var(--rk-hair);
     }
 
+    .hdr .wrap {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      width: 100%;
+    }
+
+    /* Clear space = the cap-height of the R, applied in layout because
+       the viewBox is cropped tight to the ink. */
+    .logo {
+      color: var(--rk-carbon);
+      flex: none;
+      display: block;
+      padding: 6px 0;
+    }
+
+    .logo svg {
+      height: 21px;
+      width: auto;
+    }
+
+    /* Pill navigation · the active item is a dark fill, never an
+       underline and never gold. */
     .nav {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      height: 74px;
-      gap: 20px;
+      gap: 2px;
+      margin-inline-start: auto;
+      position: relative;
     }
 
-    .brand {
+    .nav a {
+      position: relative;
+      z-index: 1;
+      padding: 8px 15px;
+      border-radius: var(--r-pill);
+      font-size: 14.5px;
+      font-weight: 500;
+      color: var(--rk-t2);
+      transition: color var(--t-state) var(--ease-in);
+    }
+
+    .nav a:hover {
+      color: var(--rk-carbon);
+    }
+
+    .nav a.on {
+      color: var(--rk-on-dark);
+    }
+
+    .nav-pill {
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      height: 100%;
+      border-radius: var(--r-pill);
+      background: var(--rk-carbon);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform var(--t-panel) var(--ease-in),
+        width var(--t-panel) var(--ease-in),
+        opacity var(--t-panel) var(--ease-in);
+    }
+
+    .hdr-act {
       display: flex;
       align-items: center;
-      gap: 11px;
-      font-weight: 800;
-      font-size: 1.32rem;
-      color: var(--on-dark);
-      transition: color .3s;
-    }
-
-    header.scrolled .brand {
-      color: var(--ink);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      font-size: .95rem;
-      font-weight: 600;
-      color: var(--on-dark-mut);
-      transition: color .3s;
-    }
-
-    header.scrolled .nav-links {
-      color: var(--muted);
-    }
-
-    .nav-links a:hover {
-      color: var(--ochre);
-    }
-
-    header.scrolled .nav-links a:hover {
-      color: var(--teal);
-    }
-
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 14px;
+      gap: 8px;
+      flex: none;
     }
 
     .lang {
-      font-family: var(--f);
-      font-size: .88rem;
-      font-weight: 700;
-      color: var(--on-dark);
       background: transparent;
-      border: 1.5px solid rgba(255, 255, 255, .24);
-      border-radius: 10px;
-      padding: .5em .8em;
+      border: 1px solid var(--rk-divider);
+      color: var(--rk-t2);
+      height: 40px;
+      padding: 0 14px;
+      border-radius: var(--r-pill);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
       cursor: pointer;
-      transition: all .2s;
+      transition: color var(--t-state) var(--ease-in), border-color var(--t-state) var(--ease-in);
     }
 
-    header.scrolled .lang {
-      color: var(--teal);
-      border-color: var(--line);
+    .lang:hover {
+      color: var(--rk-carbon);
+      border-color: var(--rk-t3);
     }
 
-    @media(max-width:900px) {
-      .nav-links {
-        display: none;
-      }
+    /* §4.2 — the header CTA is a GHOST while the hero is in view, and
+       takes the gold only once the hero has scrolled away. They are
+       never both gold at any scroll offset. */
+    #hdrCta {
+      background: transparent;
+      color: var(--rk-carbon);
+      border: 1px solid var(--rk-divider);
     }
 
-    /* hero */
+    #hdrCta.armed {
+      background: var(--rk-gold-400);
+      color: var(--rk-carbon);
+      border-color: var(--rk-gold-400);
+    }
+
+    #hdrCta.armed:hover {
+      background: var(--rk-gold-300);
+      border-color: var(--rk-gold-300);
+    }
+
+    .menu-btn {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--rk-divider);
+      border-radius: var(--r-pill);
+      width: 40px;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--rk-carbon);
+    }
+
+    /* ══ HERO ════════════════════════════════════════════════════ */
     .hero {
-      position: relative;
-      background: var(--night);
-      color: var(--on-dark);
-      padding: 140px 0 90px;
-      overflow: hidden;
+      padding: 138px 0 clamp(56px, 7vw, 96px);
     }
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(720px 460px at 82% 30%, rgba(20, 116, 108, .5), transparent 60%), radial-gradient(560px 380px at 6% 92%, rgba(227, 163, 28, .13), transparent 62%);
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      opacity: .45;
-      background-image: radial-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px);
-      background-size: 26px 26px;
-      mask-image: linear-gradient(to bottom, #000, transparent 72%);
-    }
-
-    .hero-inner {
-      position: relative;
-    }
-
-    .hero-copy {
-      max-width: 720px;
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr);
+      gap: clamp(32px, 4.6vw, 68px);
+      align-items: center;
     }
 
     .hero h1 {
-      font-size: clamp(2.5rem, 5.4vw, 4.1rem);
-      margin: 20px 0 20px;
-      color: #fff;
-      opacity: 0;
-      transform: translateY(22px);
-      animation: up .7s .05s cubic-bezier(.2, .7, .25, 1) forwards;
+      margin: 16px 0 20px;
+      max-width: 15ch;
     }
 
-    .hero h1 .em {
-      color: var(--ochre-soft);
+    html[dir="rtl"] .hero h1 {
+      max-width: 17ch;
     }
 
     .hero .lead {
-      font-size: 1.18rem;
-      color: var(--on-dark-mut);
-      max-width: 52ch;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: up .7s .2s cubic-bezier(.2, .7, .25, 1) forwards;
+      max-width: 46ch;
     }
 
     .hero-cta {
       display: flex;
-      gap: 14px;
-      margin-top: 32px;
       flex-wrap: wrap;
-      opacity: 0;
-      transform: translateY(16px);
-      animation: up .7s .34s cubic-bezier(.2, .7, .25, 1) forwards;
+      gap: 11px;
+      margin-top: 30px;
     }
 
-    @keyframes up {
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 22px;
+      margin-top: 26px;
+      font-size: 13.5px;
+      color: var(--rk-t3);
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    /* I6 · the hero's ONE dark tile. It deliberately carries no gold
+       button — the hero action already holds the view's single signal. */
+    .sheet {
+      padding: 22px;
+    }
+
+    .sheet-hd {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 14px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #262625;
+    }
+
+    .sheet-hd h4 {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -.015em;
+    }
+
+    html[dir="rtl"] .sheet-hd h4 {
+      letter-spacing: 0;
+    }
+
+    .sheet-hd .sub {
+      font-size: 12.5px;
+      color: var(--rk-on-dark-3);
+    }
+
+    table.money {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 4px;
+    }
+
+    table.money th {
+      font-family: var(--f-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--rk-on-dark-3);
+      text-align: end;
+      padding: 13px 0 9px;
+    }
+
+    html[dir="rtl"] table.money th {
+      font-family: var(--f-arabic);
+      letter-spacing: 0;
+      font-size: 12px;
+    }
+
+    table.money th:first-child {
+      text-align: start;
+    }
+
+    table.money td {
+      padding: 11px 0;
+      font-size: 14px;
+      text-align: end;
+      border-top: 1px solid #232322;
+      white-space: nowrap;
+    }
+
+    table.money td:first-child {
+      text-align: start;
+      font-weight: 500;
+      font-size: 14.5px;
+    }
+
+    /* A money column reads as a column. Figures do not mirror. */
+    table.money td.f {
+      font-family: var(--f-mono);
+      font-variant-numeric: tabular-nums;
+      direction: ltr;
+    }
+
+    table.money td.dim {
+      color: var(--rk-on-dark-2);
+    }
+
+    .sheet-ft {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 18px;
+      padding-top: 17px;
+      border-top: 1px solid #262625;
+    }
+
+    .sheet-ft .k {
+      font-size: 12.5px;
+      color: var(--rk-on-dark-2);
+    }
+
+    .sheet-ft .v {
+      font-family: var(--f-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 25px;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      direction: ltr;
+    }
+
+    .sheet-note {
+      margin-top: 14px;
+      font-size: 12.5px;
+      color: var(--rk-on-dark-3);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.45;
+    }
+
+    /* Rows resolve in sequence, once. The hidden state is applied by JS
+       (.arm), never by CSS alone — if the animation never runs, a payroll
+       sheet must still show its rows rather than three blank lines. */
+    .money.arm tbody tr {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+
+    .money.run tbody tr {
+      animation: rowIn var(--t-section) var(--ease-in) forwards;
+    }
+
+    .money.run tbody tr:nth-child(1) {
+      animation-delay: .10s;
+    }
+
+    .money.run tbody tr:nth-child(2) {
+      animation-delay: .19s;
+    }
+
+    .money.run tbody tr:nth-child(3) {
+      animation-delay: .28s;
+    }
+
+    @keyframes rowIn {
       to {
         opacity: 1;
         transform: none;
       }
     }
 
-    /* browser mockup */
-    .shot {
-      margin-top: 56px;
-      opacity: 0;
-      transform: translateY(34px);
-      animation: up .9s .5s cubic-bezier(.2, .7, .25, 1) forwards;
+    /* ══ TRUST STRIP ═════════════════════════════════════════════ */
+    .trust {
+      border-block: 1px solid var(--rk-hair);
     }
 
-    .browser {
-      background: #fff;
-      border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, .12);
-      box-shadow: 0 50px 90px -30px rgba(0, 0, 0, .6);
-      overflow: hidden;
-    }
-
-    .bbar {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 12px 16px;
-      background: #EEE8DB;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .bdots {
-      display: flex;
-      gap: 7px;
-    }
-
-    .bdots i {
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-      background: #CFC7B6;
-    }
-
-    .burl {
-      flex: 1;
-      background: #fff;
-      border-radius: 8px;
-      font-family: var(--f-mono);
-      font-size: .76rem;
-      color: var(--muted);
-      padding: .4em .9em;
-      text-align: center;
-    }
-
-    .app {
-      display: grid;
-      grid-template-columns: 210px 1fr;
-      min-height: 440px;
-      background: var(--paper);
-    }
-
-    @media(max-width:720px) {
-      .app {
-        grid-template-columns: 1fr;
-      }
-
-      .side {
-        display: none;
-      }
-    }
-
-    .side {
-      background: var(--night);
-      color: var(--on-dark-mut);
-      padding: 18px 14px;
-    }
-
-    .side .sbrand {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      color: #fff;
-      font-weight: 800;
-      font-size: 1.05rem;
-      margin: 4px 6px 20px;
-    }
-
-    .snav {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .snav a {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      padding: .62em .7em;
-      border-radius: 9px;
-      font-size: .88rem;
-      font-weight: 600;
-      color: var(--on-dark-mut);
-    }
-
-    .snav a.act {
-      background: rgba(255, 255, 255, .09);
-      color: #fff;
-    }
-
-    .snav a.act .si {
-      color: var(--ochre-soft);
-    }
-
-    .snav svg,
-    .si svg {
-      width: 17px;
-      height: 17px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.9;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .main {
-      padding: 22px 24px;
-    }
-
-    .topbar {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 20px;
-    }
-
-    .bsel {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: .5em .8em;
-      font-size: .85rem;
-      font-weight: 600;
-    }
-
-    .bsel svg {
-      width: 15px;
-      height: 15px;
-      stroke: var(--muted);
-      fill: none;
-      stroke-width: 2;
-    }
-
-    .tsearch {
-      flex: 1;
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: .5em .9em;
-      font-size: .83rem;
-      color: var(--muted);
-    }
-
-    .tav {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: var(--teal);
-      color: #fff;
-      display: grid;
-      place-items: center;
-      font-weight: 800;
-      font-size: .8rem;
-    }
-
-    .hgreet {
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: var(--ink);
-    }
-
-    .hgreet+.hsub {
-      font-size: .86rem;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-
-    .scards {
+    .trust .wrap {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-bottom: 16px;
+      gap: 1px;
+      background: var(--rk-hair);
+      padding: 0;
     }
 
-    @media(max-width:560px) {
-      .scards {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    .sc {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 14px;
-    }
-
-    .sc .l {
-      font-size: .74rem;
-      color: var(--muted);
+    .trust .t {
+      background: var(--rk-canvas);
+      padding: 26px 24px;
       display: flex;
-      align-items: center;
-      gap: 6px;
+      gap: 13px;
+      align-items: flex-start;
     }
 
-    .sc .l svg {
-      width: 14px;
-      height: 14px;
-      stroke: var(--teal);
-      fill: none;
-      stroke-width: 2;
-    }
-
-    .sc .v {
-      font-family: var(--f-mono);
-      font-weight: 700;
-      font-size: 1.35rem;
-      color: var(--ink);
-      margin-top: 4px;
-    }
-
-    .sc .v.tl {
-      color: var(--teal);
-    }
-
-    .prow {
-      display: grid;
-      grid-template-columns: 1.1fr 1.4fr;
-      gap: 12px;
-    }
-
-    @media(max-width:640px) {
-      .prow {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .pcard {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 16px;
-    }
-
-    .pcard .pt {
-      font-size: .8rem;
-      font-weight: 700;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      margin-bottom: 10px;
-    }
-
-    html[dir="rtl"] .pcard .pt {
-      letter-spacing: 0;
-    }
-
-    .pbig {
-      font-family: var(--f-mono);
-      font-weight: 700;
-      font-size: 1.5rem;
-      color: var(--ink);
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin: 12px 0 14px;
-    }
-
-    .chip {
-      font-size: .72rem;
-      font-weight: 700;
-      color: var(--ok);
-      background: var(--ok-soft);
-      border-radius: 7px;
-      padding: .3em .6em;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .chip svg {
-      width: 11px;
-      height: 11px;
-      stroke: var(--ok);
-      fill: none;
-      stroke-width: 3;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .runbtn {
-      background: var(--teal);
-      color: #fff;
-      font-weight: 700;
-      font-size: .85rem;
-      border-radius: 10px;
-      padding: .6em 1em;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    .runbtn svg {
-      width: 14px;
-      height: 14px;
-      stroke: #fff;
-      fill: none;
-      stroke-width: 2.4;
-    }
-
-    table.bt {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: .82rem;
-    }
-
-    table.bt th {
-      text-align: start;
-      font-size: .7rem;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      color: var(--muted);
-      font-weight: 700;
-      padding: 0 0 8px;
-    }
-
-    html[dir="rtl"] table.bt th {
-      letter-spacing: 0;
-    }
-
-    table.bt td {
-      padding: 8px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    table.bt .bn {
-      font-weight: 700;
-      color: var(--ink);
-    }
-
-    table.bt .num {
-      font-family: var(--f-mono);
-      color: var(--muted);
-    }
-
-    .pct {
-      font-family: var(--f-mono);
-      font-weight: 700;
-    }
-
-    .pct.g {
-      color: var(--ok);
-    }
-
-    .pct.a {
-      color: var(--warn);
-    }
-
-    .flag {
-      font-size: .68rem;
-      color: var(--muted);
-    }
-
-    /* attendance mock (second shot) */
-    .att-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 14px;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .att-sum {
-      display: flex;
-      gap: 10px;
-    }
-
-    .asum {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 8px 12px;
-      text-align: center;
-      min-width: 74px;
-    }
-
-    .asum b {
-      font-family: var(--f-mono);
-      font-size: 1.1rem;
+    .trust .t b {
       display: block;
-      color: var(--ink);
-    }
-
-    .asum span {
-      font-size: .7rem;
-      color: var(--muted);
-    }
-
-    .arow {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr .8fr 1fr;
-      gap: 10px;
-      align-items: center;
-      padding: 10px 0;
-      border-top: 1px solid var(--line);
-      font-size: .83rem;
-    }
-
-    @media(max-width:640px) {
-      .arow {
-        grid-template-columns: 1.4fr 1fr;
-      }
-
-      .arow .hidesm {
-        display: none;
-      }
-    }
-
-    .aperson {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .aperson .aav {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: var(--mist);
-      color: var(--teal);
-      display: grid;
-      place-items: center;
-      font-weight: 700;
-      font-size: .72rem;
-    }
-
-    .aperson b {
-      font-weight: 700;
-      color: var(--ink);
-      font-size: .85rem;
-    }
-
-    .aloc {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--muted);
-      font-size: .8rem;
-    }
-
-    .aloc svg {
-      width: 13px;
-      height: 13px;
-      stroke: var(--teal);
-      fill: none;
-      stroke-width: 2;
-    }
-
-    .astat {
-      font-size: .72rem;
-      font-weight: 700;
-      border-radius: 7px;
-      padding: .28em .6em;
-      display: inline-block;
-    }
-
-    .astat.on {
-      color: var(--ok);
-      background: var(--ok-soft);
-    }
-
-    .astat.late {
-      color: var(--warn);
-      background: var(--warn-soft);
-    }
-
-    .astat.rem {
-      color: var(--teal);
-      background: var(--mist);
-    }
-
-    .atime {
-      font-family: var(--f-mono);
-      color: var(--muted);
-    }
-
-    /* sections */
-    section {
-      padding: 96px 0;
-    }
-
-    .sec-head {
-      max-width: 660px;
-      margin-bottom: 48px;
-    }
-
-    .sec-head h2 {
-      font-size: clamp(1.9rem, 4vw, 2.9rem);
-      margin: 16px 0 12px;
-    }
-
-    .sec-head p {
-      color: var(--muted);
-      font-size: 1.1rem;
-    }
-
-    /* problems */
-    .watch {
-      background: var(--paper);
-    }
-
-    .promo-frame {
-      max-width: 940px;
-      margin: 0 auto;
-      border-radius: 18px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      box-shadow: 0 44px 90px -34px rgba(11, 30, 27, .45);
-      background: var(--night);
-    }
-
-    .promo-embed {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16/9;
-      background: var(--night);
-    }
-
-    .promo-embed iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-      display: block;
-    }
-
-    .promo-poster {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      cursor: pointer;
-      background: radial-gradient(760px 420px at 62% 30%, #1A1A19, var(--night) 62%), var(--night);
-      color: #fff;
-      transition: opacity .3s;
-    }
-
-    .promo-poster .play {
-      width: 74px;
-      height: 74px;
-      border-radius: 50%;
-      background: var(--ochre);
-      display: grid;
-      place-items: center;
-      box-shadow: 0 14px 34px rgba(227, 163, 28, .4);
-      transition: transform .2s;
-    }
-
-    .promo-poster:hover .play {
-      transform: scale(1.07);
-    }
-
-    .promo-poster .play svg {
-      width: 28px;
-      height: 28px;
-      fill: var(--ink);
-      margin-inline-start: 5px;
-    }
-
-    .promo-poster .ptxt {
-      font-weight: 700;
-      font-size: 1.05rem;
+      font-size: 14.5px;
+      font-weight: 600;
       letter-spacing: -.01em;
     }
 
-    .promo-embed.playing .promo-poster {
-      opacity: 0;
-      pointer-events: none;
+    html[dir="rtl"] .trust .t b {
+      letter-spacing: 0;
     }
 
+    .trust .t p {
+      font-size: 13px;
+      color: var(--rk-t3);
+      line-height: 1.45;
+      margin-top: 3px;
+    }
+
+    /* ══ SECTION HEADS ═══════════════════════════════════════════ */
+    .sec-head {
+      max-width: 62ch;
+      margin-bottom: clamp(34px, 4vw, 56px);
+    }
+
+    .sec-head h2 {
+      margin: 14px 0 16px;
+    }
+
+    /* ══ PROBLEMS ════════════════════════════════════════════════ */
     .probs {
-      background: var(--sand);
-    }
-
-    .pgrid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-
-    @media(max-width:800px) {
-      .pgrid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .pitem {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 24px 26px;
-      display: flex;
+      grid-template-columns: repeat(auto-fit, minmax(268px, 1fr));
       gap: 18px;
     }
 
-    .pitem .pn {
-      flex: 0 0 auto;
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: var(--night);
-      color: var(--ochre-soft);
-      display: grid;
-      place-items: center;
+    .prob {
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: box-shadow var(--t-panel) var(--ease-in), transform var(--t-panel) var(--ease-in);
     }
 
-    .pitem .pn svg {
-      width: 22px;
-      height: 22px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+    .prob:hover {
+      box-shadow: var(--e2);
+      transform: translateY(-2px);
     }
 
-    .pitem .pq {
-      font-size: .86rem;
-      color: var(--muted);
-      font-style: italic;
-      margin-bottom: 4px;
+    .prob .q {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -.015em;
+      line-height: 1.4;
+      color: var(--rk-carbon);
     }
 
-    .pitem h3 {
-      font-size: 1.1rem;
+    html[dir="rtl"] .prob .q {
+      letter-spacing: 0;
     }
 
-    /* panel section */
-    .panel {
-      background: var(--night-2);
-      color: var(--on-dark);
+    /* Carbon, not gold. A 2px rule is decoration, and gold is for actions —
+       five gold marks in one viewport is five things claiming to be the
+       action (I1). */
+    .prob .rule {
+      width: 34px;
+      height: 2px;
+      background: var(--rk-carbon);
+      border-radius: 2px;
     }
 
-    .panel .eyebrow {
-      color: var(--ochre-soft);
+    .prob p {
+      font-size: 14.5px;
+      color: var(--rk-t2);
+      line-height: 1.6;
     }
 
-    .panel .sec-head h2 {
-      color: #fff;
-    }
-
-    .panel .sec-head p {
-      color: var(--on-dark-mut);
-    }
-
-    .shot-cap {
-      margin-top: 16px;
-      font-size: .9rem;
-      color: var(--on-dark-mut);
+    .prob .ans {
+      margin-top: auto;
+      padding-top: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--rk-carbon);
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
-    .shot-cap svg {
-      width: 16px;
-      height: 16px;
-      stroke: var(--ochre-soft);
-      fill: none;
-      stroke-width: 2;
+    html[dir="rtl"] .prob .ans svg {
+      transform: scaleX(-1);
     }
 
-    /* mobile section */
-    .mob {
-      background: var(--paper);
+    /* ══ PAYROLL ═════════════════════════════════════════════════ */
+    .pay-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+      gap: clamp(28px, 4vw, 60px);
+      align-items: start;
+    }
+
+    .eq {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 26px 0 20px;
+    }
+
+    .eq .term {
+      background: var(--rk-card);
+      border: 1px solid var(--rk-hair);
+      border-radius: var(--r-btn);
+      padding: 11px 15px;
+      box-shadow: var(--e1);
+    }
+
+    .eq .term .k {
+      display: block;
+      font-family: var(--f-mono);
+      font-size: 11px;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--rk-t3);
+    }
+
+    html[dir="rtl"] .eq .term .k {
+      font-family: var(--f-arabic);
+      letter-spacing: 0;
+      font-size: 12px;
+    }
+
+    .eq .term .v {
+      display: block;
+      margin-top: 2px;
+      font-family: var(--f-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      direction: ltr;
+    }
+
+    .eq .op {
+      font-family: var(--f-mono);
+      font-size: 19px;
+      color: var(--rk-t3);
+      font-weight: 500;
+    }
+
+    /* The result term. NOT carbon-filled — the dating tile beside it is
+       this section's one dark tile (I6), and a second carbon fill gives
+       the view two centres of gravity. A 2px carbon edge and a heavier
+       figure mark the answer without competing. */
+    .eq .term.out {
+      border: 2px solid var(--rk-carbon);
+      padding: 10px 14px;
+    }
+
+    .eq .term.out .k {
+      color: var(--rk-carbon);
+    }
+
+    .eq .term.out .v {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .no-list {
+      margin-top: 26px;
+      display: grid;
+      gap: 11px;
+    }
+
+    .no-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14.5px;
+      color: var(--rk-t2);
+      line-height: 1.5;
+    }
+
+    .no-list .ico {
+      color: var(--rk-t3);
+      margin-top: 1px;
+    }
+
+    /* The March-in-July demonstration — the section's one dark tile. */
+    .dating {
+      padding: 26px;
+    }
+
+    .dating h4 {
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: -.02em;
+    }
+
+    html[dir="rtl"] .dating h4 {
+      letter-spacing: 0;
+    }
+
+    .dating .sub {
+      font-size: 13.5px;
+      color: var(--rk-on-dark-2);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    .scrub {
+      margin-top: 24px;
+    }
+
+    .scrub-lbl {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      font-family: var(--f-mono);
+      font-size: 12px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--rk-on-dark-3);
+      margin-bottom: 10px;
+    }
+
+    html[dir="rtl"] .scrub-lbl {
+      font-family: var(--f-arabic);
+      letter-spacing: 0;
+      font-size: 12.5px;
+    }
+
+    input[type=range] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 4px;
+      border-radius: var(--r-pill);
+      background: #2E2E2C;
+      outline-offset: 6px;
+      cursor: pointer;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--rk-gold-400);
+      border: 3px solid var(--rk-carbon);
+      box-shadow: 0 0 0 1px #3A3A36;
+      cursor: grab;
+    }
+
+    input[type=range]::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--rk-gold-400);
+      border: 3px solid var(--rk-carbon);
+      box-shadow: 0 0 0 1px #3A3A36;
+      cursor: grab;
+    }
+
+    .months {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 9px;
+      font-family: var(--f-mono);
+      font-size: 10.5px;
+      color: var(--rk-on-dark-3);
+      direction: ltr;
+    }
+
+    .dating-out {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid #262625;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .dating-out .who {
+      font-size: 13.5px;
+      color: var(--rk-on-dark-2);
+    }
+
+    .dating-out .who b {
+      display: block;
+      color: var(--rk-on-dark);
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    #datingFig {
+      font-family: var(--f-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: clamp(30px, 3.6vw, 42px);
+      font-weight: 600;
+      letter-spacing: -.03em;
+      line-height: 1;
+      direction: ltr;
+      transition: opacity var(--t-state) var(--ease-in);
+    }
+
+    #datingFig.swap {
+      opacity: 0;
+    }
+
+    .dating-cap {
+      margin-top: 18px;
+      font-size: 13px;
+      color: var(--rk-on-dark-3);
+      line-height: 1.5;
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+    }
+
+    /* ══ BENTO ═══════════════════════════════════════════════════ */
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+    }
+
+    .bt {
+      grid-column: span 2;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      transition: box-shadow var(--t-panel) var(--ease-in), transform var(--t-panel) var(--ease-in);
+    }
+
+    .bt:hover {
+      box-shadow: var(--e2);
+      transform: translateY(-2px);
+    }
+
+    .bt h3 {
+      font-size: 17px;
+    }
+
+    .bt p {
+      font-size: 13.5px;
+      color: var(--rk-t2);
+      line-height: 1.55;
+    }
+
+    .bt .ico {
+      color: var(--rk-carbon);
+    }
+
+    .bt ul {
+      margin-top: auto;
+      padding-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .bt ul li {
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--rk-t3);
+      background: var(--rk-raised);
+      border-radius: var(--r-chip);
+      padding: 4px 9px;
+    }
+
+    .bt.wide {
+      grid-column: span 3;
+    }
+
+    /* The bento's ONE dark tile. */
+    .bt.hero-tile {
+      grid-column: span 3;
+      background: var(--rk-carbon);
+      color: var(--rk-on-dark);
+      box-shadow: var(--e2);
+      justify-content: space-between;
+    }
+
+    .bt.hero-tile p {
+      color: var(--rk-on-dark-2);
+    }
+
+    .bt.hero-tile .ico {
+      color: var(--rk-on-dark);
+    }
+
+    .bt.hero-tile ul li {
+      background: #232322;
+      color: var(--rk-on-dark-2);
+    }
+
+    .bt.hero-tile .big {
+      font-family: var(--f-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: clamp(34px, 4vw, 46px);
+      font-weight: 600;
+      letter-spacing: -.03em;
+      line-height: 1;
+      direction: ltr;
+    }
+
+    /* ══ APP · dark band ═════════════════════════════════════════ */
+    .app-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .92fr) minmax(0, 1fr);
+      gap: clamp(30px, 4.5vw, 64px);
+      align-items: center;
     }
 
     .phones {
       display: flex;
-      gap: 26px;
       justify-content: center;
-      flex-wrap: wrap;
     }
 
     .phone {
-      width: 248px;
-      background: var(--night);
+      width: min(268px, 76vw);
+      flex: none;
+      background: #0A0A0A;
+      border: 7px solid #232322;
       border-radius: 34px;
-      padding: 11px;
-      box-shadow: 0 40px 80px -28px rgba(11, 30, 27, .5);
-      border: 1px solid rgba(255, 255, 255, .08);
+      overflow: hidden;
+      box-shadow: 0 28px 60px rgba(0, 0, 0, .5);
     }
 
     .screen {
-      background: var(--paper);
-      border-radius: 24px;
-      padding: 18px 15px;
+      background: var(--rk-canvas);
+      color: var(--rk-carbon);
       min-height: 452px;
+      padding: 16px 15px;
+      display: none;
+      flex-direction: column;
+      gap: 12px;
     }
 
-    .ptop {
+    .screen.on {
       display: flex;
-      align-items: center;
+      animation: fade var(--t-section) var(--ease-in);
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .sc-top {
+      display: flex;
       justify-content: space-between;
-      margin-bottom: 16px;
-    }
-
-    .phi {
-      font-weight: 800;
-      font-size: 1.02rem;
-      color: var(--ink);
-    }
-
-    .pav {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: var(--mist);
-      color: var(--teal);
-      display: grid;
-      place-items: center;
-      font-weight: 800;
-      font-size: .76rem;
-    }
-
-    .mcard {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 15px;
-      margin-bottom: 11px;
-    }
-
-    .mcard .lbl {
-      font-size: .72rem;
-      color: var(--muted);
-    }
-
-    .mcard .amt {
+      align-items: center;
       font-family: var(--f-mono);
+      font-size: 10px;
+      color: var(--rk-t3);
+      direction: ltr;
+    }
+
+    .sc-h {
+      font-size: 17px;
       font-weight: 700;
-      font-size: 1.3rem;
-      color: var(--teal);
+      letter-spacing: -.02em;
     }
 
-    .mcard .sub {
-      font-size: .72rem;
-      color: var(--muted);
-      margin-top: 2px;
+    html[dir="rtl"] .sc-h {
+      letter-spacing: 0;
     }
 
-    .qacts {
+    .sc-card {
+      background: var(--rk-card);
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: var(--e1);
+    }
+
+    .sc-k {
+      font-family: var(--f-mono);
+      font-size: 10px;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--rk-t3);
+    }
+
+    html[dir="rtl"] .sc-k {
+      font-family: var(--f-arabic);
+      letter-spacing: 0;
+      font-size: 11px;
+    }
+
+    .sc-v {
+      font-family: var(--f-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 25px;
+      font-weight: 600;
+      letter-spacing: -.025em;
+      margin-top: 3px;
+      direction: ltr;
+    }
+
+    .sc-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      padding: 8px 0;
+      border-top: 1px solid var(--rk-hair);
+    }
+
+    .sc-btn {
+      background: var(--rk-gold-400);
+      color: var(--rk-carbon);
+      border: 0;
+      border-radius: var(--r-btn);
+      height: 42px;
+      width: 100%;
+      font-family: inherit;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: default;
+    }
+
+    .sc-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 8px;
     }
 
-    .qa {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 13px;
-      padding: 11px 6px;
-      text-align: center;
-      font-size: .68rem;
-      font-weight: 600;
-      color: var(--muted);
-    }
-
-    .qa svg {
-      width: 20px;
-      height: 20px;
-      stroke: var(--teal);
-      fill: none;
-      stroke-width: 1.9;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      margin: 0 auto 6px;
-    }
-
-    .cimap {
-      height: 120px;
-      border-radius: 14px;
-      margin-bottom: 12px;
-      position: relative;
-      overflow: hidden;
-      background:
-        linear-gradient(0deg, rgba(14, 94, 88, .06), rgba(14, 94, 88, .06)),
-        repeating-linear-gradient(0deg, var(--mist) 0 1px, transparent 1px 24px),
-        repeating-linear-gradient(90deg, var(--mist) 0 1px, transparent 1px 24px), #EDF5F2;
-      border: 1px solid var(--line);
-    }
-
-    .cimap .pin {
-      position: absolute;
-      top: 44%;
-      left: 48%;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: var(--ochre);
-      border: 3px solid #fff;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, .2);
-    }
-
-    .cimap .rad {
-      position: absolute;
-      top: calc(44% - 18px);
-      left: calc(48% - 18px);
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      border: 2px solid rgba(227, 163, 28, .5);
-    }
-
-    .cibtn {
-      background: var(--teal);
-      color: #fff;
-      text-align: center;
-      font-weight: 700;
-      font-size: .92rem;
-      border-radius: 13px;
-      padding: .85em;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .cibtn svg {
-      width: 17px;
-      height: 17px;
-      stroke: #fff;
-      fill: none;
-      stroke-width: 2.2;
-    }
-
-    .cimeta {
-      font-size: .74rem;
-      color: var(--muted);
-      text-align: center;
-      margin-top: 9px;
-    }
-
-    .ring {
-      width: 56px;
-      height: 56px;
-      flex: 0 0 auto;
-      border-radius: 50%;
-      background: conic-gradient(var(--teal) 0 72%, var(--mist) 72% 100%);
-      display: grid;
-      place-items: center;
-    }
-
-    .ring i {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: #fff;
-      display: grid;
-      place-items: center;
-      font-style: normal;
-      font-family: var(--f-mono);
-      font-weight: 700;
-      font-size: .82rem;
-      color: var(--ink);
-    }
-
-    .mleave {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 13px 15px;
-      margin-bottom: 11px;
-    }
-
-    .mleave b {
-      display: block;
-      color: var(--ink);
-      font-size: .9rem;
-    }
-
-    .mleave span {
-      font-size: .76rem;
-      color: var(--muted);
-    }
-
-    .mreq {
-      font-size: .76rem;
-      color: var(--muted);
-      margin-bottom: 6px;
-      font-weight: 700;
-    }
-
-    .mrow {
-      display: flex;
-      justify-content: space-between;
-      font-size: .78rem;
-      padding: 7px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .mrow .ap {
-      color: var(--ok);
-      font-weight: 700;
-    }
-
-    .mrow .pd {
-      color: var(--warn);
-      font-weight: 700;
-    }
-
-    /* capabilities */
-    .caps {
-      background: var(--sand);
-    }
-
-    .mods {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    @media(max-width:960px) {
-      .mods {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media(max-width:600px) {
-      .mods {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .mod {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 24px 22px;
-      transition: transform .2s, box-shadow .2s, border-color .2s;
-    }
-
-    .mod:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 18px 38px rgba(27, 37, 35, .09);
-      border-color: var(--mist);
-    }
-
-    .mod-h {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .mod-ic {
-      width: 44px;
-      height: 44px;
+    .sc-tile {
+      background: var(--rk-card);
       border-radius: 12px;
-      background: var(--sand);
-      color: var(--teal);
-      display: grid;
-      place-items: center;
-      flex: 0 0 auto;
-      transition: .25s;
-    }
-
-    .mod:hover .mod-ic {
-      background: var(--teal);
-      color: #fff;
-    }
-
-    .mod-ic svg {
-      width: 23px;
-      height: 23px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .mod-h h3 {
-      font-size: 1.08rem;
-    }
-
-    .mod ul {
-      list-style: none;
+      padding: 10px 8px;
+      text-align: center;
+      font-size: 10.5px;
+      font-weight: 500;
+      color: var(--rk-t2);
+      box-shadow: var(--e1);
       display: flex;
       flex-direction: column;
-      gap: 9px;
+      align-items: center;
+      gap: 5px;
     }
 
-    .mod li {
+    .sc-tile .ico {
+      color: var(--rk-carbon);
+    }
+
+    .carousel-ctl {
       display: flex;
-      align-items: flex-start;
-      gap: 9px;
-      font-size: .9rem;
-      color: var(--ink);
-      line-height: 1.4;
+      gap: 8px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 26px;
     }
 
-    .mod li .lk {
-      width: 18px;
-      height: 18px;
-      flex: 0 0 auto;
-      border-radius: 6px;
-      background: var(--ok-soft);
+    .cdot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #3A3A36;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+      transition: background var(--t-state) var(--ease-in), width var(--t-state) var(--ease-in);
+    }
+
+    .cdot.on {
+      background: var(--rk-on-dark);
+      width: 24px;
+      border-radius: var(--r-pill);
+    }
+
+    .pausebtn {
+      background: transparent;
+      border: 1px solid #33332F;
+      color: var(--rk-on-dark-2);
+      border-radius: var(--r-pill);
+      height: 30px;
+      padding: 0 13px;
+      margin-inline-start: 8px;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color var(--t-state) var(--ease-in), border-color var(--t-state) var(--ease-in);
+    }
+
+    .pausebtn:hover {
+      color: var(--rk-on-dark);
+      border-color: #4A4A45;
+    }
+
+    .app-list {
       display: grid;
-      place-items: center;
+      gap: 15px;
+      margin-top: 26px;
+    }
+
+    .app-list li {
+      display: flex;
+      gap: 13px;
+      align-items: flex-start;
+    }
+
+    .app-list b {
+      display: block;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -.015em;
+    }
+
+    html[dir="rtl"] .app-list b {
+      letter-spacing: 0;
+    }
+
+    .app-list p {
+      font-size: 13.5px;
+      color: var(--rk-on-dark-2);
+      line-height: 1.5;
       margin-top: 2px;
     }
 
-    .mod li .lk svg {
-      width: 11px;
-      height: 11px;
-      stroke: var(--ok);
-      fill: none;
-      stroke-width: 3;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .caps-more {
-      margin-top: 22px;
-      text-align: center;
-      font-size: .92rem;
-      color: var(--muted);
-    }
-
-    /* cta */
-    .cta {
-      background: var(--night);
-      color: var(--on-dark);
-    }
-
-    .cta .box {
+    /* ══ ARABIC ══════════════════════════════════════════════════ */
+    .ar-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 52px;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(28px, 4vw, 56px);
       align-items: center;
     }
 
-    @media(max-width:820px) {
-      .cta .box {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
+    .ar-demo {
+      padding: 28px;
+      display: grid;
+      gap: 15px;
     }
 
-    .cta .eyebrow {
-      color: var(--ochre-soft);
+    .ar-line {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 16px;
+      align-items: center;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--rk-hair);
     }
 
-    .cta h2 {
-      color: #fff;
-      font-size: clamp(2rem, 4vw, 2.8rem);
-      margin: 16px 0 12px;
+    .ar-line.last {
+      border-bottom: 0;
+      padding-bottom: 0;
     }
 
-    .cta p {
-      color: var(--on-dark-mut);
+    .ar-line .tag {
+      font-family: var(--f-mono);
+      font-size: 10.5px;
+      letter-spacing: .07em;
+      color: var(--rk-t3);
     }
 
-    form {
+    .ar-line .en {
+      font-family: var(--f-latin);
+      font-size: 16px;
+      font-weight: 500;
+      direction: ltr;
+      text-align: left;
+    }
+
+    .ar-line .ar {
+      font-family: var(--f-arabic);
+      font-size: 17px;
+      font-weight: 500;
+      direction: rtl;
+      text-align: right;
+      line-height: 1.7;
+    }
+
+    /* ══ DATA ════════════════════════════════════════════════════ */
+    .data-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+    }
+
+    .data-c {
+      padding: 24px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
 
-    form .row {
-      display: flex;
-      gap: 12px;
+    .data-c h3 {
+      font-size: 16px;
     }
 
-    @media(max-width:480px) {
-      form .row {
-        flex-direction: column;
-      }
+    .data-c p {
+      font-size: 13.5px;
+      color: var(--rk-t2);
+      line-height: 1.55;
     }
 
-    input,
-    select {
-      font-family: var(--f);
-      font-size: 1rem;
+    /* ══ CUSTOMER ════════════════════════════════════════════════ */
+    .quote {
+      max-width: 74ch;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .quote blockquote {
+      font-size: clamp(20px, 2.5vw, 30px);
+      font-weight: 600;
+      letter-spacing: -.025em;
+      line-height: 1.32;
+    }
+
+    html[dir="rtl"] .quote blockquote {
+      letter-spacing: 0;
+      line-height: 1.6;
+    }
+
+    .quote .attr {
+      margin-top: 20px;
+      font-size: 14px;
+      color: var(--rk-t3);
+    }
+
+    /* ══ CTA · dark band ═════════════════════════════════════════ */
+    .cta-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .95fr) minmax(0, 1fr);
+      gap: clamp(30px, 4.5vw, 62px);
+      align-items: start;
+    }
+
+    .form {
+      display: grid;
+      gap: 11px;
+    }
+
+    .frow {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 11px;
+    }
+
+    .form input,
+    .form select {
       width: 100%;
-      padding: .95em 1.1em;
-      border-radius: 12px;
-      border: 1.5px solid rgba(255, 255, 255, .16);
-      background: rgba(255, 255, 255, .05);
-      color: #fff;
+      height: 50px;
+      background: var(--rk-dark-card);
+      border: 1px solid #2E2E2C;
+      border-radius: var(--r-btn);
+      color: var(--rk-on-dark);
+      font-family: inherit;
+      font-size: 15px;
+      padding: 0 15px;
+      transition: border-color var(--t-state) var(--ease-in);
     }
 
-    input::placeholder {
-      color: rgba(234, 243, 240, .45);
+    .form input::placeholder {
+      color: var(--rk-on-dark-3);
     }
 
-    select option {
-      color: var(--ink);
+    .form input:focus,
+    .form select:focus {
+      border-color: var(--rk-cobalt-400);
     }
 
-    input:focus,
-    select:focus {
-      border-color: var(--ochre);
-      background: rgba(255, 255, 255, .09);
+    .form select {
+      color: var(--rk-on-dark-3);
+      cursor: pointer;
     }
 
-    .fnote {
-      font-size: .82rem;
-      color: rgba(234, 243, 240, .5);
+    .form select.filled {
+      color: var(--rk-on-dark);
     }
 
-    .success {
+    .form option {
+      background: var(--rk-dark-card);
+      color: var(--rk-on-dark);
+    }
+
+    .form .btn {
+      width: 100%;
+      height: 52px;
+      margin-top: 3px;
+    }
+
+    .form-note {
+      font-size: 12.5px;
+      color: var(--rk-on-dark-3);
+      text-align: center;
+    }
+
+    .form-ok {
       display: none;
-      background: rgba(46, 158, 107, .14);
-      border: 1px solid rgba(46, 158, 107, .4);
-      color: #8ff0c1;
-      border-radius: 14px;
-      padding: 24px;
-      font-weight: 600;
+      background: rgba(76, 199, 124, .1);
+      border: 1px solid rgba(76, 199, 124, .3);
+      color: var(--rk-ok-d);
+      border-radius: var(--r-btn);
+      padding: 16px;
+      font-size: 14.5px;
+      text-align: center;
+      line-height: 1.5;
     }
 
-    .success.on {
-      display: block;
+    .cta-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 26px;
     }
 
-    footer {
-      background: var(--night-2);
-      color: var(--on-dark-mut);
-      padding: 54px 0 30px;
+    .cta-list li {
+      display: flex;
+      gap: 11px;
+      align-items: flex-start;
+      font-size: 14.5px;
+      color: var(--rk-on-dark-2);
+      line-height: 1.5;
     }
 
+    .cta-list .ico {
+      color: var(--rk-on-dark);
+      margin-top: 1px;
+    }
+
+    /* ══ FOOTER ══════════════════════════════════════════════════ */
     .foot {
+      background: var(--rk-dark-canvas);
+      color: var(--rk-on-dark-2);
+      border-top: 1px solid #232322;
+      padding: 40px 0;
+    }
+
+    .foot .wrap {
       display: flex;
-      justify-content: space-between;
-      gap: 24px;
       flex-wrap: wrap;
-    }
-
-    .foot .brand {
-      color: #fff;
-    }
-
-    .foot p {
-      font-size: .92rem;
-      max-width: 32ch;
-      margin-top: 12px;
-    }
-
-    .foot-links {
-      display: flex;
-      gap: 24px;
-      font-size: .92rem;
-      font-weight: 600;
-    }
-
-    .foot-links a:hover {
-      color: var(--ochre-soft);
-    }
-
-    .foot-bottom {
-      border-top: 1px solid rgba(255, 255, 255, .1);
-      margin-top: 34px;
-      padding-top: 20px;
-      font-size: .84rem;
-      color: rgba(234, 243, 240, .45);
-      display: flex;
+      gap: 20px;
+      align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
     }
 
-    .reveal {
+    .foot .logo {
+      color: var(--rk-on-dark);
+    }
+
+    .foot .logo svg {
+      height: 18px;
+    }
+
+    .foot .tag {
+      font-size: 13.5px;
+      margin-top: 9px;
+      max-width: 42ch;
+    }
+
+    .foot .meta {
+      font-size: 12.5px;
+      color: var(--rk-on-dark-3);
+      text-align: end;
+      line-height: 1.7;
+    }
+
+    /* ══ REVEAL ══════════════════════════════════════════════════
+       Gated on .js — the hidden state exists only once JS has proved it
+       can undo it. Hiding 51 elements in plain CSS means no-JS, a failed
+       observer, or a stalled load leaves a blank page. Progressive
+       enhancement, not progressive disappearance. */
+    .js .reveal {
       opacity: 0;
-      transform: translateY(28px);
-      transition: opacity .7s, transform .7s;
+      transform: translateY(8px);
+      transition: opacity var(--t-section) var(--ease-in),
+        transform var(--t-section) var(--ease-in);
     }
 
     .reveal.in {
@@ -1545,31 +1680,103 @@
       transform: none;
     }
 
-    .reveal.d1 {
-      transition-delay: .08s;
-    }
+    /* ══ RESPONSIVE ══════════════════════════════════════════════ */
+    @media (max-width: 1000px) {
 
-    .reveal.d2 {
-      transition-delay: .16s;
-    }
-
-    .reveal.d3 {
-      transition-delay: .24s;
-    }
-
-    @media(prefers-reduced-motion:reduce) {
-      * {
-        animation-duration: .001s !important;
-        animation-delay: 0s !important;
+      .hero-grid,
+      .pay-grid,
+      .app-grid,
+      .ar-grid,
+      .cta-grid {
+        grid-template-columns: minmax(0, 1fr);
       }
 
-      .reveal,
-      .hero h1,
-      .hero .lead,
-      .hero-cta,
-      .shot {
-        opacity: 1 !important;
-        transform: none !important;
+      .trust .wrap {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .bt,
+      .bt.wide,
+      .bt.hero-tile {
+        grid-column: span 3;
+      }
+
+      .nav {
+        display: none;
+      }
+
+      .menu-btn {
+        display: flex;
+        margin-inline-start: auto;
+      }
+
+      .hero {
+        padding-top: 116px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        font-size: 16px;
+      }
+
+      .trust .wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .bt,
+      .bt.wide,
+      .bt.hero-tile {
+        grid-column: span 6;
+      }
+
+      .frow {
+        grid-template-columns: 1fr;
+      }
+
+      #hdrCta {
+        display: none;
+      }
+
+      .sheet {
+        padding: 17px;
+      }
+
+      /* Deductions column folds away first — net and payable are the
+         two figures the sheet exists to show. */
+      table.money th:nth-child(3),
+      table.money td:nth-child(3) {
+        display: none;
+      }
+
+      .dating-out {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+
+      .foot .meta {
+        text-align: start;
+      }
+    }
+
+    /* ══ REDUCED MOTION · opacity only, per §9 ═══════════════════ */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+
+      .prob:hover,
+      .bt:hover {
+        transform: none;
       }
     }
   </style>
@@ -1577,976 +1784,815 @@
 
 <body>
 
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <defs>
-      <g id="mark">
-        <rect width="120" height="120" rx="28" fill="#121212" />
-        <path d="M46 36 L46 90" stroke="#fff" stroke-width="12" stroke-linecap="round" />
-        <path d="M46 36 L59 36 A13 13 0 0 1 59 62 L46 62" stroke="#fff" stroke-width="12" stroke-linecap="round"
-          stroke-linejoin="round" fill="none" />
-        <path d="M53 60 L75 90" stroke="#C7F04A" stroke-width="12" stroke-linecap="round" />
-      </g>
-    </defs>
-  </svg>
+  <!-- ═══ HEADER ═══════════════════════════════════════════════ -->
+  <header class="hdr" id="hdr">
+    <div class="wrap">
+      <a href="#top" class="logo" aria-label="Rakeez">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3987 687" role="img" aria-label="Rakeez">
+          <title>Rakeez</title>
+          <g transform="translate(-75.0 1.0)" fill="currentColor">
+            <path
+              d="M75 686V-1H474Q550 -1 601 27.5Q652 56 677.5 105.5Q703 155 703 216Q703 282 672.5 333.5Q642 385 587 414L725 686H525L411 444H254V686ZM254 311H439Q476 311 498.5 286.5Q521 262 521 221Q521 194 511 175Q501 156 483 145.5Q465 135 439 135H254Z M708 686 966 -1H1181L1439 686H1248L1207 567H933L892 686ZM976 433H1163L1114 288Q1110 277 1104.5 260.5Q1099 244 1093.5 225.5Q1088 207 1083 188Q1078 169 1073 155H1066Q1062 174 1054.5 198Q1047 222 1039.5 246Q1032 270 1026 288Z M1471 686V-1H1650V304L1922 -1H2144L1888 280L2149 686H1937L1764 402L1650 507V686Z M2193 686V-1H2760V139H2372V268H2711V405H2372V546H2767V686Z M2842 686V-1H3409V139H3021V268H3360V405H3021V546H3416V686Z M3440 686V619L3781 139H3465V-1H4054V66L3713 546H4062V686Z" />
+          </g>
+        </svg>
+      </a>
 
-  <header id="hdr">
-    <div class="wrap nav">
-      <a class="brand" href="#top"><svg viewBox="0 0 120 120" width="34" height="34" aria-hidden="true">
-          <use href="#mark" />
-        </svg><span class="bn">Rakeez</span></a>
-      <nav class="nav-links">
-        <a href="#watch" data-i18n="nav_watch">Watch</a>
-        <a href="#problems" data-i18n="nav_prob">Your challenges</a>
-        <a href="#panel" data-i18n="nav_panel">The panel</a>
-        <a href="#mobile" data-i18n="nav_mob">The app</a>
-        <a href="#caps" data-i18n="nav_caps">Features</a>
+      <nav class="nav" id="nav" aria-label="Sections">
+        <span class="nav-pill" id="navPill" aria-hidden="true"></span>
+        <a href="#payroll" data-i18n="nav_pay">Payroll</a>
+        <a href="#modules" data-i18n="nav_mod">What it does</a>
+        <a href="#app" data-i18n="nav_app">The app</a>
+        <a href="#arabic" data-i18n="nav_ar">Arabic</a>
+        <a href="#data" data-i18n="nav_data">Your data</a>
       </nav>
-      <div class="nav-right">
-        <button class="lang" id="langBtn">العربية</button>
-        <a href="#join" class="btn btn-primary" data-i18n="nav_cta">Book a demo</a>
+
+      <div class="hdr-act">
+        <button class="lang" id="langBtn" type="button">العربية</button>
+        <a href="#demo" class="btn btn-sm" id="hdrCta" data-i18n="nav_cta">Book a demo</a>
+        <button class="menu-btn" id="menuBtn" type="button" aria-label="Sections">
+          <svg class="ico ico-20" viewBox="0 0 24 24">
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </button>
       </div>
     </div>
   </header>
 
-  <main id="top">
+  <!-- ═══ HERO ═════════════════════════════════════════════════ -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="hero-grid">
 
-    <section class="hero">
-      <div class="wrap hero-inner">
-        <div class="hero-copy">
-          <span class="eyebrow" data-i18n="hero_eyebrow">HR &amp; payroll for Egyptian real estate</span>
-          <h1 data-i18n="hero_h1">Every branch, every agent — <span class="em">one system.</span></h1>
-          <p class="lead" data-i18n="hero_lead">Rakeez runs attendance, payroll, and compliance across all your
-            branches, pays your sales agents their commissions correctly, keeps you current with Egyptian labor law, and
-            puts an app in every agent's pocket.</p>
-          <div class="hero-cta">
-            <a href="#join" class="btn btn-primary" data-i18n="hero_cta1">Book a demo</a>
-            <a href="#panel" class="btn btn-ghost-d" data-i18n="hero_cta2">See it inside</a>
+        <div>
+          <p class="eyebrow reveal" data-i18n="hero_eye">HR &amp; payroll · Egypt</p>
+          <h1 class="display reveal" data-i18n="hero_h1">One record for your people, your time and your money.</h1>
+          <p class="lead reveal" data-i18n="hero_lead">Rakeez holds everything about everyone who works for you —
+            hiring, attendance, leave, commission, expenses and the payroll sheet — in one system, in Arabic and
+            English. Your accountant's figures, recorded and paid.</p>
+
+          <div class="hero-cta reveal">
+            <a href="#demo" class="btn btn-gold" data-i18n="hero_cta1">Book a demo</a>
+            <a href="#modules" class="btn btn-ghost" data-i18n="hero_cta2">See what it does</a>
+          </div>
+
+          <div class="hero-meta reveal">
+            <span>
+              <svg class="ico ico-20" viewBox="0 0 24 24">
+                <path d="M20 6 9 17l-5-5" />
+              </svg><span data-i18n="hero_m1">Built for Egypt</span>
+            </span>
+            <span>
+              <svg class="ico ico-20" viewBox="0 0 24 24">
+                <path d="M20 6 9 17l-5-5" />
+              </svg><span data-i18n="hero_m2">Arabic and English, full RTL</span>
+            </span>
+            <span>
+              <svg class="ico ico-20" viewBox="0 0 24 24">
+                <path d="M20 6 9 17l-5-5" />
+              </svg><span data-i18n="hero_m3">No spreadsheet to maintain</span>
+            </span>
           </div>
         </div>
 
-        <div class="shot">
-          <div class="browser">
-            <div class="bbar">
-              <div class="bdots"><i></i><i></i><i></i></div>
-              <div class="burl">app.rakeez.co / dashboard</div>
-            </div>
-            <div class="app">
-              <aside class="side">
-                <div class="sbrand"><svg viewBox="0 0 120 120" width="24" height="24" aria-hidden="true">
-                    <use href="#mark" />
-                  </svg><span class="bn">Rakeez</span></div>
-                <nav class="snav">
-                  <a class="act"><span class="si"><svg viewBox="0 0 24 24">
-                        <rect x="3" y="3" width="7" height="9" rx="1" />
-                        <rect x="14" y="3" width="7" height="5" rx="1" />
-                        <rect x="14" y="12" width="7" height="9" rx="1" />
-                        <rect x="3" y="16" width="7" height="5" rx="1" />
-                      </svg></span><span data-i18n="sn_dash">Dashboard</span></a>
-                  <a><svg viewBox="0 0 24 24">
-                      <circle cx="9" cy="8" r="3.2" />
-                      <path d="M4 19a5 5 0 0 1 10 0" />
-                      <path d="M16 6a3 3 0 0 1 0 5" />
-                    </svg><span data-i18n="sn_emp">Employees</span></a>
-                  <a><svg viewBox="0 0 24 24">
-                      <rect x="3" y="5" width="18" height="14" rx="2" />
-                      <line x1="3" y1="10" x2="21" y2="10" />
-                    </svg><span data-i18n="sn_pay">Payroll</span></a>
-                  <a><svg viewBox="0 0 24 24">
-                      <circle cx="12" cy="12" r="8" />
-                      <polyline points="12 8 12 12 15 14" />
-                    </svg><span data-i18n="sn_att">Attendance</span></a>
-                  <a><svg viewBox="0 0 24 24">
-                      <path d="M12 21s-7-5-7-11a7 7 0 0 1 14 0c0 6-7 11-7 11z" />
-                      <circle cx="12" cy="10" r="2.5" />
-                    </svg><span data-i18n="sn_branch">Branches</span></a>
-                  <a><svg viewBox="0 0 24 24">
-                      <path d="M7 3h7l5 5v13H7z" />
-                      <polyline points="10 14 12 16 16 12" />
-                    </svg><span data-i18n="sn_con">Contracts</span></a>
-                  <a><svg viewBox="0 0 24 24">
-                      <line x1="6" y1="20" x2="6" y2="12" />
-                      <line x1="12" y1="20" x2="12" y2="4" />
-                      <line x1="18" y1="20" x2="18" y2="9" />
-                    </svg><span data-i18n="sn_rep">Reports</span></a>
-                </nav>
-              </aside>
-              <div class="main">
-                <div class="topbar">
-                  <div class="bsel"><svg viewBox="0 0 24 24">
-                      <path d="M12 21s-7-5-7-11a7 7 0 0 1 14 0c0 6-7 11-7 11z" />
-                    </svg><span data-i18n="tb_all">All branches</span><svg viewBox="0 0 24 24">
-                      <polyline points="6 9 12 15 18 9" />
-                    </svg></div>
-                  <div class="tsearch" data-i18n="tb_search">Search employees, branches…</div>
-                  <div class="tav">NA</div>
-                </div>
-                <div class="hgreet" data-i18n="dash_greet">Good morning, Nour</div>
-                <div class="hsub" data-i18n="dash_sub">Here's your workforce across all branches today.</div>
-                <div class="scards">
-                  <div class="sc">
-                    <div class="l"><svg viewBox="0 0 24 24">
-                        <circle cx="9" cy="8" r="3" />
-                        <path d="M4 19a5 5 0 0 1 10 0" />
-                      </svg><span data-i18n="kc_emp">Employees</span></div>
-                    <div class="v mono">248</div>
-                  </div>
-                  <div class="sc">
-                    <div class="l"><svg viewBox="0 0 24 24">
-                        <path d="M12 21s-7-5-7-11a7 7 0 0 1 14 0c0 6-7 11-7 11z" />
-                      </svg><span data-i18n="kc_branch">Branches</span></div>
-                    <div class="v mono">12</div>
-                  </div>
-                  <div class="sc">
-                    <div class="l"><svg viewBox="0 0 24 24">
-                        <rect x="3" y="5" width="18" height="14" rx="2" />
-                      </svg><span data-i18n="kc_pay">March payroll</span></div>
-                    <div class="v mono tl">EGP 3.9M</div>
-                  </div>
-                  <div class="sc">
-                    <div class="l"><svg viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="9" />
-                        <polyline points="12 7 12 12 15 15" />
-                      </svg><span data-i18n="kc_pend">Pending</span></div>
-                    <div class="v mono">7</div>
-                  </div>
-                </div>
-                <div class="prow">
-                  <div class="pcard">
-                    <div class="pt" data-i18n="pp_title">March payroll</div>
-                    <div class="pbig mono">EGP 3.9M</div>
-                    <div class="chips">
-                      <span class="chip"><svg viewBox="0 0 24 24">
-                          <polyline points="5 12 10 17 19 7" />
-                        </svg><span data-i18n="pp_ins">Insurance</span></span>
-                      <span class="chip"><svg viewBox="0 0 24 24">
-                          <polyline points="5 12 10 17 19 7" />
-                        </svg><span data-i18n="pp_tax">Tax</span></span>
-                      <span class="chip"><svg viewBox="0 0 24 24">
-                          <polyline points="5 12 10 17 19 7" />
-                        </svg><span data-i18n="pp_comm">Commissions</span></span>
-                    </div>
-                    <div class="runbtn"><svg viewBox="0 0 24 24">
-                        <polygon points="6 4 20 12 6 20 6 4" />
-                      </svg><span data-i18n="pp_run">Run payroll</span></div>
-                  </div>
-                  <div class="pcard">
-                    <div class="pt" data-i18n="bt_title">By branch</div>
-                    <table class="bt">
-                      <tr>
-                        <th data-i18n="bt_branch">Branch</th>
-                        <th data-i18n="bt_people">People</th>
-                        <th data-i18n="bt_cost">Payroll</th>
-                        <th data-i18n="bt_ontime">On-time</th>
-                      </tr>
-                      <tr>
-                        <td class="bn">Cairo HQ</td>
-                        <td class="num">64</td>
-                        <td class="num">EGP 1.1M</td>
-                        <td class="pct g">96%</td>
-                      </tr>
-                      <tr>
-                        <td class="bn">New Cairo</td>
-                        <td class="num">38</td>
-                        <td class="num">620K</td>
-                        <td class="pct g">94%</td>
-                      </tr>
-                      <tr>
-                        <td class="bn">Sheikh Zayed</td>
-                        <td class="num">41</td>
-                        <td class="num">700K</td>
-                        <td class="pct a">92%</td>
-                      </tr>
-                      <tr>
-                        <td class="bn">Alexandria</td>
-                        <td class="num">33</td>
-                        <td class="num">520K</td>
-                        <td class="pct g">95%</td>
-                      </tr>
-                      <tr>
-                        <td class="bn">New Capital</td>
-                        <td class="num">28</td>
-                        <td class="num">460K</td>
-                        <td class="pct g">93%</td>
-                      </tr>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <!-- I6 · the hero's ONE dark tile. No gold inside it: the hero
+             action already holds this viewport's single signal. -->
+        <div class="tile-dark sheet dark reveal">
+          <div class="sheet-hd">
+            <h4 data-i18n="sh_title">Payroll · March 2026</h4>
+            <span class="sub" data-i18n="sh_sub">3 of 1,284 shown</span>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="watch" id="watch">
-      <div class="wrap">
-        <div class="sec-head reveal" style="text-align:center;max-width:640px;margin-inline:auto;">
-          <span class="eyebrow" style="justify-content:center;" data-i18n="promo_eyebrow">See it in motion</span>
-          <h2 data-i18n="promo_h2">Rakeez in half a minute.</h2>
-        </div>
-        <div class="promo-frame reveal">
-          <div class="promo-embed" id="promoEmbed">
-            <iframe id="promoFrame" data-src="rakeez-promo.html" title="Rakeez promo" loading="lazy"
-              allow="autoplay"></iframe>
-            <div class="promo-poster" id="promoPoster">
-              <div class="play"><svg viewBox="0 0 24 24" aria-hidden="true">
-                  <polygon points="7 5 19 12 7 19 7 5" />
-                </svg></div>
-              <div class="ptxt" data-i18n="promo_play">Watch the 30-second promo</div>
-            </div>
+          <table class="money" id="sheetTable">
+            <thead>
+              <tr>
+                <th data-i18n="sh_emp">Employee</th>
+                <th data-i18n="sh_net">Net</th>
+                <th data-i18n="sh_ded">Deductions</th>
+                <th data-i18n="sh_pay">Payable</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-i18n="sh_n1">Nour Adel</td>
+                <td class="f dim">12,000.00</td>
+                <td class="f dim">450.00</td>
+                <td class="f">11,550.00</td>
+              </tr>
+              <tr>
+                <td data-i18n="sh_n2">Kareem Fathy</td>
+                <td class="f dim">9,500.00</td>
+                <td class="f dim">0.00</td>
+                <td class="f">9,500.00</td>
+              </tr>
+              <tr>
+                <td data-i18n="sh_n3">Salma Hany</td>
+                <td class="f dim">14,200.00</td>
+                <td class="f dim">1,200.00</td>
+                <td class="f">13,000.00</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="sheet-ft">
+            <span class="k" data-i18n="sh_total">Total payable · EGP</span>
+            <!-- The real figure is the markup. JS zeroes it only when it is
+                 about to count, so a frozen rAF can never show 0.00. -->
+            <span class="v" id="sheetTotal" data-count="34050">34,050.00</span>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="probs" id="problems">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <span class="eyebrow" data-i18n="prob_eyebrow">Built for how real estate actually works</span>
-          <h2 data-i18n="prob_h2">The five headaches Rakeez takes off your desk.</h2>
-        </div>
-        <div class="pgrid">
-          <div class="pitem reveal">
-            <div class="pn"><svg viewBox="0 0 24 24">
-                <path d="M12 21s-7-5-7-11a7 7 0 0 1 14 0c0 6-7 11-7 11z" />
-                <circle cx="12" cy="10" r="2.5" />
-              </svg></div>
-            <div>
-              <div class="pq" data-i18n="p1_q">"Our people are spread across a dozen branches."</div>
-              <h3 data-i18n="p1_h">One system for every branch</h3>
-              <p class="pd-p" style="color:var(--muted);font-size:.95rem;" data-i18n="p1_p">Attendance, payroll, and
-                people for all your branches in one place — with numbers rolled up per branch and for the whole company.
-              </p>
-            </div>
-          </div>
-          <div class="pitem reveal d1">
-            <div class="pn"><svg viewBox="0 0 24 24">
-                <line x1="12" y1="2" x2="12" y2="22" />
-                <path d="M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-              </svg></div>
-            <div>
-              <div class="pq" data-i18n="p2_q">"Half my team lives on commission."</div>
-              <h3 data-i18n="p2_h">Commissions, done right</h3>
-              <p style="color:var(--muted);font-size:.95rem;" data-i18n="p2_p">Base salary, sales commissions, and
-                bonuses calculated together and paid correctly — no side spreadsheet, no month-end panic.</p>
-            </div>
-          </div>
-          <div class="pitem reveal">
-            <div class="pn"><svg viewBox="0 0 24 24">
-                <rect x="7" y="3" width="10" height="18" rx="2" />
-                <line x1="11" y1="18" x2="13" y2="18" />
-              </svg></div>
-            <div>
-              <div class="pq" data-i18n="p3_q">"My agents are never at a desk."</div>
-              <h3 data-i18n="p3_h">Check in from any site</h3>
-              <p style="color:var(--muted);font-size:.95rem;" data-i18n="p3_p">Agents clock in from the branch, a
-                showroom, or a viewing — with GPS location — right from their phone.</p>
-            </div>
-          </div>
-          <div class="pitem reveal d1">
-            <div class="pn"><svg viewBox="0 0 24 24">
-                <path d="M16 21v-2a4 4 0 0 0-8 0v2" />
-                <circle cx="12" cy="7" r="4" />
-                <line x1="19" y1="8" x2="23" y2="8" />
-              </svg></div>
-            <div>
-              <div class="pq" data-i18n="p4_q">"Sales roles turn over fast."</div>
-              <h3 data-i18n="p4_h">Fast in, clean out</h3>
-              <p style="color:var(--muted);font-size:.95rem;" data-i18n="p4_p">Onboard with a digital Arabic contract in
-                minutes; when someone leaves, end-of-service is calculated correctly the first time.</p>
-            </div>
-          </div>
-          <div class="pitem reveal">
-            <div class="pn"><svg viewBox="0 0 24 24">
-                <path d="M12 3l7 3v5c0 4-3 7-7 8-4-1-7-4-7-8V6z" />
-                <polyline points="9 12 11 14 15 10" />
-              </svg></div>
-            <div>
-              <div class="pq" data-i18n="p5_q">"The new labor law is now on us."</div>
-              <h3 data-i18n="p5_h">Compliant by default</h3>
-              <p style="color:var(--muted);font-size:.95rem;" data-i18n="p5_p">Egypt's Labor Law No. 14 of 2025 —
-                insurance, taxes, the 3% increment, training fund, records — all handled automatically, no consultant
-                required.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel" id="panel">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <span class="eyebrow" data-i18n="panel_eyebrow">Inside Rakeez</span>
-          <h2 data-i18n="panel_h2">A control room for your whole workforce.</h2>
-          <p data-i18n="panel_p">See attendance the moment it happens — who's in, where, and on time — across every
-            branch, on one screen.</p>
-        </div>
-        <div class="shot reveal" style="animation:none;">
-          <div class="browser">
-            <div class="bbar">
-              <div class="bdots"><i></i><i></i><i></i></div>
-              <div class="burl">app.rakeez.co / attendance</div>
-            </div>
-            <div class="app">
-              <aside class="side">
-                <div class="sbrand"><svg viewBox="0 0 120 120" width="24" height="24" aria-hidden="true">
-                    <use href="#mark" />
-                  </svg><span class="bn">Rakeez</span></div>
-                <nav class="snav">
-                  <a><span class="si"><svg viewBox="0 0 24 24">
-                        <rect x="3" y="3" width="7" height="9" rx="1" />
-                        <rect x="14" y="3" width="7" height="5" rx="1" />
-                        <rect x="14" y="12" width="7" height="9" rx="1" />
-                        <rect x="3" y="16" width="7" height="5" rx="1" />
-                      </svg></span><span data-i18n="sn_dash">Dashboard</span></a>
-                  <a><svg viewBox="0 0 24 24">
-                      <circle cx="9" cy="8" r="3.2" />
-                      <path d="M4 19a5 5 0 0 1 10 0" />
-                    </svg><span data-i18n="sn_emp">Employees</span></a>
-                  <a><svg viewBox="0 0 24 24">
-                      <rect x="3" y="5" width="18" height="14" rx="2" />
-                      <line x1="3" y1="10" x2="21" y2="10" />
-                    </svg><span data-i18n="sn_pay">Payroll</span></a>
-                  <a class="act"><span class="si"><svg viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="8" />
-                        <polyline points="12 8 12 12 15 14" />
-                      </svg></span><span data-i18n="sn_att">Attendance</span></a>
-                  <a><svg viewBox="0 0 24 24">
-                      <path d="M12 21s-7-5-7-11a7 7 0 0 1 14 0c0 6-7 11-7 11z" />
-                      <circle cx="12" cy="10" r="2.5" />
-                    </svg><span data-i18n="sn_branch">Branches</span></a>
-                  <a><svg viewBox="0 0 24 24">
-                      <path d="M7 3h7l5 5v13H7z" />
-                      <polyline points="10 14 12 16 16 12" />
-                    </svg><span data-i18n="sn_con">Contracts</span></a>
-                </nav>
-              </aside>
-              <div class="main">
-                <div class="att-head">
-                  <div>
-                    <div class="hgreet" data-i18n="att_title">Attendance · Today</div>
-                  </div>
-                  <div class="att-sum">
-                    <div class="asum"><b class="mono">231</b><span data-i18n="att_present">Present</span></div>
-                    <div class="asum"><b class="mono">9</b><span data-i18n="att_late">Late</span></div>
-                    <div class="asum"><b class="mono">8</b><span data-i18n="att_off">Off</span></div>
-                  </div>
-                </div>
-                <div class="arow" style="border-top:none;">
-                  <div class="aperson"><span class="aav">MH</span><b>Mahmoud Hassan</b></div>
-                  <div class="aloc hidesm"><svg viewBox="0 0 24 24">
-                      <path d="M12 21s-7-5-7-11a7 7 0 0 1 14 0c0 6-7 11-7 11z" />
-                    </svg><span>Sheikh Zayed</span></div>
-                  <div class="atime hidesm">08:52</div>
-                  <div><span class="astat on" data-i18n="st_on">On-site</span></div>
-                </div>
-                <div class="arow">
-                  <div class="aperson"><span class="aav">SA</span><b>Salma Adel</b></div>
-                  <div class="aloc hidesm"><svg viewBox="0 0 24 24">
-                      <path d="M12 21s-7-5-7-11a7 7 0 0 1 14 0c0 6-7 11-7 11z" />
-                    </svg><span>New Cairo</span></div>
-                  <div class="atime hidesm">09:14</div>
-                  <div><span class="astat late" data-i18n="st_late">Late</span></div>
-                </div>
-                <div class="arow">
-                  <div class="aperson"><span class="aav">KM</span><b>Karim Mostafa</b></div>
-                  <div class="aloc hidesm"><svg viewBox="0 0 24 24">
-                      <path d="M12 21s-7-5-7-11a7 7 0 0 1 14 0c0 6-7 11-7 11z" />
-                    </svg><span data-i18n="loc_view">Villa viewing</span></div>
-                  <div class="atime hidesm">08:40</div>
-                  <div><span class="astat rem" data-i18n="st_field">Field</span></div>
-                </div>
-                <div class="arow">
-                  <div class="aperson"><span class="aav">NF</span><b>Nada Farouk</b></div>
-                  <div class="aloc hidesm"><svg viewBox="0 0 24 24">
-                      <path d="M12 21s-7-5-7-11a7 7 0 0 1 14 0c0 6-7 11-7 11z" />
-                    </svg><span>Cairo HQ</span></div>
-                  <div class="atime hidesm">08:47</div>
-                  <div><span class="astat on" data-i18n="st_on">On-site</span></div>
-                </div>
-                <div class="arow">
-                  <div class="aperson"><span class="aav">YS</span><b>Youssef Samir</b></div>
-                  <div class="aloc hidesm"><svg viewBox="0 0 24 24">
-                      <path d="M12 21s-7-5-7-11a7 7 0 0 1 14 0c0 6-7 11-7 11z" />
-                    </svg><span>Alexandria</span></div>
-                  <div class="atime hidesm">08:33</div>
-                  <div><span class="astat on" data-i18n="st_on">On-site</span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="shot-cap"><svg viewBox="0 0 24 24">
+          <p class="sheet-note">
+            <svg class="ico ico-20" viewBox="0 0 24 24" style="opacity:.55">
               <circle cx="12" cy="12" r="9" />
-              <polyline points="12 7 12 12 16 14" />
-            </svg><span data-i18n="panel_cap">Real check-ins, real locations — including agents out in the field.</span>
-          </div>
+              <path d="M12 16v-5M12 8h.01" />
+            </svg>
+            <span data-i18n="sh_note">Net minus deductions equals payable. Nothing on this sheet was computed from
+              law.</span>
+          </p>
         </div>
 
-        <div class="shot reveal" style="animation:none;margin-top:22px;">
-          <div class="browser">
-            <div class="bbar">
-              <div class="bdots"><i></i><i></i><i></i></div>
-              <div class="burl">app.rakeez.co / payroll / run</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TRUST STRIP ══════════════════════════════════════════ -->
+  <section class="trust">
+    <div class="wrap">
+      <div class="t">
+        <svg class="ico" viewBox="0 0 24 24">
+          <path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6" />
+        </svg>
+        <div>
+          <b data-i18n="tr1_h">Built for Egypt</b>
+          <p data-i18n="tr1_p">Egyptian companies, Egyptian working weeks, Egyptian holidays.</p>
+        </div>
+      </div>
+      <div class="t">
+        <svg class="ico" viewBox="0 0 24 24">
+          <path d="M5 8h9M9 4v4M11 20l4-11 4 11M12.5 16.5h5.5M5 12c1.6 3.4 4.2 6 7 7.5" />
+        </svg>
+        <div>
+          <b data-i18n="tr2_h">Arabic and English</b>
+          <p data-i18n="tr2_p">Every screen, both directions. Not a translation layer.</p>
+        </div>
+      </div>
+      <div class="t">
+        <svg class="ico" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 8v5l3 2" />
+        </svg>
+        <div>
+          <b data-i18n="tr3_h">Five-year records</b>
+          <p data-i18n="tr3_p">Contracts, documents and salary history kept as long as the law asks.</p>
+        </div>
+      </div>
+      <div class="t">
+        <svg class="ico" viewBox="0 0 24 24">
+          <path d="M12 3l8 3v6c0 5-3.4 8-8 9-4.6-1-8-4-8-9V6z" />
+        </svg>
+        <div>
+          <b data-i18n="tr4_h">Your data is yours</b>
+          <p data-i18n="tr4_p">Every row scoped to your company. No exceptions, and tested.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The WATCH section is deliberately absent: `rakeez-promo.html` still
+       shows the old lime identity and out-of-date product, and a stale
+       tour is worse than none. Restore this section — and 'watch' in the
+       goldOwners list below — when a new promo exists. -->
+
+  <!-- ═══ PROBLEMS ═════════════════════════════════════════════ -->
+  <section class="band tint" id="problems">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow" data-i18n="pr_eye">What this replaces</p>
+        <h2 data-i18n="pr_h">Five things that live in a spreadsheet, and shouldn't.</h2>
+        <p class="lead" data-i18n="pr_p">Every company we have talked to runs on the same five workarounds. Each one
+          costs somebody a day a month, and nobody quite trusts the result.</p>
+      </div>
+
+      <div class="probs">
+        <article class="card prob reveal">
+          <p class="q" data-i18n="p1_q">"Attendance arrives on WhatsApp."</p>
+          <span class="rule"></span>
+          <p data-i18n="p1_p">Staff check in from their own phone, at the branch or in the field, with the location
+            recorded. Shifts, lateness and absence land in the same place.</p>
+          <span class="ans">
+            <svg class="ico ico-20" viewBox="0 0 24 24">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg><span data-i18n="p1_a">Attendance &amp; shifts</span>
+          </span>
+        </article>
+
+        <article class="card prob reveal">
+          <p class="q" data-i18n="p2_q">"Commission gets argued about every month."</p>
+          <span class="rule"></span>
+          <p data-i18n="p2_p">Plans are written once, per role. Earnings run on their own clock — earned, due, paid —
+            with a report that shows the working, so the argument ends.</p>
+          <span class="ans">
+            <svg class="ico ico-20" viewBox="0 0 24 24">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg><span data-i18n="p2_a">Commission</span>
+          </span>
+        </article>
+
+        <article class="card prob reveal">
+          <p class="q" data-i18n="p3_q">"Every contract is retyped from the last one."</p>
+          <span class="rule"></span>
+          <p data-i18n="p3_p">Upload your own Word template once. Rakeez fills in the employee and hands the document
+            back — your wording, your layout, in Arabic.</p>
+          <span class="ans">
+            <svg class="ico ico-20" viewBox="0 0 24 24">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg><span data-i18n="p3_a">Contracts</span>
+          </span>
+        </article>
+
+        <article class="card prob reveal">
+          <p class="q" data-i18n="p4_q">"Nobody can reconstruct last March."</p>
+          <span class="rule"></span>
+          <p data-i18n="p4_p">Salaries live as a dated series, not as one number that gets overwritten. Re-open any
+            month and you get the figures that month actually had.</p>
+          <span class="ans">
+            <svg class="ico ico-20" viewBox="0 0 24 24">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg><span data-i18n="p4_a">Salary history</span>
+          </span>
+        </article>
+
+        <article class="card prob reveal">
+          <p class="q" data-i18n="p5_q">"Month-end lives in one person's head."</p>
+          <span class="rule"></span>
+          <p data-i18n="p5_p">Deductions, leave balances, the payroll sheet and the export are one process anybody with
+            the right role can run — and an audit trail says who did.</p>
+          <span class="ans">
+            <svg class="ico ico-20" viewBox="0 0 24 24">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg><span data-i18n="p5_a">Payroll &amp; reports</span>
+          </span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PAYROLL ══════════════════════════════════════════════ -->
+  <section class="band" id="payroll">
+    <div class="wrap">
+      <div class="pay-grid">
+
+        <div>
+          <p class="eyebrow reveal" data-i18n="pay_eye">Payroll</p>
+          <h2 class="reveal" style="margin:14px 0 16px" data-i18n="pay_h">You know the net. So do we.</h2>
+          <p class="lead reveal" data-i18n="pay_p">When somebody joins an Egyptian company, the only figure they
+            actually know is what lands in their account. Ask them for a gross and HR invents one by adding back
+            deductions nobody can name — and the invented number then gets treated as a fact.</p>
+
+          <div class="eq reveal">
+            <span class="term">
+              <span class="k" data-i18n="eq_net">Net</span>
+              <span class="v">14,200.00</span>
+            </span>
+            <span class="op">−</span>
+            <span class="term">
+              <span class="k" data-i18n="eq_ded">Deductions</span>
+              <span class="v">1,200.00</span>
+            </span>
+            <span class="op">=</span>
+            <span class="term out">
+              <span class="k" data-i18n="eq_pay">Payable</span>
+              <span class="v">13,000.00</span>
+            </span>
+          </div>
+
+          <p class="lead reveal" style="font-size:15px" data-i18n="pay_p2">That is the whole sheet. The net is what you
+            agreed with the person. The deductions are the ones you recorded — an advance, a penalty, unpaid days. The
+            payable is the subtraction.</p>
+
+          <ul class="no-list reveal">
+            <li>
+              <svg class="ico ico-20" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M8 12h8" />
+              </svg>
+              <span data-i18n="no_1">Rakeez does not calculate income tax, social insurance or end-of-service. Your
+                accountant does that, and Rakeez records the result.</span>
+            </li>
+            <li>
+              <svg class="ico ico-20" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M8 12h8" />
+              </svg>
+              <span data-i18n="no_2">Nothing derives a gross from a net, or a net from a gross. A figure a human typed
+                is data; a figure the software guessed is a liability.</span>
+            </li>
+            <li>
+              <svg class="ico ico-20" viewBox="0 0 24 24">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+              <span data-i18n="no_3">What you do get: the sheet, the payslip, the history, the audit trail, and the
+                Excel export in the shape your accountant asked for.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- The section's ONE dark tile — the March-in-July demonstration. -->
+        <div class="tile-dark dating dark reveal">
+          <h4 data-i18n="dt_h">Re-run March in July. You get March.</h4>
+          <p class="sub" data-i18n="dt_p">A salary is a dated series, not a current value. Drag the month and watch the
+            same person's figure stay what it was at the time.</p>
+
+          <div class="scrub">
+            <div class="scrub-lbl">
+              <span data-i18n="dt_asof">Reading the record as of</span>
+              <span id="datingMonth" style="color:var(--rk-on-dark)">March 2026</span>
             </div>
-            <div class="app">
-              <aside class="side">
-                <div class="sbrand"><svg viewBox="0 0 120 120" width="24" height="24" aria-hidden="true">
-                    <use href="#mark" />
-                  </svg><span class="bn">Rakeez</span></div>
-                <nav class="snav">
-                  <a><span class="si"><svg viewBox="0 0 24 24">
-                        <rect x="3" y="3" width="7" height="9" rx="1" />
-                        <rect x="14" y="3" width="7" height="5" rx="1" />
-                        <rect x="14" y="12" width="7" height="9" rx="1" />
-                        <rect x="3" y="16" width="7" height="5" rx="1" />
-                      </svg></span><span data-i18n="sn_dash">Dashboard</span></a>
-                  <a><svg viewBox="0 0 24 24">
-                      <circle cx="9" cy="8" r="3.2" />
-                      <path d="M4 19a5 5 0 0 1 10 0" />
-                    </svg><span data-i18n="sn_emp">Employees</span></a>
-                  <a class="act"><span class="si"><svg viewBox="0 0 24 24">
-                        <rect x="3" y="5" width="18" height="14" rx="2" />
-                        <line x1="3" y1="10" x2="21" y2="10" />
-                      </svg></span><span data-i18n="sn_pay">Payroll</span></a>
-                  <a><svg viewBox="0 0 24 24">
-                      <circle cx="12" cy="12" r="8" />
-                      <polyline points="12 8 12 12 15 14" />
-                    </svg><span data-i18n="sn_att">Attendance</span></a>
-                  <a><svg viewBox="0 0 24 24">
-                      <path d="M12 21s-7-5-7-11a7 7 0 0 1 14 0c0 6-7 11-7 11z" />
-                      <circle cx="12" cy="10" r="2.5" />
-                    </svg><span data-i18n="sn_branch">Branches</span></a>
-                  <a><svg viewBox="0 0 24 24">
-                      <line x1="6" y1="20" x2="6" y2="12" />
-                      <line x1="12" y1="20" x2="12" y2="4" />
-                      <line x1="18" y1="20" x2="18" y2="9" />
-                    </svg><span data-i18n="sn_rep">Reports</span></a>
-                </nav>
-              </aside>
-              <div class="main">
-                <div class="hgreet" data-i18n="pd_title">Payroll · March</div>
-                <div class="hsub" data-i18n="pd_sub">Mona Adel · Senior Accountant · New Cairo</div>
-                <div class="prow">
-                  <div class="pcard">
-                    <div class="pt" data-i18n="pd_earn">Earnings</div>
-                    <table class="bt">
-                      <tr>
-                        <td class="bn" data-i18n="pd_base">Base salary</td>
-                        <td class="num" style="text-align:end">EGP 14,000</td>
-                      </tr>
-                      <tr>
-                        <td class="bn" data-i18n="pd_comm">Sales commission</td>
-                        <td class="num" style="text-align:end;color:var(--ok)">+ 4,100</td>
-                      </tr>
-                      <tr>
-                        <td class="bn" data-i18n="pd_ot">Overtime</td>
-                        <td class="num" style="text-align:end;color:var(--ok)">+ 300</td>
-                      </tr>
-                    </table>
-                    <div class="pt" style="margin-top:14px" data-i18n="pd_ded">Deductions</div>
-                    <table class="bt">
-                      <tr>
-                        <td class="bn" data-i18n="pd_ins">Social insurance</td>
-                        <td class="num" style="text-align:end;color:var(--warn)">− 1,540</td>
-                      </tr>
-                      <tr>
-                        <td class="bn" data-i18n="pd_tax">Income &amp; martyrs tax</td>
-                        <td class="num" style="text-align:end;color:var(--warn)">− 1,620</td>
-                      </tr>
-                    </table>
+            <input type="range" id="scrub" min="0" max="6" step="1" value="2" aria-label="Month">
+            <div class="months">
+              <span>JAN</span><span>FEB</span><span>MAR</span><span>APR</span><span>MAY</span><span>JUN</span><span>JUL</span>
+            </div>
+          </div>
+
+          <div class="dating-out">
+            <div class="who">
+              <b data-i18n="dt_who">Salma Hany</b>
+              <span data-i18n="dt_role">Senior accountant</span>
+            </div>
+            <div style="text-align:end">
+              <div id="datingFig">12,000.00</div>
+              <div style="font-size:11.5px;color:var(--rk-on-dark-3);margin-top:6px" data-i18n="dt_unit">EGP net,
+                monthly</div>
+            </div>
+          </div>
+
+          <p class="dating-cap">
+            <svg class="ico ico-20" viewBox="0 0 24 24" style="opacity:.55">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 8v5l3 2" />
+            </svg>
+            <span data-i18n="dt_cap">Salma's raise landed in April. March still reads 12,000.00 — in July, and in every
+              month after it.</span>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MODULES ══════════════════════════════════════════════ -->
+  <section class="band tint" id="modules">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow" data-i18n="mo_eye">What it does</p>
+        <h2 data-i18n="mo_h">A system of record, not a point tool.</h2>
+        <p class="lead" data-i18n="mo_p">Everything below is built and running. Turn on what your company needs and add
+          the rest when you want it.</p>
+      </div>
+
+      <div class="bento">
+
+        <!-- The bento's ONE dark tile. -->
+        <article class="bt hero-tile reveal">
+          <div>
+            <svg class="ico" viewBox="0 0 24 24">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13A4 4 0 0 1 16 11" />
+            </svg>
+            <h3 style="margin-top:11px" data-i18n="b1_h">People &amp; org</h3>
+            <p data-i18n="b1_p">Employees, branches, departments, positions and teams — the record everything else
+              hangs off.</p>
+          </div>
+          <div>
+            <div class="big">1,284</div>
+            <p style="font-size:12.5px;margin-top:4px" data-i18n="b1_cap">employees on one company's record</p>
+          </div>
+          <ul>
+            <li data-i18n="b1_t1">Org structure</li>
+            <li data-i18n="b1_t2">Employee files</li>
+            <li data-i18n="b1_t3">Roles &amp; permissions</li>
+            <li data-i18n="b1_t4">Change requests</li>
+          </ul>
+        </article>
+
+        <article class="card bt wide reveal">
+          <svg class="ico" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M12 7v5l3 2" />
+          </svg>
+          <h3 data-i18n="b2_h">Attendance, shifts &amp; check-in</h3>
+          <p data-i18n="b2_p">Check in from a phone with the location recorded, at a branch or on site. Shifts,
+            lateness, absence and worked hours — per person and per branch.</p>
+          <ul>
+            <li data-i18n="b2_t1">Geo check-in</li>
+            <li data-i18n="b2_t2">Shifts</li>
+            <li data-i18n="b2_t3">Hours</li>
+            <li data-i18n="b2_t4">Lateness &amp; absence</li>
+          </ul>
+        </article>
+
+        <article class="card bt reveal">
+          <svg class="ico" viewBox="0 0 24 24">
+            <rect x="3" y="5" width="18" height="16" rx="2" />
+            <path d="M3 10h18M8 3v4M16 3v4" />
+          </svg>
+          <h3 data-i18n="b3_h">Leave &amp; requests</h3>
+          <p data-i18n="b3_p">Leave types you define, balances that carry, and an approval path with a record of who
+            said yes.</p>
+          <ul>
+            <li data-i18n="b3_t1">Balances</li>
+            <li data-i18n="b3_t2">Approvals</li>
+          </ul>
+        </article>
+
+        <article class="card bt reveal">
+          <svg class="ico" viewBox="0 0 24 24">
+            <rect x="2" y="6" width="20" height="13" rx="2" />
+            <path d="M2 11h20M6 15h4" />
+          </svg>
+          <h3 data-i18n="b4_h">Payroll sheet</h3>
+          <p data-i18n="b4_p">Net, deductions, payable. Effective-dated salaries, payslips and the export.</p>
+          <ul>
+            <li data-i18n="b4_t1">Deductions</li>
+            <li data-i18n="b4_t2">Payslips</li>
+            <li data-i18n="b4_t3">Excel</li>
+          </ul>
+        </article>
+
+        <article class="card bt reveal">
+          <svg class="ico" viewBox="0 0 24 24">
+            <path
+              d="M5 19 19 5M7.5 8.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5ZM16.5 20.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z" />
+          </svg>
+          <h3 data-i18n="b5_h">Commission</h3>
+          <p data-i18n="b5_p">Plans per role, earnings on their own earned-due-paid clock, and a report that shows the
+            working. Paid separately from salary.</p>
+          <ul>
+            <li data-i18n="b5_t1">Plans</li>
+            <li data-i18n="b5_t2">Earnings</li>
+            <li data-i18n="b5_t3">Report</li>
+          </ul>
+        </article>
+
+        <article class="card bt reveal">
+          <svg class="ico" viewBox="0 0 24 24">
+            <path d="M6 3h9l5 5v13H6z" />
+            <path d="M15 3v5h5M9 13h6M9 17h4" />
+          </svg>
+          <h3 data-i18n="b6_h">Contracts &amp; documents</h3>
+          <p data-i18n="b6_p">Your own Word template, filled in and handed back in Arabic. Employee documents behind
+            expiring links, kept five years.</p>
+          <ul>
+            <li data-i18n="b6_t1">.docx templates</li>
+            <li data-i18n="b6_t2">Document vault</li>
+            <li data-i18n="b6_t3">Retention</li>
+          </ul>
+        </article>
+
+        <article class="card bt reveal">
+          <svg class="ico" viewBox="0 0 24 24">
+            <path d="M3 12h4l3 8 4-16 3 8h4" />
+          </svg>
+          <h3 data-i18n="b7_h">Expenses &amp; budget</h3>
+          <p data-i18n="b7_p">A monthly budget, recurring bills that chase themselves, a spend ledger and a report. VAT
+            is typed from the invoice, never computed.</p>
+          <ul>
+            <li data-i18n="b7_t1">Budgets</li>
+            <li data-i18n="b7_t2">Recurring bills</li>
+            <li data-i18n="b7_t3">Categories</li>
+          </ul>
+        </article>
+
+        <article class="card bt reveal">
+          <svg class="ico" viewBox="0 0 24 24">
+            <path d="M3 11l18-8-8 18-2-8z" />
+          </svg>
+          <h3 data-i18n="b8_h">Announcements</h3>
+          <p data-i18n="b8_p">Tell everyone, or one branch, and see it land in the app.</p>
+          <ul>
+            <li data-i18n="b8_t1">Targeted</li>
+            <li data-i18n="b8_t2">In-app</li>
+          </ul>
+        </article>
+
+        <article class="card bt wide reveal">
+          <svg class="ico" viewBox="0 0 24 24">
+            <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />
+          </svg>
+          <h3 data-i18n="b9_h">Reports &amp; export</h3>
+          <p data-i18n="b9_p">Payroll, attendance, commission and expenses — read at a date, filtered by branch, and
+            out to Excel in the shape your accountant already works in.</p>
+          <ul>
+            <li data-i18n="b9_t1">Payroll report</li>
+            <li data-i18n="b9_t2">Attendance</li>
+            <li data-i18n="b9_t3">Commission</li>
+            <li data-i18n="b9_t4">Excel export</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ APP · dark band ══════════════════════════════════════ -->
+  <section class="band dark" id="app">
+    <div class="wrap">
+      <div class="app-grid">
+
+        <div>
+          <p class="eyebrow reveal" data-i18n="ap_eye">Self-service</p>
+          <h2 class="reveal" style="margin:14px 0 16px" data-i18n="ap_h">The app your team will actually open.</h2>
+          <p class="lead reveal" data-i18n="ap_p">Every question staff bring to HR — what did I get paid, how much
+            leave is left, did my check-in register — answered on their own phone, in Arabic.</p>
+
+          <ul class="app-list reveal">
+            <li>
+              <svg class="ico" viewBox="0 0 24 24">
+                <path d="M12 21s-7-4.4-7-10a7 7 0 1 1 14 0c0 5.6-7 10-7 10Z" />
+                <circle cx="12" cy="11" r="2.5" />
+              </svg>
+              <div>
+                <b data-i18n="ap1_h">Check in where the work is</b>
+                <p data-i18n="ap1_p">The branch, a site visit, a client's office. The location is recorded with the
+                  check-in.</p>
+              </div>
+            </li>
+            <li>
+              <svg class="ico" viewBox="0 0 24 24">
+                <rect x="4" y="3" width="16" height="18" rx="2" />
+                <path d="M8 8h8M8 12h8M8 16h4" />
+              </svg>
+              <div>
+                <b data-i18n="ap2_h">Payslips without asking</b>
+                <p data-i18n="ap2_p">Net, deductions, payable — and the months before it. No email, no request.</p>
+              </div>
+            </li>
+            <li>
+              <svg class="ico" viewBox="0 0 24 24">
+                <rect x="3" y="5" width="18" height="16" rx="2" />
+                <path d="M3 10h18M8 3v4M16 3v4" />
+              </svg>
+              <div>
+                <b data-i18n="ap3_h">Leave, requested and tracked</b>
+                <p data-i18n="ap3_p">Balance, request, approval, and where it got to — without walking to a desk.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="phones reveal" id="phones">
+            <div class="phone">
+              <div class="screen on" data-sc="0">
+                <div class="sc-top"><span>09:41</span><span>▮▮▮</span></div>
+                <div class="sc-h" data-i18n="s1_h">Hello, Mariam</div>
+                <div class="sc-card">
+                  <div class="sc-k" data-i18n="s1_k">March payslip · net</div>
+                  <div class="sc-v">13,000.00</div>
+                  <div class="sc-row" style="border:0;padding-bottom:0">
+                    <span data-i18n="s1_paid">Paid · 28 March</span>
+                    <span class="pill pill-ok"><span class="dot"></span><span data-i18n="s1_ok">Paid</span></span>
                   </div>
-                  <div class="pcard" style="display:flex;flex-direction:column;">
-                    <div class="pt" data-i18n="pd_net">Net pay</div>
-                    <div class="pbig mono" style="color:var(--teal);font-size:1.9rem;">EGP 15,240</div>
-                    <div class="chips" style="margin-top:14px;">
-                      <span class="chip"><svg viewBox="0 0 24 24">
-                          <polyline points="5 12 10 17 19 7" />
-                        </svg><span data-i18n="pp_ins">Insurance</span></span>
-                      <span class="chip"><svg viewBox="0 0 24 24">
-                          <polyline points="5 12 10 17 19 7" />
-                        </svg><span data-i18n="pp_tax">Tax</span></span>
-                      <span class="chip"><svg viewBox="0 0 24 24">
-                          <polyline points="5 12 10 17 19 7" />
-                        </svg><span data-i18n="pp_comm">Commissions</span></span>
-                    </div>
-                    <div class="runbtn" style="margin-top:auto;"><svg viewBox="0 0 24 24">
-                        <polyline points="5 12 10 17 19 7" />
-                      </svg><span data-i18n="pd_approve">Approve &amp; pay</span></div>
+                </div>
+                <div class="sc-grid">
+                  <div class="sc-tile">
+                    <svg class="ico ico-20" viewBox="0 0 24 24">
+                      <rect x="4" y="3" width="16" height="18" rx="2" />
+                      <path d="M8 8h8M8 12h6" />
+                    </svg><span data-i18n="s1_a1">Payslips</span>
+                  </div>
+                  <div class="sc-tile">
+                    <svg class="ico ico-20" viewBox="0 0 24 24">
+                      <rect x="3" y="5" width="18" height="16" rx="2" />
+                      <path d="M3 10h18" />
+                    </svg><span data-i18n="s1_a2">Leave</span>
+                  </div>
+                  <div class="sc-tile">
+                    <svg class="ico ico-20" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="9" />
+                      <path d="M12 7v5l3 2" />
+                    </svg><span data-i18n="s1_a3">Attendance</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="screen" data-sc="1">
+                <div class="sc-top"><span>08:51</span><span>▮▮▮</span></div>
+                <div class="sc-h" data-i18n="s2_h">Check in</div>
+                <div class="sc-card" style="text-align:center;padding:22px 14px">
+                  <svg class="ico" viewBox="0 0 24 24" style="margin:0 auto 10px">
+                    <path d="M12 21s-7-4.4-7-10a7 7 0 1 1 14 0c0 5.6-7 10-7 10Z" />
+                    <circle cx="12" cy="11" r="2.5" />
+                  </svg>
+                  <div style="font-size:12px;color:var(--rk-t2)" data-i18n="s2_loc">Sheikh Zayed branch · 40 m away
+                  </div>
+                  <button class="sc-btn" style="margin-top:14px" type="button" tabindex="-1"
+                    data-i18n="s2_btn">Check in here</button>
+                </div>
+                <div class="sc-card">
+                  <div class="sc-k" data-i18n="s2_shift">Today's shift</div>
+                  <div class="sc-row" style="border:0;padding-bottom:0">
+                    <span class="num" style="font-size:12px">09:00 — 17:00</span>
+                    <span class="pill pill-ok"><span class="dot"></span><span
+                        data-i18n="s2_ontime">On time</span></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="screen" data-sc="2">
+                <div class="sc-top"><span>13:20</span><span>▮▮▮</span></div>
+                <div class="sc-h" data-i18n="s3_h">My leave</div>
+                <div class="sc-card">
+                  <div class="sc-k" data-i18n="s3_k">Annual leave</div>
+                  <div class="sc-v">18<span style="font-size:14px;font-weight:500;color:var(--rk-t3)"> / 25</span>
+                  </div>
+                  <div style="font-size:11.5px;color:var(--rk-t3);margin-top:2px" data-i18n="s3_sub">days remaining
+                  </div>
+                </div>
+                <div class="sc-card">
+                  <div class="sc-k" style="margin-bottom:4px" data-i18n="s3_recent">Recent requests</div>
+                  <div class="sc-row">
+                    <span data-i18n="s3_r1">Eid leave · 3 days</span>
+                    <span class="pill pill-ok"><span data-i18n="s3_ok">Approved</span></span>
+                  </div>
+                  <div class="sc-row">
+                    <span data-i18n="s3_r2">Sick leave · 1 day</span>
+                    <span class="pill pill-warn"><span data-i18n="s3_pend">Pending</span></span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="shot-cap"><svg viewBox="0 0 24 24">
-              <path d="M6 3h12v18l-3-2-3 2-3-2-3 2z" />
-            </svg><span data-i18n="pd_cap">Base, commission, and overtime — with deductions and net, on one
-              payslip.</span></div>
+
+          <div class="carousel-ctl reveal">
+            <button class="cdot on" data-go="0" type="button" aria-label="Screen 1"></button>
+            <button class="cdot" data-go="1" type="button" aria-label="Screen 2"></button>
+            <button class="cdot" data-go="2" type="button" aria-label="Screen 3"></button>
+            <button class="pausebtn" id="pauseBtn" type="button" data-i18n="ap_pause">Pause</button>
+          </div>
         </div>
 
-        <div class="shot reveal" style="animation:none;margin-top:22px;">
-          <div class="browser">
-            <div class="bbar">
-              <div class="bdots"><i></i><i></i><i></i></div>
-              <div class="burl">app.rakeez.co / reports</div>
-            </div>
-            <div class="app">
-              <aside class="side">
-                <div class="sbrand"><svg viewBox="0 0 120 120" width="24" height="24" aria-hidden="true">
-                    <use href="#mark" />
-                  </svg><span class="bn">Rakeez</span></div>
-                <nav class="snav">
-                  <a><span class="si"><svg viewBox="0 0 24 24">
-                        <rect x="3" y="3" width="7" height="9" rx="1" />
-                        <rect x="14" y="3" width="7" height="5" rx="1" />
-                        <rect x="14" y="12" width="7" height="9" rx="1" />
-                        <rect x="3" y="16" width="7" height="5" rx="1" />
-                      </svg></span><span data-i18n="sn_dash">Dashboard</span></a>
-                  <a><svg viewBox="0 0 24 24">
-                      <circle cx="9" cy="8" r="3.2" />
-                      <path d="M4 19a5 5 0 0 1 10 0" />
-                    </svg><span data-i18n="sn_emp">Employees</span></a>
-                  <a><svg viewBox="0 0 24 24">
-                      <rect x="3" y="5" width="18" height="14" rx="2" />
-                      <line x1="3" y1="10" x2="21" y2="10" />
-                    </svg><span data-i18n="sn_pay">Payroll</span></a>
-                  <a><svg viewBox="0 0 24 24">
-                      <circle cx="12" cy="12" r="8" />
-                      <polyline points="12 8 12 12 15 14" />
-                    </svg><span data-i18n="sn_att">Attendance</span></a>
-                  <a><svg viewBox="0 0 24 24">
-                      <path d="M12 21s-7-5-7-11a7 7 0 0 1 14 0c0 6-7 11-7 11z" />
-                      <circle cx="12" cy="10" r="2.5" />
-                    </svg><span data-i18n="sn_branch">Branches</span></a>
-                  <a class="act"><span class="si"><svg viewBox="0 0 24 24">
-                        <line x1="6" y1="20" x2="6" y2="12" />
-                        <line x1="12" y1="20" x2="12" y2="4" />
-                        <line x1="18" y1="20" x2="18" y2="9" />
-                      </svg></span><span data-i18n="sn_rep">Reports</span></a>
-                </nav>
-              </aside>
-              <div class="main">
-                <div class="hgreet" data-i18n="rp_title">Reports · This month</div>
-                <div class="scards" style="margin-top:14px;">
-                  <div class="sc">
-                    <div class="l"><svg viewBox="0 0 24 24">
-                        <rect x="3" y="5" width="18" height="14" rx="2" />
-                      </svg><span data-i18n="rp_k1">Total payroll</span></div>
-                    <div class="v mono tl">EGP 3.9M</div>
-                  </div>
-                  <div class="sc">
-                    <div class="l"><svg viewBox="0 0 24 24">
-                        <circle cx="9" cy="8" r="3" />
-                        <path d="M4 19a5 5 0 0 1 10 0" />
-                      </svg><span data-i18n="rp_k2">Headcount</span></div>
-                    <div class="v mono">248</div>
-                  </div>
-                  <div class="sc">
-                    <div class="l"><svg viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="9" />
-                        <polyline points="12 7 12 12 15 15" />
-                      </svg><span data-i18n="rp_k3">Avg attendance</span></div>
-                    <div class="v mono">94%</div>
-                  </div>
-                  <div class="sc">
-                    <div class="l"><svg viewBox="0 0 24 24">
-                        <line x1="12" y1="2" x2="12" y2="22" />
-                        <path d="M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                      </svg><span data-i18n="rp_k4">Commission paid</span></div>
-                    <div class="v mono">EGP 512K</div>
-                  </div>
-                </div>
-                <div class="pcard" style="margin-top:12px;">
-                  <div class="pt" data-i18n="rp_chart">Payroll cost by branch</div>
-                  <div style="display:flex;align-items:flex-end;gap:14px;margin-top:16px;">
-                    <div style="flex:1;text-align:center;">
-                      <div style="height:150px;display:flex;align-items:flex-end;">
-                        <div
-                          style="width:62%;margin:0 auto;height:150px;background:linear-gradient(180deg,var(--teal-2),var(--teal));border-radius:8px 8px 0 0;">
-                        </div>
-                      </div>
-                      <div style="font-size:.66rem;color:var(--muted);margin-top:8px;">Cairo HQ</div>
-                    </div>
-                    <div style="flex:1;text-align:center;">
-                      <div style="height:150px;display:flex;align-items:flex-end;">
-                        <div
-                          style="width:62%;margin:0 auto;height:84px;background:linear-gradient(180deg,var(--teal-2),var(--teal));border-radius:8px 8px 0 0;">
-                        </div>
-                      </div>
-                      <div style="font-size:.66rem;color:var(--muted);margin-top:8px;">New Cairo</div>
-                    </div>
-                    <div style="flex:1;text-align:center;">
-                      <div style="height:150px;display:flex;align-items:flex-end;">
-                        <div
-                          style="width:62%;margin:0 auto;height:96px;background:linear-gradient(180deg,var(--teal-2),var(--teal));border-radius:8px 8px 0 0;">
-                        </div>
-                      </div>
-                      <div style="font-size:.66rem;color:var(--muted);margin-top:8px;">Sh. Zayed</div>
-                    </div>
-                    <div style="flex:1;text-align:center;">
-                      <div style="height:150px;display:flex;align-items:flex-end;">
-                        <div
-                          style="width:62%;margin:0 auto;height:71px;background:linear-gradient(180deg,var(--teal-2),var(--teal));border-radius:8px 8px 0 0;">
-                        </div>
-                      </div>
-                      <div style="font-size:.66rem;color:var(--muted);margin-top:8px;">Alexandria</div>
-                    </div>
-                    <div style="flex:1;text-align:center;">
-                      <div style="height:150px;display:flex;align-items:flex-end;">
-                        <div
-                          style="width:62%;margin:0 auto;height:63px;background:linear-gradient(180deg,var(--ochre-soft),var(--ochre));border-radius:8px 8px 0 0;">
-                        </div>
-                      </div>
-                      <div style="font-size:.66rem;color:var(--muted);margin-top:8px;">New Capital</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ARABIC ═══════════════════════════════════════════════ -->
+  <section class="band" id="arabic">
+    <div class="wrap">
+      <div class="ar-grid">
+        <div>
+          <p class="eyebrow reveal" data-i18n="ar_eye">Language</p>
+          <h2 class="reveal" style="margin:14px 0 16px" data-i18n="ar_h">Arabic, written by people who read it.</h2>
+          <p class="lead reveal" data-i18n="ar_p">Most HR software sold into Egypt is an English product with Arabic
+            poured in afterwards — mirrored badly, tracked like Latin, and worded by whoever was available. Rakeez was
+            built in both languages at once.</p>
+          <ul class="no-list reveal" style="margin-top:24px">
+            <li>
+              <svg class="ico ico-20" viewBox="0 0 24 24">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+              <span data-i18n="ar_1">Full right-to-left layout — mirrored properly, with numbers, clocks and money
+                columns left alone.</span>
+            </li>
+            <li>
+              <svg class="ico ico-20" viewBox="0 0 24 24">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+              <span data-i18n="ar_2">A real Arabic face at every size, never faux-bold and never letter-spaced.</span>
+            </li>
+            <li>
+              <svg class="ico ico-20" viewBox="0 0 24 24">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+              <span data-i18n="ar_3">One agreed vocabulary across the app, the contracts and the reports — so the
+                payslip and the policy use the same word.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card ar-demo reveal">
+          <div class="ar-line">
+            <span class="tag">EN</span>
+            <span class="en">Salary</span>
           </div>
-          <div class="shot-cap"><svg viewBox="0 0 24 24">
-              <line x1="6" y1="20" x2="6" y2="12" />
-              <line x1="12" y1="20" x2="12" y2="4" />
-              <line x1="18" y1="20" x2="18" y2="9" />
-            </svg><span data-i18n="rp_cap">Cost, headcount, and attendance across every branch — at a glance.</span>
+          <div class="ar-line">
+            <span class="tag">AR</span>
+            <span class="ar">أجر</span>
+          </div>
+          <div class="ar-line">
+            <span class="tag">EN</span>
+            <span class="en">Net minus deductions equals payable</span>
+          </div>
+          <div class="ar-line">
+            <span class="tag">AR</span>
+            <span class="ar">الصافي ناقص الاستقطاعات يساوي المستحق</span>
+          </div>
+          <div class="ar-line">
+            <span class="tag">EN</span>
+            <span class="en">HR and payroll for Egyptian companies</span>
+          </div>
+          <div class="ar-line last">
+            <span class="tag">AR</span>
+            <span class="ar">نظام الموارد البشرية والأجور للشركات المصرية</span>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="mob" id="mobile">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <span class="eyebrow" data-i18n="mob_eyebrow">In every agent's pocket</span>
-          <h2 data-i18n="mob_h2">The app your team will actually open.</h2>
-          <p data-i18n="mob_p">Payslips, leave, and one-tap check-in — in Arabic, on any phone, nothing to install.</p>
-        </div>
-        <div class="phones">
-          <div class="phone reveal">
-            <div class="screen">
-              <div class="ptop">
-                <div class="phi" data-i18n="m1_hi">Hi, Mariam</div>
-                <div class="pav">MK</div>
-              </div>
-              <div class="mcard">
-                <div class="lbl" data-i18n="m1_lbl">March payslip · Net</div>
-                <div class="amt mono">EGP 15,240</div>
-                <div class="sub" data-i18n="m1_sub">Paid · 28 Mar</div>
-              </div>
-              <div class="mcard" style="padding:13px 15px;">
-                <div class="lbl" data-i18n="m1_comm">Incl. commission</div>
-                <div class="amt mono" style="font-size:1.05rem;color:var(--ochre);">EGP 4,100</div>
-              </div>
-              <div class="qacts">
-                <div class="qa"><svg viewBox="0 0 24 24">
-                    <path d="M7 3h7l5 5v13H7z" />
-                  </svg><span data-i18n="m1_a1">Payslips</span></div>
-                <div class="qa"><svg viewBox="0 0 24 24">
-                    <rect x="4" y="5" width="16" height="16" rx="2" />
-                    <line x1="4" y1="9" x2="20" y2="9" />
-                  </svg><span data-i18n="m1_a2">Leave</span></div>
-                <div class="qa"><svg viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="8" />
-                    <polyline points="12 8 12 12 15 14" />
-                  </svg><span data-i18n="m1_a3">Attend</span></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="phone reveal d1">
-            <div class="screen">
-              <div class="ptop">
-                <div class="phi" data-i18n="m2_title">Check in</div>
-                <div class="pav">MK</div>
-              </div>
-              <div class="cimap">
-                <div class="rad"></div>
-                <div class="pin"></div>
-              </div>
-              <div class="cibtn"><svg viewBox="0 0 24 24">
-                  <path d="M12 21s-7-5-7-11a7 7 0 0 1 14 0c0 6-7 11-7 11z" />
-                  <circle cx="12" cy="10" r="2.5" />
-                </svg><span data-i18n="m2_btn">Check in here</span></div>
-              <div class="cimeta" data-i18n="m2_meta">Sheikh Zayed branch · 40m away · 08:51</div>
-              <div class="mcard" style="margin-top:12px;padding:12px 15px;">
-                <div class="lbl" data-i18n="m2_shift">Today's shift</div>
-                <div class="sub" style="margin-top:3px;font-size:.82rem;color:var(--ink);font-weight:600;">09:00 — 17:00
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="phone reveal d2">
-            <div class="screen">
-              <div class="ptop">
-                <div class="phi" data-i18n="m3_title">My leave</div>
-                <div class="pav">MK</div>
-              </div>
-              <div class="mleave">
-                <div class="ring"><i>18</i></div>
-                <div><b data-i18n="m3_annual">Annual leave</b><span data-i18n="m3_bal">18 of 25 days left</span></div>
-              </div>
-              <div class="cibtn" style="background:var(--ochre);color:var(--ink);margin-bottom:14px;"><span
-                  data-i18n="m3_req">Request leave</span></div>
-              <div class="mreq" data-i18n="m3_recent">Recent requests</div>
-              <div class="mrow"><span data-i18n="m3_r1">Eid holiday · 3 days</span><span class="ap"
-                  data-i18n="m3_appr">Approved</span></div>
-              <div class="mrow"><span data-i18n="m3_r2">Sick leave · 1 day</span><span class="ap"
-                  data-i18n="m3_appr">Approved</span></div>
-              <div class="mrow"><span data-i18n="m3_r3">Personal · 2 days</span><span class="pd"
-                  data-i18n="m3_pend">Pending</span></div>
-            </div>
-          </div>
-
-          <div class="phone reveal d3">
-            <div class="screen">
-              <div class="ptop">
-                <div class="phi" data-i18n="m4_title">Payslip</div>
-                <div class="pav">MK</div>
-              </div>
-              <div class="mcard">
-                <div class="lbl" data-i18n="m4_gross">Gross</div>
-                <div class="amt mono" style="font-size:1.15rem;color:var(--ink);">EGP 18,400</div>
-              </div>
-              <div class="mcard" style="padding:12px 15px;">
-                <div class="lbl" data-i18n="m4_comm">Commission</div>
-                <div class="amt mono" style="font-size:1.05rem;color:var(--ochre);">+ EGP 4,100</div>
-              </div>
-              <div class="mcard" style="padding:12px 15px;">
-                <div class="lbl" data-i18n="m4_ded">Deductions</div>
-                <div class="amt mono" style="font-size:1.05rem;color:var(--warn);">− EGP 3,160</div>
-              </div>
-              <div class="mleave" style="margin-bottom:12px;">
-                <div><b data-i18n="m4_net">Net pay</b></div>
-                <div class="amt mono" style="margin-inline-start:auto;color:var(--teal);">EGP 15,240</div>
-              </div>
-              <div class="cibtn" style="background:var(--ochre);color:var(--ink);"><span data-i18n="m4_dl">Download
-                  PDF</span></div>
-            </div>
-          </div>
-        </div>
+  <!-- ═══ DATA ═════════════════════════════════════════════════ -->
+  <section class="band tint" id="data">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow" data-i18n="dg_eye">Your data</p>
+        <h2 data-i18n="dg_h">Salaries and national IDs. We treat them that way.</h2>
       </div>
-    </section>
-
-    <section class="caps" id="caps">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <span class="eyebrow" data-i18n="caps_eyebrow">Everything you need</span>
-          <h2 data-i18n="caps_h2">A full HR platform — not a point tool.</h2>
-          <p data-i18n="caps_sub">Six modules, dozens of capabilities, one system for your whole company.</p>
-        </div>
-        <div class="mods">
-
-          <div class="mod reveal">
-            <div class="mod-h">
-              <div class="mod-ic"><svg viewBox="0 0 24 24">
-                  <rect x="3" y="5" width="18" height="14" rx="2" />
-                  <line x1="3" y1="10" x2="21" y2="10" />
-                </svg></div>
-              <h3 data-i18n="mA_h">Payroll &amp; compliance</h3>
-            </div>
-            <ul>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mA_1">Gross-to-net payroll</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mA_2">Social insurance</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mA_3">Income &amp; martyrs tax</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mA_4">3% annual increment</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mA_5">Training fund contribution</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mA_6">End-of-service (EOSB)</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mA_7">Loans &amp; salary advances</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mA_8">Bank payment files</span></li>
-            </ul>
-          </div>
-
-          <div class="mod reveal d1">
-            <div class="mod-h">
-              <div class="mod-ic"><svg viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="8" />
-                  <polyline points="12 8 12 12 15 14" />
-                </svg></div>
-              <h3 data-i18n="mB_h">Time &amp; attendance</h3>
-            </div>
-            <ul>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mB_1">GPS field check-in</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mB_2">Shifts &amp; scheduling</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mB_3">Overtime rules</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mB_4">Lateness &amp; absence tracking</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mB_5">Biometric device sync</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mB_6">Official holiday calendar</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mB_7">Timesheets</span></li>
-            </ul>
-          </div>
-
-          <div class="mod reveal d2">
-            <div class="mod-h">
-              <div class="mod-ic"><svg viewBox="0 0 24 24">
-                  <rect x="4" y="5" width="16" height="16" rx="2" />
-                  <line x1="4" y1="9" x2="20" y2="9" />
-                  <line x1="8" y1="3" x2="8" y2="7" />
-                  <line x1="16" y1="3" x2="16" y2="7" />
-                </svg></div>
-              <h3 data-i18n="mC_h">Leave &amp; requests</h3>
-            </div>
-            <ul>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mC_1">Law 14 leave types</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mC_2">Balances &amp; accruals</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mC_3">Approval workflows</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mC_4">HR letters &amp; documents</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mC_5">Expense claims</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mC_6">Announcements</span></li>
-            </ul>
-          </div>
-
-          <div class="mod reveal">
-            <div class="mod-h">
-              <div class="mod-ic"><svg viewBox="0 0 24 24">
-                  <circle cx="9" cy="8" r="3.2" />
-                  <path d="M4 19a5 5 0 0 1 10 0" />
-                  <path d="M16 6a3 3 0 0 1 0 5" />
-                </svg></div>
-              <h3 data-i18n="mD_h">People &amp; branches</h3>
-            </div>
-            <ul>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mD_1">Multi-branch &amp; multi-company</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mD_2">Org chart &amp; hierarchy</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mD_3">Employee profiles</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mD_4">Document vault + expiry alerts</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mD_5">Onboarding &amp; offboarding</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mD_6">Roles &amp; permissions</span></li>
-            </ul>
-          </div>
-
-          <div class="mod reveal d1">
-            <div class="mod-h">
-              <div class="mod-ic"><svg viewBox="0 0 24 24">
-                  <line x1="12" y1="2" x2="12" y2="22" />
-                  <path d="M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                </svg></div>
-              <h3 data-i18n="mE_h">Sales &amp; commissions</h3>
-            </div>
-            <ul>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mE_1">Commission plans per role</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mE_2">Bonuses &amp; incentives</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mE_3">Sales targets</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mE_4">Paid straight into payroll</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mE_5">Per-branch commission reports</span></li>
-            </ul>
-          </div>
-
-          <div class="mod reveal d2">
-            <div class="mod-h">
-              <div class="mod-ic"><svg viewBox="0 0 24 24">
-                  <line x1="6" y1="20" x2="6" y2="12" />
-                  <line x1="12" y1="20" x2="12" y2="4" />
-                  <line x1="18" y1="20" x2="18" y2="9" />
-                </svg></div>
-              <h3 data-i18n="mF_h">Insight &amp; control</h3>
-            </div>
-            <ul>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mF_1">Dashboards by branch</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mF_2">Payroll cost analytics</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mF_3">Headcount &amp; attendance reports</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mF_4">Audit log</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mF_5">Data export (Excel / PDF)</span></li>
-              <li><span class="lk"><svg viewBox="0 0 24 24">
-                    <polyline points="5 12 10 17 19 7" />
-                  </svg></span><span data-i18n="mF_6">Arabic &amp; English, full RTL</span></li>
-            </ul>
-          </div>
-
-        </div>
-        <p class="caps-more reveal" data-i18n="caps_more">Built modular — you switch on what your company needs, and
-          grow into the rest.</p>
+      <div class="data-grid">
+        <article class="card data-c reveal">
+          <svg class="ico" viewBox="0 0 24 24">
+            <path d="M12 3l8 3v6c0 5-3.4 8-8 9-4.6-1-8-4-8-9V6z" />
+          </svg>
+          <h3 data-i18n="d1_h">One tenant, one boundary</h3>
+          <p data-i18n="d1_p">Every record carries your company and every query is scoped to it. Not a convention — a
+            rule enforced in the data layer, with a test on every model proving one company cannot read another's rows.
+          </p>
+        </article>
+        <article class="card data-c reveal">
+          <svg class="ico" viewBox="0 0 24 24">
+            <rect x="4" y="10" width="16" height="11" rx="2" />
+            <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+          </svg>
+          <h3 data-i18n="d2_h">Documents behind expiring links</h3>
+          <p data-i18n="d2_p">Contracts, IDs and certificates are never served from a guessable address. Links are
+            signed, time-limited, and only issued to someone entitled to the file.</p>
+        </article>
+        <article class="card data-c reveal">
+          <svg class="ico" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M12 8v5l3 2" />
+          </svg>
+          <h3 data-i18n="d3_h">History that isn't quietly rewritten</h3>
+          <p data-i18n="d3_p">Salaries, contracts and approvals are dated series. Changing today's figure never edits
+            last year's, and the record of who changed what stays.</p>
+        </article>
+        <article class="card data-c reveal">
+          <svg class="ico" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M9.5 9.5a2.5 2.5 0 0 1 5 0c0 2.5-2.5 2-2.5 4M12 17h.01" />
+          </svg>
+          <h3 data-i18n="d4_h">Money stored as money</h3>
+          <p data-i18n="d4_p">Every amount is held in piastres as a whole number, never a decimal a rounding error can
+            reach. A payroll product that loses half a piastre is a payroll product you cannot use.</p>
+        </article>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="cta" id="join">
-      <div class="wrap box">
+  <!-- ═══ CUSTOMER ═════════════════════════════════════════════ -->
+  <section class="band" style="padding-block:clamp(52px,6vw,84px)">
+    <div class="wrap">
+      <div class="quote reveal">
+        <p class="eyebrow" data-i18n="cu_eye">Customer</p>
+        <blockquote style="margin-top:16px" data-i18n="cu_q">"We had the salaries in one spreadsheet, attendance in
+          another, and commission in a third that only one person understood. Now it is one screen — and I can open
+          last March."</blockquote>
+        <p class="attr" data-i18n="cu_a">Tailor Investments · Cairo · using Rakeez since 2026</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA · dark band ══════════════════════════════════════ -->
+  <section class="band dark" id="demo">
+    <div class="wrap">
+      <div class="cta-grid">
+        <div>
+          <p class="eyebrow reveal" data-i18n="ct_eye">Book a demo</p>
+          <h2 class="reveal" style="margin:14px 0 16px" data-i18n="ct_h">See it with your company in it.</h2>
+          <p class="lead reveal" data-i18n="ct_p">Tell us how many people you have and how you are running payroll
+            today. We will show you Rakeez set up the way your company actually works, not a generic tour.</p>
+          <ul class="cta-list reveal">
+            <li>
+              <svg class="ico ico-20" viewBox="0 0 24 24">
+                <path d="M20 6 9 17l-5-5" />
+              </svg><span data-i18n="ct_1">Thirty minutes, and a real system rather than slides.</span>
+            </li>
+            <li>
+              <svg class="ico ico-20" viewBox="0 0 24 24">
+                <path d="M20 6 9 17l-5-5" />
+              </svg><span data-i18n="ct_2">In Arabic or English, whichever you'd rather.</span>
+            </li>
+            <li>
+              <svg class="ico ico-20" viewBox="0 0 24 24">
+                <path d="M20 6 9 17l-5-5" />
+              </svg><span data-i18n="ct_3">We will tell you straight if Rakeez is the wrong fit.</span>
+            </li>
+          </ul>
+        </div>
+
         <div class="reveal">
-          <span class="eyebrow" data-i18n="join_eyebrow">Book a demo</span>
-          <h2 data-i18n="join_h2">See Rakeez running your branches.</h2>
-          <p data-i18n="join_p">Give us your branches and headcount and we'll show you Rakeez set up for your company —
-            attendance, commissions, payroll, and compliance, live.</p>
-        </div>
-        <div class="reveal d1">
-          <form id="joinForm">
-            <div class="row">
+          <form class="form" id="joinForm">
+            <div class="frow">
               <input type="text" name="name" placeholder="Your name" data-i18n-ph="ph_name" required>
               <input type="text" name="company" placeholder="Company" data-i18n-ph="ph_company" required>
             </div>
-            <div class="row">
+            <div class="frow">
               <select name="branches" required>
                 <option value="" data-i18n="ph_branch">Number of branches</option>
                 <option>1–3</option>
@@ -2561,143 +2607,423 @@
                 <option>500+</option>
               </select>
             </div>
-            <div class="row">
-              <input type="email" name="email" placeholder="Work email" data-i18n-ph="ph_email" required>
-            </div>
-            <button type="submit" class="btn btn-primary" data-i18n="join_btn">Book my demo</button>
-            <span class="fnote" data-i18n="join_note">We'll reach out within one business day.</span>
+            <input type="email" name="email" placeholder="Work email" data-i18n-ph="ph_email" required>
+            <input type="text" name="phone" placeholder="Phone (optional)" data-i18n-ph="ph_phone">
+            <button type="submit" class="btn btn-gold" id="joinBtn" data-i18n="ct_btn">Book my demo</button>
+            <p class="form-note" data-i18n="ct_note">We reply within one working day. No newsletter.</p>
           </form>
-          <div class="success" id="joinSuccess" data-i18n="join_success">Got it — we'll be in touch within one business
-            day to set up your demo.</div>
+          <div class="form-ok" id="formOk" data-i18n="ct_ok">Got it — we'll be in touch within one working day to set
+            the demo up.</div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-  </main>
-
-  <footer>
+  <!-- ═══ FOOTER ═══════════════════════════════════════════════ -->
+  <footer class="foot">
     <div class="wrap">
-      <div class="foot">
-        <div>
-          <div class="brand"><svg viewBox="0 0 120 120" width="30" height="30" aria-hidden="true">
-              <use href="#mark" />
-            </svg><span class="bn">Rakeez</span></div>
-          <p data-i18n="foot_tag">HR &amp; payroll built for Egypt's real estate teams.</p>
-        </div>
-        <div class="foot-links"><a href="#problems" data-i18n="nav_prob">Your challenges</a><a href="#panel"
-            data-i18n="nav_panel">The panel</a><a href="#mobile" data-i18n="nav_mob">The app</a><a href="#caps"
-            data-i18n="nav_caps">Features</a></div>
+      <div>
+        <span class="logo" aria-label="Rakeez">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3987 687" role="img" aria-label="Rakeez">
+            <title>Rakeez</title>
+            <g transform="translate(-75.0 1.0)" fill="currentColor">
+              <path
+                d="M75 686V-1H474Q550 -1 601 27.5Q652 56 677.5 105.5Q703 155 703 216Q703 282 672.5 333.5Q642 385 587 414L725 686H525L411 444H254V686ZM254 311H439Q476 311 498.5 286.5Q521 262 521 221Q521 194 511 175Q501 156 483 145.5Q465 135 439 135H254Z M708 686 966 -1H1181L1439 686H1248L1207 567H933L892 686ZM976 433H1163L1114 288Q1110 277 1104.5 260.5Q1099 244 1093.5 225.5Q1088 207 1083 188Q1078 169 1073 155H1066Q1062 174 1054.5 198Q1047 222 1039.5 246Q1032 270 1026 288Z M1471 686V-1H1650V304L1922 -1H2144L1888 280L2149 686H1937L1764 402L1650 507V686Z M2193 686V-1H2760V139H2372V268H2711V405H2372V546H2767V686Z M2842 686V-1H3409V139H3021V268H3360V405H3021V546H3416V686Z M3440 686V619L3781 139H3465V-1H4054V66L3713 546H4062V686Z" />
+            </g>
+          </svg>
+        </span>
+        <p class="tag" data-i18n="ft_tag">HR and payroll for Egyptian companies. Your accountant's figures, recorded
+          and paid.</p>
       </div>
-      <div class="foot-bottom"><span data-i18n="foot_copy">© 2026 Rakeez. All rights reserved.</span><span
-          data-i18n="foot_made">Developed by Mario Mamdouh</span></div>
+      <div class="meta">
+        <div data-i18n="ft_copy">© 2026 Rakeez. All rights reserved.</div>
+        <div data-i18n="ft_made">Built by Mario Mamdouh</div>
+      </div>
     </div>
   </footer>
 
   <script>
-    const AR = {
-      nav_prob: "تحدياتك", nav_panel: "لوحة التحكم", nav_mob: "التطبيق", nav_caps: "المزايا", nav_cta: "احجز عرضًا", nav_watch: "شاهد",
-      promo_eyebrow: "شاهده متحركًا", promo_h2: "ركيز في نصف دقيقة.", promo_play: "شاهد العرض في ٣٠ ثانية",
-      hero_eyebrow: "رواتب وموارد بشرية لعقارات مصر",
-      hero_h1: "كل فرع، كل مندوب — <span class='em'>نظام واحد.</span>",
-      hero_lead: "يشغّل ركيز الحضور والرواتب والامتثال عبر كل فروعك، ويصرف عمولات مندوبي المبيعات بدقة، ويبقيك متوافقًا مع قانون العمل المصري، ويضع تطبيقًا في جيب كل مندوب.",
-      hero_cta1: "احجز عرضًا", hero_cta2: "شاهده من الداخل",
-      sn_dash: "الرئيسية", sn_emp: "الموظفون", sn_pay: "الرواتب", sn_att: "الحضور", sn_branch: "الفروع", sn_con: "العقود", sn_rep: "التقارير",
-      tb_all: "كل الفروع", tb_search: "ابحث عن موظف أو فرع…",
-      dash_greet: "صباح الخير يا نور", dash_sub: "إليك حالة فريقك عبر كل الفروع اليوم.",
-      kc_emp: "الموظفون", kc_branch: "الفروع", kc_pay: "رواتب مارس", kc_pend: "قيد الاعتماد",
-      pp_title: "رواتب مارس", pp_ins: "التأمينات", pp_tax: "الضريبة", pp_comm: "العمولات", pp_run: "تشغيل الرواتب",
-      bt_title: "حسب الفرع", bt_branch: "الفرع", bt_people: "الأفراد", bt_cost: "الرواتب", bt_ontime: "الالتزام",
-      prob_eyebrow: "مبني لطريقة عمل العقارات فعلًا", prob_h2: "خمسة أعباء يرفعها ركيز عن مكتبك.",
-      p1_q: "«فريقنا موزّع على عشرات الفروع.»", p1_h: "نظام واحد لكل فرع", p1_p: "الحضور والرواتب والموظفون لكل فروعك في مكان واحد — بأرقام مجمّعة لكل فرع وللشركة كلها.",
-      p2_q: "«نصف فريقي يعيش على العمولة.»", p2_h: "عمولات مصروفة بدقة", p2_p: "الراتب الأساسي والعمولات والمكافآت تُحتسب معًا وتُصرف بشكل صحيح — دون جداول جانبية ودون ذعر آخر الشهر.",
-      p3_q: "«مندوبيّ لا يجلسون خلف مكتب.»", p3_h: "تسجيل حضور من أي موقع", p3_p: "يسجّل المندوب حضوره من الفرع أو المعرض أو أثناء معاينة عقار — بتحديد الموقع — من هاتفه مباشرة.",
-      p4_q: "«وظائف المبيعات كثيرة التغيّر.»", p4_h: "دخول سريع وخروج نظيف", p4_p: "تعيين بعقد عربي رقمي في دقائق؛ وعند المغادرة تُحتسب مكافأة نهاية الخدمة بشكل صحيح من أول مرة.",
-      p5_q: "«القانون الجديد صار مسؤوليتنا.»", p5_h: "متوافق تلقائيًا", p5_p: "قانون العمل رقم ١٤ لسنة ٢٠٢٥ — التأمينات والضرائب والعلاوة ٣٪ وصندوق التدريب والسجلات — كله يُدار تلقائيًا، دون استشاري.",
-      panel_eyebrow: "داخل ركيز", panel_h2: "غرفة تحكّم لفريقك كله.", panel_p: "شاهد الحضور لحظة حدوثه — من الحاضر، وأين، وهل التزم بالموعد — عبر كل فرع، على شاشة واحدة.",
-      att_title: "الحضور · اليوم", att_present: "حاضر", att_late: "متأخر", att_off: "إجازة",
-      st_on: "في الفرع", st_late: "متأخر", st_field: "ميدان", loc_view: "معاينة فيلا",
-      panel_cap: "تسجيلات حقيقية بمواقع حقيقية — بما في ذلك المندوبون في الميدان.",
-      pd_title: "الرواتب · مارس", pd_sub: "منى عادل · محاسِبة أولى · التجمّع", pd_earn: "المستحقات", pd_base: "الراتب الأساسي", pd_comm: "عمولة المبيعات", pd_ot: "العمل الإضافي", pd_ded: "الاستقطاعات", pd_ins: "التأمينات الاجتماعية", pd_tax: "ضريبة الدخل والشهداء", pd_net: "صافي الراتب", pd_approve: "اعتماد وصرف", pd_cap: "الأساسي والعمولة والإضافي — مع الاستقطاعات والصافي في قسيمة واحدة.",
-      rp_title: "التقارير · هذا الشهر", rp_k1: "إجمالي الرواتب", rp_k2: "عدد الموظفين", rp_k3: "متوسط الحضور", rp_k4: "العمولات المصروفة", rp_chart: "تكلفة الرواتب حسب الفرع", rp_cap: "التكلفة والعدد والحضور عبر كل فرع بنظرة واحدة.",
-      m4_title: "قسيمة الراتب", m4_gross: "الإجمالي", m4_comm: "العمولة", m4_ded: "الاستقطاعات", m4_net: "الصافي", m4_dl: "تحميل PDF",
-      mob_eyebrow: "في جيب كل مندوب", mob_h2: "التطبيق الذي سيفتحه فريقك فعلًا.", mob_p: "قسائم الرواتب والإجازات وتسجيل الحضور بضغطة — بالعربية، على أي هاتف، دون تثبيت.",
-      m1_hi: "أهلًا يا مريم", m1_lbl: "قسيمة مارس · الصافي", m1_sub: "مدفوع · ٢٨ مارس", m1_comm: "شاملة العمولة", m1_a1: "القسائم", m1_a2: "الإجازات", m1_a3: "الحضور",
-      m2_title: "تسجيل الحضور", m2_btn: "سجّل حضورك هنا", m2_meta: "فرع الشيخ زايد · على بعد ٤٠م · ٠٨:٥١", m2_shift: "مناوبة اليوم",
-      m3_title: "إجازاتي", m3_annual: "الإجازة السنوية", m3_bal: "باقٍ ١٨ من ٢٥ يومًا", m3_req: "اطلب إجازة", m3_recent: "الطلبات الأخيرة",
-      m3_r1: "إجازة العيد · ٣ أيام", m3_r2: "إجازة مرضية · يوم", m3_r3: "إجازة شخصية · يومان", m3_appr: "معتمَدة", m3_pend: "قيد المراجعة",
-      caps_eyebrow: "كل ما تحتاجه", caps_h2: "منصة موارد بشرية متكاملة — لا أداة محدودة.",
-      caps_sub: "ست وحدات، وعشرات الإمكانات، ونظام واحد لشركتك كلها.",
-      caps_more: "مبني كوحدات — تشغّل ما تحتاجه شركتك، وتتوسّع في الباقي لاحقًا.",
-      mA_h: "الرواتب والامتثال", mA_1: "رواتب من الإجمالي للصافي", mA_2: "التأمينات الاجتماعية", mA_3: "ضريبة الدخل والشهداء", mA_4: "العلاوة السنوية ٣٪", mA_5: "مساهمة صندوق التدريب", mA_6: "مكافأة نهاية الخدمة", mA_7: "السلف والقروض", mA_8: "ملفات تحويل البنك",
-      mB_h: "الوقت والحضور", mB_1: "تسجيل حضور بالموقع (GPS)", mB_2: "المناوبات والجداول", mB_3: "قواعد العمل الإضافي", mB_4: "متابعة التأخير والغياب", mB_5: "مزامنة أجهزة البصمة", mB_6: "تقويم العطلات الرسمية", mB_7: "سجلات الدوام",
-      mC_h: "الإجازات والطلبات", mC_1: "إجازات وفق القانون ١٤", mC_2: "الأرصدة والاستحقاق", mC_3: "مسارات الاعتماد", mC_4: "خطابات ومستندات الموارد البشرية", mC_5: "مطالبات المصروفات", mC_6: "الإعلانات",
-      mD_h: "الأفراد والفروع", mD_1: "تعدّد الفروع والشركات", mD_2: "الهيكل التنظيمي", mD_3: "ملفات الموظفين", mD_4: "خزنة مستندات + تنبيهات انتهاء", mD_5: "التعيين والمغادرة", mD_6: "الأدوار والصلاحيات",
-      mE_h: "المبيعات والعمولات", mE_1: "خطط عمولة لكل دور", mE_2: "المكافآت والحوافز", mE_3: "مستهدفات المبيعات", mE_4: "تُصرف مباشرة مع الراتب", mE_5: "تقارير عمولة لكل فرع",
-      mF_h: "التحليلات والتحكّم", mF_1: "لوحات لكل فرع", mF_2: "تحليل تكلفة الرواتب", mF_3: "تقارير العدد والحضور", mF_4: "سجل التدقيق", mF_5: "تصدير البيانات (Excel / PDF)", mF_6: "عربي وإنجليزي، RTL كامل",
-      join_eyebrow: "احجز عرضًا", join_h2: "شاهد ركيز يدير فروعك.",
-      join_p: "أعطنا فروعك وعدد موظفيك ونعرض لك ركيز مهيّأً لشركتك — حضور وعمولات ورواتب وامتثال، مباشرة.",
-      ph_name: "اسمك", ph_company: "الشركة", ph_branch: "عدد الفروع", ph_emp: "عدد الموظفين", ph_email: "البريد الإلكتروني للعمل",
-      join_btn: "احجز عرضي", join_note: "سنتواصل معك خلال يوم عمل واحد.",
-      join_success: "تمام — سنتواصل معك خلال يوم عمل واحد لتجهيز العرض.",
-      foot_tag: "رواتب وموارد بشرية مبنية لعقارات مصر.", foot_copy: "© ٢٠٢٦ ركيز. جميع الحقوق محفوظة.", foot_made: "تطوير: ماريو ممدوح"
-    };
-    const EN = {};
-    document.querySelectorAll('[data-i18n]').forEach(el => EN[el.dataset.i18n] = el.innerHTML);
-    document.querySelectorAll('[data-i18n-ph]').forEach(el => EN[el.dataset.i18nPh] = el.getAttribute('placeholder'));
-    let lang = 'en';
-    function setLang(l) {
-      lang = l; const d = (l === 'ar') ? AR : EN; const html = document.documentElement;
-      html.lang = l; html.dir = (l === 'ar') ? 'rtl' : 'ltr';
-      document.querySelectorAll('[data-i18n]').forEach(el => { if (d[el.dataset.i18n] !== undefined) el.innerHTML = d[el.dataset.i18n]; });
-      document.querySelectorAll('[data-i18n-ph]').forEach(el => { if (d[el.dataset.i18nPh] !== undefined) el.setAttribute('placeholder', d[el.dataset.i18nPh]); });
-      document.querySelectorAll('.bn').forEach(s => s.textContent = (l === 'ar') ? 'ركيز' : 'Rakeez');
-      document.getElementById('langBtn').textContent = (l === 'ar') ? 'English' : 'العربية';
-    }
-    document.getElementById('langBtn').addEventListener('click', () => setLang(lang === 'en' ? 'ar' : 'en'));
-
-    const hdr = document.getElementById('hdr');
-    const onScroll = () => hdr.classList.toggle('scrolled', window.scrollY > 60);
-    window.addEventListener('scroll', onScroll); onScroll();
-
-    const io = new IntersectionObserver((es) => { es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }); }, { threshold: .14 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
     (function () {
-      const embed = document.getElementById('promoEmbed');
-      const frame = document.getElementById('promoFrame');
-      const poster = document.getElementById('promoPoster');
-      if (!embed || !frame) return;
-      let started = false;
-      function start() { if (started) return; started = true; frame.src = frame.dataset.src; embed.classList.add('playing'); }
-      poster.addEventListener('click', start);
-      const pio = new IntersectionObserver((es) => { es.forEach(en => { if (en.isIntersecting) { start(); pio.disconnect(); } }); }, { threshold: .5 });
-      pio.observe(embed);
-    })();
+      'use strict';
 
-    // ── Demo form submission ──────────────────────────────────────────────
-    // 1) Create a form at https://formspree.io  2) paste your endpoint below:
-    const FORM_ENDPOINT = "https://formspree.io/f/xbdvqnyn";
-    const joinForm = document.getElementById('joinForm');
-    joinForm.addEventListener('submit', async function (e) {
-      e.preventDefault();
-      const btn = joinForm.querySelector('button[type=submit]');
-      const label = btn.textContent;
-      btn.disabled = true; btn.style.opacity = .7; btn.textContent = '…';
-      try {
-        const res = await fetch(FORM_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: new FormData(joinForm)
-        });
-        if (!res.ok) throw new Error('submit failed');
-        joinForm.style.display = 'none';
-        document.getElementById('joinSuccess').classList.add('on');
-      } catch (err) {
-        btn.disabled = false; btn.style.opacity = 1; btn.textContent = label;
-        const note = joinForm.querySelector('.fnote');
-        if (note) { note.textContent = "Couldn't send just now — please try again."; note.style.color = '#f0a3a3'; }
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* Arm the reveal styles only now that JS is running and can un-arm
+         them. Skipped entirely under reduced motion — nothing to reveal. */
+      if (!reduced) document.documentElement.classList.add('js');
+
+      /* ══ i18n ═══════════════════════════════════════════════════
+         Snapshot English out of the DOM, swap innerHTML per key. Kept
+         from the previous build because it is the smallest thing that
+         works. What changed is that the dictionary is COMPLETE — the
+         old one had 135 keys for 204 tagged elements, so ~69 strings
+         silently stayed English. The parity check below makes any
+         recurrence loud instead of invisible. */
+      const AR = {
+        nav_pay: "الرواتب", nav_mod: "المزايا", nav_app: "التطبيق", nav_ar: "العربية", nav_data: "بياناتك",
+        nav_cta: "احجز عرضًا",
+
+        hero_eye: "موارد بشرية ورواتب · مصر",
+        hero_h1: "سجل واحد لموظفيك ووقتهم وأموالهم.",
+        hero_lead: "يحفظ ركيز كل ما يخص كل من يعمل لديك — التعيين والحضور والإجازات والعمولات والمصروفات وكشف الرواتب — في نظام واحد، بالعربية والإنجليزية. أرقام محاسبك، مُسجّلة ومصروفة.",
+        hero_cta1: "احجز عرضًا", hero_cta2: "شاهد ما يفعله",
+        hero_m1: "مبني لمصر", hero_m2: "عربي وإنجليزي بدعم كامل لليمين‑لليسار", hero_m3: "دون جداول تحتاج صيانة",
+
+        sh_title: "الرواتب · مارس ٢٠٢٦", sh_sub: "٣ من ١٬٢٨٤",
+        sh_emp: "الموظف", sh_net: "الصافي", sh_ded: "الاستقطاعات", sh_pay: "المستحق",
+        sh_n1: "نور عادل", sh_n2: "كريم فتحي", sh_n3: "سلمى هاني",
+        sh_total: "إجمالي المستحق · ج.م",
+        sh_note: "الصافي ناقص الاستقطاعات يساوي المستحق. لا شيء في هذا الكشف محسوب من القانون.",
+
+        tr1_h: "مبني لمصر", tr1_p: "شركات مصرية، وأسبوع عمل مصري، وعطلات مصرية.",
+        tr2_h: "عربي وإنجليزي", tr2_p: "كل شاشة، في الاتجاهين. ليست طبقة ترجمة.",
+        tr3_h: "سجلات خمس سنوات", tr3_p: "العقود والمستندات وتاريخ الأجور محفوظة بالمدة التي يطلبها القانون.",
+        tr4_h: "بياناتك ملكك", tr4_p: "كل صف مرتبط بشركتك. دون استثناء، ومُختبَر.",
+
+        pr_eye: "ما الذي يحلّ محله", pr_h: "خمسة أشياء تعيش في ملف إكسل، ولا ينبغي لها.",
+        pr_p: "كل شركة تحدثنا إليها تدير الأمر بنفس الحلول الالتفافية الخمسة. كل واحدة منها تكلّف شخصًا ما يومًا في الشهر، ولا أحد يثق تمامًا في النتيجة.",
+        p1_q: "«الحضور يصلنا على واتساب.»",
+        p1_p: "يسجّل الموظف حضوره من هاتفه، في الفرع أو في الميدان، مع تسجيل الموقع. المناوبات والتأخير والغياب كلها في المكان نفسه.",
+        p1_a: "الحضور والمناوبات",
+        p2_q: "«العمولات محل خلاف كل شهر.»",
+        p2_p: "الخطط تُكتب مرة واحدة لكل دور. والمستحقات تسير على ساعتها الخاصة — مستحقة، وواجبة، ومدفوعة — مع تقرير يُظهر طريقة الحساب، فينتهي الجدل.",
+        p2_a: "العمولات",
+        p3_q: "«كل عقد يُعاد كتابته من الذي قبله.»",
+        p3_p: "ارفع قالب Word الخاص بك مرة واحدة. يملؤه ركيز ببيانات الموظف ويعيده إليك — بصياغتك وتنسيقك، بالعربية.",
+        p3_a: "العقود",
+        p4_q: "«لا أحد يستطيع استرجاع مارس الماضي.»",
+        p4_p: "الأجور تعيش كسلسلة مؤرّخة، لا كرقم واحد يُستبدل. افتح أي شهر وستجد أرقامه كما كانت فعلًا.",
+        p4_a: "تاريخ الأجور",
+        p5_q: "«نهاية الشهر تعيش في رأس شخص واحد.»",
+        p5_p: "الاستقطاعات وأرصدة الإجازات وكشف الرواتب والتصدير عملية واحدة يشغّلها أي شخص لديه الصلاحية — وسجل التدقيق يقول من فعل.",
+        p5_a: "الرواتب والتقارير",
+
+        pay_eye: "الرواتب", pay_h: "أنت تعرف الصافي. ونحن كذلك.",
+        pay_p: "حين ينضم أحدهم إلى شركة مصرية، الرقم الوحيد الذي يعرفه فعلًا هو ما يصل إلى حسابه. اطلب منه الإجمالي، فتخترع الموارد البشرية رقمًا بإضافة استقطاعات لا يعرفها أحد — ثم يُتعامل مع الرقم المخترع كأنه حقيقة.",
+        eq_net: "الصافي", eq_ded: "الاستقطاعات", eq_pay: "المستحق",
+        pay_p2: "هذا هو الكشف كله. الصافي هو ما اتفقت عليه مع الشخص. والاستقطاعات هي التي سجّلتها أنت — سلفة، أو جزاء، أو أيام دون أجر. والمستحق هو ناتج الطرح.",
+        no_1: "ركيز لا يحسب ضريبة الدخل ولا التأمينات ولا مكافأة نهاية الخدمة. محاسبك يفعل ذلك، وركيز يسجّل النتيجة.",
+        no_2: "لا شيء يستنتج إجماليًا من صافٍ، ولا صافيًا من إجمالي. الرقم الذي يكتبه إنسان بيانات؛ والرقم الذي يخمّنه البرنامج مسؤولية.",
+        no_3: "وما تحصل عليه: الكشف، وقسيمة الراتب، والتاريخ، وسجل التدقيق، وملف إكسل بالشكل الذي طلبه محاسبك.",
+
+        dt_h: "أعد تشغيل مارس في يوليو. ستحصل على مارس.",
+        dt_p: "الأجر سلسلة مؤرّخة، لا قيمة حالية. حرّك الشهر وراقب رقم الشخص نفسه وهو يبقى كما كان في حينه.",
+        dt_asof: "قراءة السجل بتاريخ",
+        dt_who: "سلمى هاني", dt_role: "محاسِبة أولى", dt_unit: "ج.م صافٍ، شهريًا",
+        dt_cap: "علاوة سلمى بدأت في أبريل. ومارس ما زال يقرأ 12,000.00 — في يوليو، وفي كل شهر بعده.",
+
+        mo_eye: "ماذا يفعل", mo_h: "نظام سجلّات، لا أداة محدودة.",
+        mo_p: "كل ما تراه أدناه مبني ويعمل. شغّل ما تحتاجه شركتك وأضف الباقي حين تريد.",
+        b1_h: "الأفراد والهيكل",
+        b1_p: "الموظفون والفروع والإدارات والوظائف والفرق — السجل الذي يستند إليه كل ما عداه.",
+        b1_cap: "موظفًا في سجل شركة واحدة",
+        b1_t1: "الهيكل التنظيمي", b1_t2: "ملفات الموظفين", b1_t3: "الأدوار والصلاحيات", b1_t4: "طلبات التعديل",
+        b2_h: "الحضور والمناوبات والتسجيل",
+        b2_p: "سجّل حضورك من الهاتف مع تسجيل الموقع، في الفرع أو في الموقع. المناوبات والتأخير والغياب وساعات العمل — لكل شخص ولكل فرع.",
+        b2_t1: "تسجيل بالموقع", b2_t2: "المناوبات", b2_t3: "الساعات", b2_t4: "التأخير والغياب",
+        b3_h: "الإجازات والطلبات",
+        b3_p: "أنواع إجازات تحدّدها أنت، وأرصدة تُرحَّل، ومسار اعتماد يسجّل من وافق.",
+        b3_t1: "الأرصدة", b3_t2: "الاعتمادات",
+        b4_h: "كشف الرواتب",
+        b4_p: "الصافي والاستقطاعات والمستحق. أجور مؤرّخة، وقسائم، وتصدير.",
+        b4_t1: "الاستقطاعات", b4_t2: "قسائم الراتب", b4_t3: "إكسل",
+        b5_h: "العمولات",
+        b5_p: "خطط لكل دور، ومستحقات على ساعة مستحقة‑واجبة‑مدفوعة، وتقرير يُظهر الحساب. تُصرف منفصلة عن الأجر.",
+        b5_t1: "الخطط", b5_t2: "المستحقات", b5_t3: "التقرير",
+        b6_h: "العقود والمستندات",
+        b6_p: "قالب Word الخاص بك، يُملأ ويُعاد إليك بالعربية. ومستندات الموظفين خلف روابط تنتهي صلاحيتها، محفوظة خمس سنوات.",
+        b6_t1: "قوالب docx.", b6_t2: "خزنة المستندات", b6_t3: "الاحتفاظ",
+        b7_h: "المصروفات والموازنة",
+        b7_p: "موازنة شهرية، وفواتير متكررة تذكّر بنفسها، ودفتر إنفاق وتقرير. القيمة المضافة تُكتب من الفاتورة، ولا تُحسب.",
+        b7_t1: "الموازنات", b7_t2: "الفواتير المتكررة", b7_t3: "التصنيفات",
+        b8_h: "الإعلانات", b8_p: "أبلغ الجميع، أو فرعًا واحدًا، وشاهدها تصل داخل التطبيق.",
+        b8_t1: "موجّهة", b8_t2: "داخل التطبيق",
+        b9_h: "التقارير والتصدير",
+        b9_p: "الرواتب والحضور والعمولات والمصروفات — تُقرأ بتاريخ، وتُصفّى بالفرع، وتخرج إلى إكسل بالشكل الذي يعمل به محاسبك بالفعل.",
+        b9_t1: "تقرير الرواتب", b9_t2: "الحضور", b9_t3: "العمولات", b9_t4: "تصدير إكسل",
+
+        ap_eye: "الخدمة الذاتية", ap_h: "التطبيق الذي سيفتحه فريقك فعلًا.",
+        ap_p: "كل سؤال يحمله الموظفون إلى الموارد البشرية — كم قبضت، وكم بقي من إجازتي، وهل سُجّل حضوري — يُجاب عليه من هاتفه، بالعربية.",
+        ap1_h: "سجّل حضورك حيث العمل",
+        ap1_p: "الفرع، أو زيارة موقع، أو مكتب عميل. يُسجَّل الموقع مع الحضور.",
+        ap2_h: "قسائم الراتب دون طلب",
+        ap2_p: "الصافي والاستقطاعات والمستحق — والأشهر التي قبله. دون بريد ودون طلب.",
+        ap3_h: "إجازة تُطلب وتُتابَع",
+        ap3_p: "الرصيد، والطلب، والاعتماد، وأين وصل — دون الذهاب إلى أي مكتب.",
+        ap_pause: "إيقاف",
+
+        s1_h: "أهلًا يا مريم", s1_k: "قسيمة مارس · الصافي", s1_paid: "مدفوع · ٢٨ مارس", s1_ok: "مدفوع",
+        s1_a1: "القسائم", s1_a2: "الإجازات", s1_a3: "الحضور",
+        s2_h: "تسجيل الحضور", s2_loc: "فرع الشيخ زايد · على بعد ٤٠ م", s2_btn: "سجّل حضورك هنا",
+        s2_shift: "مناوبة اليوم", s2_ontime: "في الموعد",
+        s3_h: "إجازاتي", s3_k: "الإجازة السنوية", s3_sub: "يومًا متبقيًا", s3_recent: "الطلبات الأخيرة",
+        s3_r1: "إجازة العيد · ٣ أيام", s3_ok: "معتمَدة", s3_r2: "إجازة مرضية · يوم", s3_pend: "قيد المراجعة",
+
+        ar_eye: "اللغة", ar_h: "عربية كتبها من يقرؤها.",
+        ar_p: "أغلب برامج الموارد البشرية التي تُباع في مصر منتج إنجليزي صُبّت فيه العربية لاحقًا — انعكاس رديء، وتباعد حروف كأنه لاتيني، وصياغة كتبها من كان متاحًا. ركيز بُني باللغتين معًا.",
+        ar_1: "تخطيط كامل من اليمين إلى اليسار — منعكس كما ينبغي، مع ترك الأرقام والساعات وأعمدة المال كما هي.",
+        ar_2: "خط عربي حقيقي في كل المقاسات، دون تثخين مصطنع ودون تباعد حروف.",
+        ar_3: "مصطلح واحد متفق عليه عبر التطبيق والعقود والتقارير — فتستخدم القسيمة واللائحة الكلمة نفسها.",
+
+        dg_eye: "بياناتك", dg_h: "أجور وأرقام قومية. ونتعامل معها على هذا الأساس.",
+        d1_h: "مستأجر واحد، وحدّ واحد",
+        d1_p: "كل سجل يحمل اسم شركتك وكل استعلام محصور بها. ليست عادة برمجية — بل قاعدة مفروضة في طبقة البيانات، مع اختبار على كل نموذج يثبت أن شركة لا تستطيع قراءة صفوف أخرى.",
+        d2_h: "مستندات خلف روابط تنتهي",
+        d2_p: "العقود والبطاقات والشهادات لا تُقدَّم أبدًا من عنوان يمكن تخمينه. الروابط موقّعة ومحدودة بوقت، ولا تُصدر إلا لمن يستحق الملف.",
+        d3_h: "تاريخ لا يُعاد كتابته بهدوء",
+        d3_p: "الأجور والعقود والاعتمادات سلاسل مؤرّخة. تغيير رقم اليوم لا يعدّل رقم العام الماضي أبدًا، ويبقى سجل من غيّر ماذا.",
+        d4_h: "المال مخزَّن كمال",
+        d4_p: "كل مبلغ محفوظ بالقروش كعدد صحيح، لا ككسر عشري يطاله خطأ تقريب. برنامج رواتب يضيّع نصف قرش هو برنامج لا يمكنك استخدامه.",
+
+        cu_eye: "عميل",
+        cu_q: "«كانت الأجور في ملف، والحضور في ملف آخر، والعمولات في ثالث لا يفهمه إلا شخص واحد. الآن هي شاشة واحدة — وأستطيع فتح مارس الماضي.»",
+        /* The customer's own name, from their site's own siteName. Latin in
+           both languages, same reason the Rakeez brand string is. */
+        cu_a: "Tailor Investments · القاهرة · يستخدمون ركيز منذ ٢٠٢٦",
+
+        ct_eye: "احجز عرضًا", ct_h: "شاهده وشركتك بداخله.",
+        ct_p: "أخبرنا بعدد موظفيك وكيف تدير الرواتب اليوم. سنعرض لك ركيز مهيّأً بالطريقة التي تعمل بها شركتك فعلًا، لا جولة عامة.",
+        ct_1: "ثلاثون دقيقة، ونظام حقيقي بدل الشرائح.",
+        ct_2: "بالعربية أو بالإنجليزية، كما تفضّل.",
+        ct_3: "وسنقول لك بصراحة إن كان ركيز غير مناسب لك.",
+        ph_name: "اسمك", ph_company: "الشركة", ph_branch: "عدد الفروع", ph_emp: "عدد الموظفين",
+        ph_email: "البريد الإلكتروني للعمل", ph_phone: "الهاتف (اختياري)",
+        ct_btn: "احجز عرضي", ct_note: "نرد خلال يوم عمل واحد. ولا نشرة بريدية.",
+        ct_ok: "تمام — سنتواصل معك خلال يوم عمل واحد لتجهيز العرض.",
+
+        ft_tag: "موارد بشرية ورواتب للشركات المصرية. أرقام محاسبك، مُسجّلة ومصروفة.",
+        ft_copy: "© ٢٠٢٦ ركيز. جميع الحقوق محفوظة.", ft_made: "تطوير: ماريو ممدوح"
+      };
+
+      const EN = {};
+      document.querySelectorAll('[data-i18n]').forEach(el => EN[el.dataset.i18n] = el.innerHTML);
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => EN[el.dataset.i18nPh] = el.getAttribute('placeholder'));
+
+      /* Parity check. The previous build shipped 69 untranslated strings for
+         months because setLang() skips a missing key in silence. This makes
+         the same mistake loud. Dev only — localhost, file://, or ?i18n=check. */
+      if (!location.hostname || location.hostname === 'localhost'
+        || location.hostname === '127.0.0.1' || location.search.includes('i18n=check')) {
+        const missing = Object.keys(EN).filter(k => AR[k] === undefined);
+        const extra = Object.keys(AR).filter(k => EN[k] === undefined);
+        console[missing.length || extra.length ? 'warn' : 'log'](
+          missing.length || extra.length
+            ? `i18n: ${missing.length} missing Arabic [${missing.join(', ')}]`
+            + (extra.length ? ` · ${extra.length} unused Arabic [${extra.join(', ')}]` : '')
+            : `i18n: parity OK — ${Object.keys(EN).length} keys, both languages`);
       }
-    });
+
+      let lang = 'en';
+
+      function setLang(l) {
+        lang = l;
+        const d = (l === 'ar') ? AR : EN;
+        const html = document.documentElement;
+        html.lang = l;
+        html.dir = (l === 'ar') ? 'rtl' : 'ltr';
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          if (d[el.dataset.i18n] !== undefined) el.innerHTML = d[el.dataset.i18n];
+        });
+        document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+          if (d[el.dataset.i18nPh] !== undefined) el.setAttribute('placeholder', d[el.dataset.i18nPh]);
+        });
+        document.getElementById('langBtn').textContent = (l === 'ar') ? 'English' : 'العربية';
+        pauseBtn.textContent = paused
+          ? (l === 'ar' ? 'تشغيل' : 'Play')
+          : (l === 'ar' ? 'إيقاف' : 'Pause');
+        paintDate();
+        movePill(document.querySelector('.nav a.on'));
+      }
+      document.getElementById('langBtn').addEventListener('click', () => setLang(lang === 'en' ? 'ar' : 'en'));
+
+      /* ══ Header · condense, and hand the gold over (§4.2) ══════ */
+      const hdr = document.getElementById('hdr');
+      const hdrCta = document.getElementById('hdrCta');
+      const onScroll = () => hdr.classList.toggle('scrolled', scrollY > 60);
+      addEventListener('scroll', onScroll, { passive: true });
+
+      /* §4.2, generalised — the gold belongs to whatever is the visitor's
+         next step at this scroll position, and there is only ever one of
+         it (I1). These four sections own a gold action of their own: the
+         hero button, the play button, the app's check-in button, and the
+         demo form's submit. While ANY of them is on screen the header CTA
+         stays a ghost; it takes the gold only in the gaps between them.
+         An offset comparison could not do this — it only knew about the
+         hero, which is how five gold rules and three gold buttons ended
+         up sharing viewports with it. */
+      const goldOwners = new Set();
+      const goldObs = new IntersectionObserver(es => {
+        es.forEach(e => e.isIntersecting ? goldOwners.add(e.target.id) : goldOwners.delete(e.target.id));
+        hdrCta.classList.toggle('armed', goldOwners.size === 0);
+      }, { threshold: 0 });
+      /* #payroll is in this list because of the scrubber THUMB, which is
+         gold and is that section's one invitation to act. It is a
+         pseudo-element, so no scan of background colours will ever find
+         it — it has to be listed by hand. */
+      ['top', 'payroll', 'app', 'demo'].forEach(id => goldObs.observe(document.getElementById(id)));
+
+      document.getElementById('menuBtn').addEventListener('click', () =>
+        document.getElementById('modules').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' }));
+
+      /* ══ Pill nav · the active pill slides, 200ms ══════════════ */
+      const nav = document.getElementById('nav');
+      const pill = document.getElementById('navPill');
+      const links = [...nav.querySelectorAll('a')];
+
+      function movePill(a) {
+        if (!a || !nav.offsetParent) { pill.style.opacity = 0; return; }
+        pill.style.width = a.offsetWidth + 'px';
+        pill.style.transform = `translateX(${a.offsetLeft}px)`;
+        pill.style.opacity = 1;
+      }
+
+      const secObs = new IntersectionObserver(es => {
+        es.forEach(e => {
+          if (!e.isIntersecting) return;
+          const a = links.find(l => l.getAttribute('href') === '#' + e.target.id);
+          links.forEach(l => l.classList.toggle('on', l === a));
+          movePill(a);
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      links.forEach(l => {
+        const s = document.querySelector(l.getAttribute('href'));
+        if (s) secObs.observe(s);
+      });
+      addEventListener('resize', () => movePill(document.querySelector('.nav a.on')));
+
+      /* ══ Reveal · 320ms, staggered 60ms, fires once ════════════ */
+      const revObs = new IntersectionObserver((es, o) => {
+        es.forEach(e => {
+          if (!e.isIntersecting) return;
+          const sibs = [...e.target.parentElement.children].filter(c => c.classList.contains('reveal'));
+          e.target.style.transitionDelay = (Math.min(sibs.indexOf(e.target), 5) * 60) + 'ms';
+          e.target.classList.add('in');
+          o.unobserve(e.target);
+        });
+      }, { threshold: .12 });
+      document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+      /* ══ Count up · once on load, never re-animates ════════════ */
+      const fmt = n => n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      const countObs = new IntersectionObserver((es, o) => {
+        es.forEach(e => {
+          if (!e.isIntersecting) return;
+          o.unobserve(e.target);
+          const el = e.target, target = +el.dataset.count;
+          if (reduced) { el.textContent = fmt(target); return; }
+          el.textContent = fmt(0);
+          const dur = 900, t0 = performance.now();
+          const step = t => {
+            const p = Math.min((t - t0) / dur, 1);
+            el.textContent = fmt(target * (1 - Math.pow(1 - p, 3)));
+            if (p < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        });
+      }, { threshold: .4 });
+      document.querySelectorAll('[data-count]').forEach(el => countObs.observe(el));
+
+      /* Sheet rows resolve in sequence, once. */
+      const tbl = document.getElementById('sheetTable');
+      if (!reduced) {
+        tbl.classList.add('arm');
+        new IntersectionObserver((es, o) => {
+          es.forEach(e => { if (e.isIntersecting) { tbl.classList.add('run'); o.unobserve(e.target); } });
+        }, { threshold: .3 }).observe(tbl);
+      }
+
+      /* ══ The March-in-July demonstration ═══════════════════════
+         A dated series, exactly as Employee::netSalaryOn() reads one.
+         Static data — this demonstrates the behaviour, it does not
+         call the product. Salma's raise lands in April. */
+      const SERIES = [
+        { en: 'January 2026', ar: 'يناير ٢٠٢٦', v: '12,000.00' },
+        { en: 'February 2026', ar: 'فبراير ٢٠٢٦', v: '12,000.00' },
+        { en: 'March 2026', ar: 'مارس ٢٠٢٦', v: '12,000.00' },
+        { en: 'April 2026', ar: 'أبريل ٢٠٢٦', v: '14,200.00' },
+        { en: 'May 2026', ar: 'مايو ٢٠٢٦', v: '14,200.00' },
+        { en: 'June 2026', ar: 'يونيو ٢٠٢٦', v: '14,200.00' },
+        { en: 'July 2026', ar: 'يوليو ٢٠٢٦', v: '14,200.00' }
+      ];
+      const scrub = document.getElementById('scrub');
+      const dFig = document.getElementById('datingFig');
+      const dMon = document.getElementById('datingMonth');
+
+      function paintDate() {
+        const s = SERIES[+scrub.value];
+        dMon.textContent = (lang === 'ar') ? s.ar : s.en;
+        if (dFig.textContent.trim() === s.v) return;
+        if (reduced) { dFig.textContent = s.v; return; }
+        dFig.classList.add('swap');
+        setTimeout(() => { dFig.textContent = s.v; dFig.classList.remove('swap'); }, 120);
+      }
+      scrub.addEventListener('input', paintDate);
+
+      /* ══ Phone carousel · the page's ONE looping motion ════════
+         Fenced: pauses when its section leaves the viewport, carries a
+         visible control, and does not advance at all under
+         prefers-reduced-motion. */
+      const screens = [...document.querySelectorAll('.screen')];
+      const dots = [...document.querySelectorAll('.cdot')];
+      const pauseBtn = document.getElementById('pauseBtn');
+      let idx = 0, timer = null, paused = reduced, inView = false;
+
+      function go(i) {
+        idx = (i + screens.length) % screens.length;
+        screens.forEach((s, n) => s.classList.toggle('on', n === idx));
+        dots.forEach((d, n) => d.classList.toggle('on', n === idx));
+      }
+
+      function tick() {
+        clearInterval(timer);
+        if (paused || !inView) return;
+        timer = setInterval(() => go(idx + 1), 3800);
+      }
+
+      dots.forEach(d => d.addEventListener('click', () => { go(+d.dataset.go); tick(); }));
+      pauseBtn.addEventListener('click', () => {
+        paused = !paused;
+        pauseBtn.textContent = paused
+          ? (lang === 'ar' ? 'تشغيل' : 'Play')
+          : (lang === 'ar' ? 'إيقاف' : 'Pause');
+        tick();
+      });
+      new IntersectionObserver(es => { inView = es[0].isIntersecting; tick(); }, { threshold: .25 })
+        .observe(document.getElementById('phones'));
+      if (reduced) pauseBtn.textContent = 'Play';
+
+      /* ══ Demo form ═════════════════════════════════════════════ */
+      const FORM_ENDPOINT = "https://formspree.io/f/xbdvqnyn";
+      const form = document.getElementById('joinForm');
+      const okBox = document.getElementById('formOk');
+      const btn = document.getElementById('joinBtn');
+
+      document.querySelectorAll('.form select').forEach(s =>
+        s.addEventListener('change', () => s.classList.toggle('filled', !!s.value)));
+
+      form.addEventListener('submit', async e => {
+        e.preventDefault();
+        btn.disabled = true;
+        btn.textContent = (lang === 'ar') ? 'جارٍ الإرسال…' : 'Sending…';
+        try {
+          const r = await fetch(FORM_ENDPOINT, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { Accept: 'application/json' }
+          });
+          if (!r.ok) throw new Error(r.status);
+          form.style.display = 'none';
+          okBox.style.display = 'block';
+        } catch (err) {
+          btn.disabled = false;
+          btn.textContent = (lang === 'ar') ? 'تعذّر الإرسال — حاول مرة أخرى' : "Couldn't send — try again";
+        }
+      });
+
+      /* ── first paint ── */
+      onScroll();
+      paintDate();
+    })();
   </script>
 </body>
 
