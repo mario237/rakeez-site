@@ -21,12 +21,15 @@
            --screenshot=og.png --window-size=1200,630 file://$PWD/og-card.html
        og-card.html is the source; it is 1200×630 and uses the same fonts and tokens
        as this page, so the card cannot drift from the brand without somebody noticing.
-       ponytail: the path is RELATIVE, which Facebook, LinkedIn and WhatsApp resolve
-       against the request URL. The Open Graph spec wants an absolute one and older
-       Twitter cards insist — make it absolute the moment a domain exists. There is no
-       og:url or canonical for the same reason: fabricating a hostname is worse than
-       omitting the tag, and a scraper falls back to the URL it fetched. -->
-  <meta property="og:image" content="og.png">
+       ⚠️ THE THREE ABSOLUTE URLS BELOW HARDCODE THE DOMAIN, deliberately: the Open
+       Graph spec requires an absolute og:image and older Twitter cards refuse a
+       relative one, so there is no way to write these without naming the host.
+       Confirmed by Mario 2026-08-03 as the real domain, not staging. **If the site
+       ever moves, og:image, og:url and the canonical link must all move with it** —
+       a stale canonical pointing at a dead host de-indexes the page. -->
+  <meta property="og:url" content="https://rakeez.predevsolutions.com/">
+  <link rel="canonical" href="https://rakeez.predevsolutions.com/">
+  <meta property="og:image" content="https://rakeez.predevsolutions.com/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:type" content="image/png">
@@ -349,6 +352,26 @@
     }
 
     .btn-gold:active {
+      transform: translateY(1px);
+    }
+
+    /* The hero's primary action. It was gold until 2026-08-03, when the header CTA
+       became permanently gold — that left two gold buttons in the hero saying the
+       SAME WORDS ("Book a demo"), which reads as a rendering fault rather than a
+       hierarchy. Carbon keeps the hero a clear primary→secondary pair while the one
+       gold signal in that viewport stays in the header, where Mario put it.
+       Not a violation of I6's one-dark-tile rule: that governs tiles and panels, and
+       a 50px button is neither. */
+    .btn-carbon {
+      background: var(--rk-carbon);
+      color: var(--rk-on-dark);
+    }
+
+    .btn-carbon:hover {
+      background: #232322;
+    }
+
+    .btn-carbon:active {
       transform: translateY(1px);
     }
 
@@ -1699,6 +1722,21 @@
       line-height: 1.7;
     }
 
+    /* The global rule is `a { color: inherit; text-decoration: none }`, so a link in
+       the footer would be indistinguishable from the text around it. Weight and a
+       brighter carbon-safe tone make it read as a link without adding a colour the
+       palette does not have — --rk-on-dark-2 is 6.61 on the dark canvas. */
+    .foot .meta a {
+      color: var(--rk-on-dark-2);
+      font-weight: 600;
+    }
+
+    .foot .meta a:hover {
+      color: var(--rk-on-dark);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
     /* ══ REVEAL ══════════════════════════════════════════════════
        Gated on .js — the hidden state exists only once JS has proved it
        can undo it. Hiding 51 elements in plain CSS means no-JS, a failed
@@ -1867,7 +1905,7 @@
             English. Your accountant's figures, recorded and paid.</p>
 
           <div class="hero-cta reveal">
-            <a href="#demo" class="btn btn-gold" data-i18n="hero_cta1">Book a demo</a>
+            <a href="#demo" class="btn btn-carbon" data-i18n="hero_cta1">Book a demo</a>
             <a href="#modules" class="btn btn-ghost" data-i18n="hero_cta2">See what it does</a>
           </div>
 
@@ -2706,7 +2744,12 @@
       </div>
       <div class="meta">
         <div data-i18n="ft_copy">© 2026 Rakeez. All rights reserved.</div>
-        <div data-i18n="ft_made">Built by Mario Mamdouh</div>
+        <!-- The credit carries a LINK, so both dictionary values must contain the same
+             anchor — setLang swaps innerHTML, not textContent, so markup inside a
+             translated string survives. "PreDevSolutions" stays Latin in Arabic:
+             glossary rule 3, proper nouns are not translated. -->
+        <div data-i18n="ft_made">Developed by <a href="https://predevsolutions.com" target="_blank"
+            rel="noopener">PreDevSolutions</a></div>
       </div>
     </div>
   </footer>
@@ -2887,7 +2930,8 @@
         ct_ok: "تمام — سنتواصل معك خلال يوم عمل واحد لتجهيز العرض.",
 
         ft_tag: "موارد بشرية وأجور للشركات المصرية. أرقام محاسبك، مُسجّلة ومصروفة.",
-        ft_copy: "© 2026 ركيز. جميع الحقوق محفوظة.", ft_made: "تطوير: ماريو ممدوح"
+        ft_copy: "© 2026 ركيز. جميع الحقوق محفوظة.",
+        ft_made: "تطوير: <a href=\"https://predevsolutions.com\" target=\"_blank\" rel=\"noopener\">PreDevSolutions</a>"
       };
 
       const EN = {};
