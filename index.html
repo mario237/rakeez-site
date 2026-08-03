@@ -342,18 +342,12 @@
       letter-spacing: 0;
     }
 
-    .btn-gold {
-      background: var(--rk-gold-400);
-      color: var(--rk-carbon);
-    }
-
-    .btn-gold:hover {
-      background: var(--rk-gold-300);
-    }
-
-    .btn-gold:active {
-      transform: translateY(1px);
-    }
+    /* `.btn-gold` used to live here and is DELETED — with the hero and the demo form
+       both carbon, no element on the page used it any more, and dead CSS for a colour
+       this system deliberately restricts is worse than absent. The one gold action is
+       `#hdrCta`, styled where it is used. If a gold button is ever wanted again the
+       recipe is three lines: `--rk-gold-400` fill, `--rk-carbon` type (invariant I2 —
+       NEVER white on gold), `--rk-gold-300` on hover. */
 
     /* The hero's primary action. It was gold until 2026-08-03, when the header CTA
        became permanently gold — that left two gold buttons in the hero saying the
@@ -373,6 +367,23 @@
 
     .btn-carbon:active {
       transform: translateY(1px);
+    }
+
+    /* ⚠️ ON THE DARK BAND, .btn-carbon INVERTS — AND IT MUST.
+       `--rk-dark-canvas` is #121212, which is the SAME VALUE as `--rk-carbon`, so a
+       carbon fill on a dark section is a contrast ratio of 1.0: a completely
+       invisible button that still takes clicks. The neutral primary on a dark ground
+       is the mirror of the light one — cloud fill taking carbon type, 15.83 — which
+       is the same relationship .btn-carbon has on the canvas, just reversed.
+       One class, one meaning ("the primary action that is not the gold signal"),
+       correct on either surface. */
+    .dark .btn-carbon {
+      background: var(--rk-on-dark);
+      color: var(--rk-carbon);
+    }
+
+    .dark .btn-carbon:hover {
+      background: #FFFFFF;
     }
 
     .btn-ghost {
@@ -2716,7 +2727,7 @@
             </div>
             <input type="email" name="email" placeholder="Work email" data-i18n-ph="ph_email" required>
             <input type="text" name="phone" placeholder="Phone (optional)" data-i18n-ph="ph_phone">
-            <button type="submit" class="btn btn-gold" id="joinBtn" data-i18n="ct_btn">Book my demo</button>
+            <button type="submit" class="btn btn-carbon" id="joinBtn" data-i18n="ct_btn">Book my demo</button>
             <p class="form-note" data-i18n="ct_note">We reply within one working day. No newsletter.</p>
           </form>
           <div class="form-ok" id="formOk" data-i18n="ct_ok">Got it — we'll be in touch within one working day to set
