@@ -1094,7 +1094,17 @@
       font-size: 12.5px;
     }
 
+    /* ⚠️ `direction: ltr` HERE IS A BUG FIX, NOT A STYLE CHOICE — DO NOT REMOVE IT.
+       A range input INHERITS direction, and browsers mirror it: under dir="rtl" the
+       minimum value renders on the RIGHT. `.months` below is pinned ltr (a time axis
+       is a chart axis, and spec §5 says charts do not mirror), so before this rule the
+       Arabic page put the thumb for JANUARY at the far right, directly above the label
+       reading JUL, while the readout said «يناير». The axis ran backwards against its
+       own labels, in the one widget the whole payroll argument rests on.
+       The slider and its labels must share a direction; this pins both to ltr so the
+       months read chronologically left-to-right in either language. */
     input[type=range] {
+      direction: ltr;
       -webkit-appearance: none;
       appearance: none;
       width: 100%;
@@ -1134,7 +1144,17 @@
       font-family: var(--f-mono);
       font-size: 10.5px;
       color: var(--rk-on-dark-3);
+      /* Chronological left-to-right in BOTH languages, and the range input above is
+         pinned to match — see the comment on input[type=range]. */
       direction: ltr;
+    }
+
+    /* IBM Plex Mono carries no Arabic glyphs, so the month names would silently fall
+       back to whatever the system offers. Same swap .sc-k already makes. */
+    html[dir="rtl"] .months {
+      font-family: var(--f-arabic);
+      font-size: 11.5px;
+      letter-spacing: 0;
     }
 
     .dating-out {
@@ -2982,6 +3002,7 @@
           ? (l === 'ar' ? 'تشغيل' : 'Play')
           : (l === 'ar' ? 'إيقاف' : 'Pause');
         paintDate();
+        paintMonths();
         movePill(document.querySelector('.nav a.on'));
       }
       document.getElementById('langBtn').addEventListener('click', () => setLang(lang === 'en' ? 'ar' : 'en'));
@@ -3081,6 +3102,17 @@
       const scrub = document.getElementById('scrub');
       const dFig = document.getElementById('datingFig');
       const dMon = document.getElementById('datingMonth');
+
+      /* The tick labels are DERIVED FROM SERIES rather than being seven more
+         data-i18n keys, so the axis and the readout above it cannot disagree about
+         which month is which — one source of truth, and the parity check has nothing
+         it needs to cover. English abbreviates to three letters; Arabic month names
+         are already short, so only the year is dropped. */
+      function paintMonths() {
+        document.querySelector('.months').innerHTML = SERIES
+          .map(s => `<span>${lang === 'ar' ? s.ar.split(' ')[0] : s.en.slice(0, 3).toUpperCase()}</span>`)
+          .join('');
+      }
 
       function paintDate() {
         const s = SERIES[+scrub.value];
