@@ -13,6 +13,25 @@
   <meta property="og:description"
     content="Your accountant's figures, recorded and paid. One system of record for people, time and money.">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Rakeez">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="ar_EG">
+  <!-- The share card. Regenerate with:
+         google-chrome --headless --hide-scrollbars --virtual-time-budget=8000 \
+           --screenshot=og.png --window-size=1200,630 file://$PWD/og-card.html
+       og-card.html is the source; it is 1200×630 and uses the same fonts and tokens
+       as this page, so the card cannot drift from the brand without somebody noticing.
+       ponytail: the path is RELATIVE, which Facebook, LinkedIn and WhatsApp resolve
+       against the request URL. The Open Graph spec wants an absolute one and older
+       Twitter cards insist — make it absolute the moment a domain exists. There is no
+       og:url or canonical for the same reason: fabricating a hostname is worse than
+       omitting the tag, and a scraper falls back to the URL it fetched. -->
+  <meta property="og:image" content="og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="Rakeez — HR and payroll for Egyptian companies. net − deductions = payable.">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#F5F4F0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -509,6 +528,16 @@
       position: absolute;
       z-index: 0;
       top: 0;
+      /* ⚠️ `left: 0` IS LOAD-BEARING AND MUST NOT BECOME `inset-inline-start`.
+         Without it the pill has no positioned origin, so it falls back to its
+         STATIC position — and for an absolutely positioned child of a flex
+         container that is the container's MAIN-START corner, which flips to the
+         right edge under dir="rtl". movePill() then translates by offsetLeft,
+         which is always measured from the LEFT regardless of direction, so origin
+         and offset disagreed and the pill sat in empty space next to the wordmark
+         in Arabic. Pinning the origin to the left edge makes one measurement
+         correct in both directions. */
+      left: 0;
       height: 100%;
       border-radius: var(--r-pill);
       background: var(--rk-carbon);
@@ -545,22 +574,29 @@
       border-color: var(--rk-t3);
     }
 
-    /* §4.2 — the header CTA is a GHOST while the hero is in view, and
-       takes the gold only once the hero has scrolled away. They are
-       never both gold at any scroll offset. */
-    #hdrCta {
-      background: transparent;
-      color: var(--rk-carbon);
-      border: 1px solid var(--rk-divider);
-    }
+    /* ⚠️ THE HEADER CTA IS ALWAYS GOLD. Mario's call, 2026-08-03: "why book a demo
+       in navbar sometimes turn gold and sometimes not while scroll — make it always
+       gold." It used to be a GHOST whenever a section owning a gold action was on
+       screen, handing the signal back and forth, which is spec §4.2 and brand
+       invariant I1 (one gold element per viewport).
 
-    #hdrCta.armed {
+       WHAT THIS COSTS, recorded so nobody "fixes" it back by accident: in the hero,
+       the payroll section, the app section and the demo form, the header CTA is now
+       a SECOND gold element in the same viewport as that section's own gold action.
+       I1 exists to stop exactly that. The trade he chose is a Book-a-demo button that
+       never changes under the visitor's eye, which is the more conventional
+       behaviour and the one a stranger will not read as a rendering bug.
+
+       If it is ever reverted: restore #hdrCta as transparent with a
+       var(--rk-divider) hairline, re-add the .armed rules, and put back the
+       IntersectionObserver over ['top','payroll','app','demo'] in the script. */
+    #hdrCta {
       background: var(--rk-gold-400);
       color: var(--rk-carbon);
-      border-color: var(--rk-gold-400);
+      border: 1px solid var(--rk-gold-400);
     }
 
-    #hdrCta.armed:hover {
+    #hdrCta:hover {
       background: var(--rk-gold-300);
       border-color: var(--rk-gold-300);
     }
@@ -1954,10 +1990,15 @@
     </div>
   </section>
 
-  <!-- The WATCH section is deliberately absent: `rakeez-promo.html` still
-       shows the old lime identity and out-of-date product, and a stale
-       tour is worse than none. Restore this section — and 'watch' in the
-       goldOwners list below — when a new promo exists. -->
+  <!-- The WATCH section is deliberately absent, and `rakeez-promo.html` is now DELETED
+       (2026-08-03) rather than left unlinked. It was the last place the cancelled
+       statutory payroll still lived — it sold "Social insurance", "martyrs tax" and
+       "labor law" on the two-generations-stale lime identity, and an unlinked file is
+       still a file the host serves to anyone who guesses the URL. Recover it from git
+       history if a new promo is ever cut from it: `git show c575d5a:rakeez-promo.html`.
+       Restoring this section also means re-adding w_eye / w_h / w_play to the Arabic
+       dictionary. (It used to mean adding 'watch' to a goldOwners list too; that
+       observer is gone — the header CTA is permanently gold now.) -->
 
   <!-- ═══ PROBLEMS ═════════════════════════════════════════════ -->
   <section class="band tint" id="problems">
@@ -2287,6 +2328,27 @@
           </ul>
         </article>
 
+        <!-- Recruitment. Held back from the first build because it was still on an
+             unmerged branch (spec §4.1 — no tile describes something that does not
+             exist); merged, deployed and browser-verified 2026-08-03, so it qualifies
+             now. `wide` because b9 is also wide: the two of them close the last row
+             at 6 columns instead of leaving a half-row hole. -->
+        <article class="card bt wide reveal">
+          <svg class="ico" viewBox="0 0 24 24">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M19 8v6M22 11h-6" />
+          </svg>
+          <h3 data-i18n="b10_h">Recruitment</h3>
+          <p data-i18n="b10_p">Post a job, take applications with the CV attached, and move people through your own
+            stages — with every applicant kept against the company that posted it.</p>
+          <ul>
+            <li data-i18n="b10_t1">Job posts</li>
+            <li data-i18n="b10_t2">Applications</li>
+            <li data-i18n="b10_t3">CVs on file</li>
+          </ul>
+        </article>
+
       </div>
     </div>
   </section>
@@ -2340,35 +2402,42 @@
         <div>
           <div class="phones reveal" id="phones">
             <div class="phone">
+              <!-- ⚠️ THIS SCREEN IS **MY PAY**, NOT THE HOME SCREEN, AND THAT IS DELIBERATE.
+                   It used to read "Hello, Mariam / March payslip · net / 13,000.00" — a home
+                   screen with a salary figure on it. The mobile app REFUSES that: a pay figure
+                   on home is on display every time the phone is unlocked at a desk, so the
+                   redesigned home shows the greeting, today's attendance and a leave balance
+                   and no money at all. §3 of the spec commits that the data on this page is
+                   real, so the screen moved to where the figure genuinely lives.
+                   The labels are the app's own strings, verbatim from lib/l10n/app_en.arb:
+                   payNetSalary / payDeducted / payPayable / payReasonGiven.
+                   It also demonstrates net − deductions = payable, which is the page's pitch:
+                   13,000.00 − 600.00 = 12,400.00. Keep those three in agreement. -->
               <div class="screen on" data-sc="0">
                 <div class="sc-top"><span>09:41</span><span>▮▮▮</span></div>
-                <div class="sc-h" data-i18n="s1_h">Hello, Mariam</div>
+                <div class="sc-h" data-i18n="s1_h">My pay</div>
                 <div class="sc-card">
-                  <div class="sc-k" data-i18n="s1_k">March payslip · net</div>
-                  <div class="sc-v">13,000.00</div>
-                  <div class="sc-row" style="border:0;padding-bottom:0">
-                    <span data-i18n="s1_paid">Paid · 28 March</span>
-                    <span class="pill pill-ok"><span class="dot"></span><span data-i18n="s1_ok">Paid</span></span>
+                  <div class="sc-k" data-i18n="s1_k">Payable · March</div>
+                  <div class="sc-v">12,400.00</div>
+                  <div class="sc-row">
+                    <span data-i18n="s1_net">Monthly net salary</span>
+                    <span class="num">13,000.00</span>
+                  </div>
+                  <div class="sc-row" style="padding-bottom:0">
+                    <span data-i18n="s1_ded">Deductions this month</span>
+                    <span class="num">−600.00</span>
                   </div>
                 </div>
-                <div class="sc-grid">
-                  <div class="sc-tile">
-                    <svg class="ico ico-20" viewBox="0 0 24 24">
-                      <rect x="4" y="3" width="16" height="18" rx="2" />
-                      <path d="M8 8h8M8 12h6" />
-                    </svg><span data-i18n="s1_a1">Payslips</span>
+                <div class="sc-card">
+                  <div class="sc-k" data-i18n="s1_dh">Deductions</div>
+                  <div class="sc-row" style="border:0">
+                    <span data-i18n="s1_d1">Advance · March</span>
+                    <span class="num">600.00</span>
                   </div>
-                  <div class="sc-tile">
-                    <svg class="ico ico-20" viewBox="0 0 24 24">
-                      <rect x="3" y="5" width="18" height="16" rx="2" />
-                      <path d="M3 10h18" />
-                    </svg><span data-i18n="s1_a2">Leave</span>
-                  </div>
-                  <div class="sc-tile">
-                    <svg class="ico ico-20" viewBox="0 0 24 24">
-                      <circle cx="12" cy="12" r="9" />
-                      <path d="M12 7v5l3 2" />
-                    </svg><span data-i18n="s1_a3">Attendance</span>
+                  <div class="sc-row" style="padding-bottom:0">
+                    <span data-i18n="s1_why">Reason given</span>
+                    <span class="pill pill-ok"><span class="dot"></span><span
+                        data-i18n="s1_ok">Recorded</span></span>
                   </div>
                 </div>
               </div>
@@ -2660,16 +2729,33 @@
          silently stayed English. The parity check below makes any
          recurrence loud instead of invisible. */
       const AR = {
-        nav_pay: "الرواتب", nav_mod: "المزايا", nav_app: "التطبيق", nav_ar: "العربية", nav_data: "بياناتك",
+        /* ⚠️ VOCABULARY IS GOVERNED BY rakeez-portal/docs/localisation/GLOSSARY.md,
+           which spec §5 makes binding on this page. Two rules bite hardest here, and
+           this dictionary broke BOTH until 2026-08-03:
+
+           · **الرواتب / الراتب ARE BANNED.** The glossary is explicit — "Salary | الأجر |
+             **Not الراتب**". Sixteen strings said رواتب. The distinction now held:
+               – payroll as THE SHEET or THE REPORT  → «كشف المرتبات». This is the ONE
+                 sanctioned use of مرتبات in the whole product, and it is Mario's own pick.
+               – payroll as the general activity/field → «أجور», which is also what the
+                 brand book's own Arabic tagline uses.
+               – a salary, or a payslip                → «أجر» / «قسيمة الأجر».
+           · **NUMERALS STAY WESTERN 0-9, never Arabic-Indic** (glossary rule 2). 13 strings
+             used Arabic-Indic digits. The worst was the effective-dating scrubber, the
+             page's flagship argument, which showed «يناير 2026» directly beside its own
+             Western money figure `12,000.00` — two digit systems inside one widget.
+
+           If you add an Arabic string, read the glossary first. It is not optional. */
+        nav_pay: "كشف المرتبات", nav_mod: "المزايا", nav_app: "التطبيق", nav_ar: "العربية", nav_data: "بياناتك",
         nav_cta: "احجز عرضًا",
 
-        hero_eye: "موارد بشرية ورواتب · مصر",
+        hero_eye: "موارد بشرية وأجور · مصر",
         hero_h1: "سجل واحد لموظفيك ووقتهم وأموالهم.",
-        hero_lead: "يحفظ ركيز كل ما يخص كل من يعمل لديك — التعيين والحضور والإجازات والعمولات والمصروفات وكشف الرواتب — في نظام واحد، بالعربية والإنجليزية. أرقام محاسبك، مُسجّلة ومصروفة.",
+        hero_lead: "يحفظ ركيز كل ما يخص كل من يعمل لديك — التعيين والحضور والإجازات والعمولات والمصروفات وكشف المرتبات — في نظام واحد، بالعربية والإنجليزية. أرقام محاسبك، مُسجّلة ومصروفة.",
         hero_cta1: "احجز عرضًا", hero_cta2: "شاهد ما يفعله",
         hero_m1: "مبني لمصر", hero_m2: "عربي وإنجليزي بدعم كامل لليمين‑لليسار", hero_m3: "دون جداول تحتاج صيانة",
 
-        sh_title: "الرواتب · مارس ٢٠٢٦", sh_sub: "٣ من ١٬٢٨٤",
+        sh_title: "كشف المرتبات · مارس 2026", sh_sub: "3 من 1,284",
         sh_emp: "الموظف", sh_net: "الصافي", sh_ded: "الاستقطاعات", sh_pay: "المستحق",
         sh_n1: "نور عادل", sh_n2: "كريم فتحي", sh_n3: "سلمى هاني",
         sh_total: "إجمالي المستحق · ج.م",
@@ -2695,16 +2781,16 @@
         p4_p: "الأجور تعيش كسلسلة مؤرّخة، لا كرقم واحد يُستبدل. افتح أي شهر وستجد أرقامه كما كانت فعلًا.",
         p4_a: "تاريخ الأجور",
         p5_q: "«نهاية الشهر تعيش في رأس شخص واحد.»",
-        p5_p: "الاستقطاعات وأرصدة الإجازات وكشف الرواتب والتصدير عملية واحدة يشغّلها أي شخص لديه الصلاحية — وسجل التدقيق يقول من فعل.",
-        p5_a: "الرواتب والتقارير",
+        p5_p: "الاستقطاعات وأرصدة الإجازات وكشف المرتبات والتصدير عملية واحدة يشغّلها أي شخص لديه الصلاحية — وسجل التدقيق يقول من فعل.",
+        p5_a: "كشف المرتبات والتقارير",
 
-        pay_eye: "الرواتب", pay_h: "أنت تعرف الصافي. ونحن كذلك.",
+        pay_eye: "كشف المرتبات", pay_h: "أنت تعرف الصافي. ونحن كذلك.",
         pay_p: "حين ينضم أحدهم إلى شركة مصرية، الرقم الوحيد الذي يعرفه فعلًا هو ما يصل إلى حسابه. اطلب منه الإجمالي، فتخترع الموارد البشرية رقمًا بإضافة استقطاعات لا يعرفها أحد — ثم يُتعامل مع الرقم المخترع كأنه حقيقة.",
         eq_net: "الصافي", eq_ded: "الاستقطاعات", eq_pay: "المستحق",
         pay_p2: "هذا هو الكشف كله. الصافي هو ما اتفقت عليه مع الشخص. والاستقطاعات هي التي سجّلتها أنت — سلفة، أو جزاء، أو أيام دون أجر. والمستحق هو ناتج الطرح.",
         no_1: "ركيز لا يحسب ضريبة الدخل ولا التأمينات ولا مكافأة نهاية الخدمة. محاسبك يفعل ذلك، وركيز يسجّل النتيجة.",
         no_2: "لا شيء يستنتج إجماليًا من صافٍ، ولا صافيًا من إجمالي. الرقم الذي يكتبه إنسان بيانات؛ والرقم الذي يخمّنه البرنامج مسؤولية.",
-        no_3: "وما تحصل عليه: الكشف، وقسيمة الراتب، والتاريخ، وسجل التدقيق، وملف إكسل بالشكل الذي طلبه محاسبك.",
+        no_3: "وما تحصل عليه: الكشف، وقسيمة الأجر، والتاريخ، وسجل التدقيق، وملف إكسل بالشكل الذي طلبه محاسبك.",
 
         dt_h: "أعد تشغيل مارس في يوليو. ستحصل على مارس.",
         dt_p: "الأجر سلسلة مؤرّخة، لا قيمة حالية. حرّك الشهر وراقب رقم الشخص نفسه وهو يبقى كما كان في حينه.",
@@ -2724,9 +2810,9 @@
         b3_h: "الإجازات والطلبات",
         b3_p: "أنواع إجازات تحدّدها أنت، وأرصدة تُرحَّل، ومسار اعتماد يسجّل من وافق.",
         b3_t1: "الأرصدة", b3_t2: "الاعتمادات",
-        b4_h: "كشف الرواتب",
+        b4_h: "كشف المرتبات",
         b4_p: "الصافي والاستقطاعات والمستحق. أجور مؤرّخة، وقسائم، وتصدير.",
-        b4_t1: "الاستقطاعات", b4_t2: "قسائم الراتب", b4_t3: "إكسل",
+        b4_t1: "الاستقطاعات", b4_t2: "قسائم الأجر", b4_t3: "إكسل",
         b5_h: "العمولات",
         b5_p: "خطط لكل دور، ومستحقات على ساعة مستحقة‑واجبة‑مدفوعة، وتقرير يُظهر الحساب. تُصرف منفصلة عن الأجر.",
         b5_t1: "الخطط", b5_t2: "المستحقات", b5_t3: "التقرير",
@@ -2739,25 +2825,34 @@
         b8_h: "الإعلانات", b8_p: "أبلغ الجميع، أو فرعًا واحدًا، وشاهدها تصل داخل التطبيق.",
         b8_t1: "موجّهة", b8_t2: "داخل التطبيق",
         b9_h: "التقارير والتصدير",
-        b9_p: "الرواتب والحضور والعمولات والمصروفات — تُقرأ بتاريخ، وتُصفّى بالفرع، وتخرج إلى إكسل بالشكل الذي يعمل به محاسبك بالفعل.",
-        b9_t1: "تقرير الرواتب", b9_t2: "الحضور", b9_t3: "العمولات", b9_t4: "تصدير إكسل",
+        b9_p: "كشف المرتبات والحضور والعمولات والمصروفات — تُقرأ بتاريخ، وتُصفّى بالفرع، وتخرج إلى إكسل بالشكل الذي يعمل به محاسبك بالفعل.",
+        b9_t1: "كشف المرتبات", b9_t2: "الحضور", b9_t3: "العمولات", b9_t4: "تصدير إكسل",
+
+        b10_h: "التوظيف",
+        b10_p: "انشر وظيفة، واستقبل الطلبات ومعها السيرة الذاتية، وحرّك المتقدّمين بين مراحلك أنت — وكل متقدّم محفوظ لدى الشركة التي نشرت الوظيفة.",
+        b10_t1: "إعلانات الوظائف", b10_t2: "طلبات التوظيف", b10_t3: "السير الذاتية",
 
         ap_eye: "الخدمة الذاتية", ap_h: "التطبيق الذي سيفتحه فريقك فعلًا.",
         ap_p: "كل سؤال يحمله الموظفون إلى الموارد البشرية — كم قبضت، وكم بقي من إجازتي، وهل سُجّل حضوري — يُجاب عليه من هاتفه، بالعربية.",
         ap1_h: "سجّل حضورك حيث العمل",
         ap1_p: "الفرع، أو زيارة موقع، أو مكتب عميل. يُسجَّل الموقع مع الحضور.",
-        ap2_h: "قسائم الراتب دون طلب",
+        ap2_h: "قسائم الأجر دون طلب",
         ap2_p: "الصافي والاستقطاعات والمستحق — والأشهر التي قبله. دون بريد ودون طلب.",
         ap3_h: "إجازة تُطلب وتُتابَع",
         ap3_p: "الرصيد، والطلب، والاعتماد، وأين وصل — دون الذهاب إلى أي مكتب.",
         ap_pause: "إيقاف",
 
-        s1_h: "أهلًا يا مريم", s1_k: "قسيمة مارس · الصافي", s1_paid: "مدفوع · ٢٨ مارس", s1_ok: "مدفوع",
-        s1_a1: "القسائم", s1_a2: "الإجازات", s1_a3: "الحضور",
-        s2_h: "تسجيل الحضور", s2_loc: "فرع الشيخ زايد · على بعد ٤٠ م", s2_btn: "سجّل حضورك هنا",
+        // The pay screen. Every label here is the MOBILE APP's own Arabic, copied verbatim
+        // from rakeez-mobile/lib/l10n/app_ar.arb — payNetSalary, payDeducted, payDeductions,
+        // payReasonGiven, tabMorePay. A marketing page inventing its own words for screens
+        // the visitor will later open is how the two drift apart.
+        s1_h: "أجري", s1_k: "المستحق · مارس", s1_net: "الأجر الشهري (الصافي)",
+        s1_ded: "خصومات هذا الشهر", s1_dh: "الخصومات", s1_d1: "سلفة · مارس",
+        s1_why: "السبب المذكور", s1_ok: "مسجّل",
+        s2_h: "تسجيل الحضور", s2_loc: "فرع الشيخ زايد · على بعد 40 م", s2_btn: "سجّل حضورك هنا",
         s2_shift: "مناوبة اليوم", s2_ontime: "في الموعد",
         s3_h: "إجازاتي", s3_k: "الإجازة السنوية", s3_sub: "يومًا متبقيًا", s3_recent: "الطلبات الأخيرة",
-        s3_r1: "إجازة العيد · ٣ أيام", s3_ok: "معتمَدة", s3_r2: "إجازة مرضية · يوم", s3_pend: "قيد المراجعة",
+        s3_r1: "إجازة العيد · 3 أيام", s3_ok: "معتمَدة", s3_r2: "إجازة مرضية · يوم", s3_pend: "قيد المراجعة",
 
         ar_eye: "اللغة", ar_h: "عربية كتبها من يقرؤها.",
         ar_p: "أغلب برامج الموارد البشرية التي تُباع في مصر منتج إنجليزي صُبّت فيه العربية لاحقًا — انعكاس رديء، وتباعد حروف كأنه لاتيني، وصياغة كتبها من كان متاحًا. ركيز بُني باللغتين معًا.",
@@ -2773,16 +2868,16 @@
         d3_h: "تاريخ لا يُعاد كتابته بهدوء",
         d3_p: "الأجور والعقود والاعتمادات سلاسل مؤرّخة. تغيير رقم اليوم لا يعدّل رقم العام الماضي أبدًا، ويبقى سجل من غيّر ماذا.",
         d4_h: "المال مخزَّن كمال",
-        d4_p: "كل مبلغ محفوظ بالقروش كعدد صحيح، لا ككسر عشري يطاله خطأ تقريب. برنامج رواتب يضيّع نصف قرش هو برنامج لا يمكنك استخدامه.",
+        d4_p: "كل مبلغ محفوظ بالقروش كعدد صحيح، لا ككسر عشري يطاله خطأ تقريب. برنامج أجور يضيّع نصف قرش هو برنامج لا يمكنك استخدامه.",
 
         cu_eye: "عميل",
         cu_q: "«كانت الأجور في ملف، والحضور في ملف آخر، والعمولات في ثالث لا يفهمه إلا شخص واحد. الآن هي شاشة واحدة — وأستطيع فتح مارس الماضي.»",
         /* The customer's own name, from their site's own siteName. Latin in
            both languages, same reason the Rakeez brand string is. */
-        cu_a: "Tailor Investments · القاهرة · يستخدمون ركيز منذ ٢٠٢٦",
+        cu_a: "Tailor Investments · القاهرة · يستخدمون ركيز منذ 2026",
 
         ct_eye: "احجز عرضًا", ct_h: "شاهده وشركتك بداخله.",
-        ct_p: "أخبرنا بعدد موظفيك وكيف تدير الرواتب اليوم. سنعرض لك ركيز مهيّأً بالطريقة التي تعمل بها شركتك فعلًا، لا جولة عامة.",
+        ct_p: "أخبرنا بعدد موظفيك وكيف تدير الأجور اليوم. سنعرض لك ركيز مهيّأً بالطريقة التي تعمل بها شركتك فعلًا، لا جولة عامة.",
         ct_1: "ثلاثون دقيقة، ونظام حقيقي بدل الشرائح.",
         ct_2: "بالعربية أو بالإنجليزية، كما تفضّل.",
         ct_3: "وسنقول لك بصراحة إن كان ركيز غير مناسب لك.",
@@ -2791,8 +2886,8 @@
         ct_btn: "احجز عرضي", ct_note: "نرد خلال يوم عمل واحد. ولا نشرة بريدية.",
         ct_ok: "تمام — سنتواصل معك خلال يوم عمل واحد لتجهيز العرض.",
 
-        ft_tag: "موارد بشرية ورواتب للشركات المصرية. أرقام محاسبك، مُسجّلة ومصروفة.",
-        ft_copy: "© ٢٠٢٦ ركيز. جميع الحقوق محفوظة.", ft_made: "تطوير: ماريو ممدوح"
+        ft_tag: "موارد بشرية وأجور للشركات المصرية. أرقام محاسبك، مُسجّلة ومصروفة.",
+        ft_copy: "© 2026 ركيز. جميع الحقوق محفوظة.", ft_made: "تطوير: ماريو ممدوح"
       };
 
       const EN = {};
@@ -2838,29 +2933,12 @@
 
       /* ══ Header · condense, and hand the gold over (§4.2) ══════ */
       const hdr = document.getElementById('hdr');
-      const hdrCta = document.getElementById('hdrCta');
       const onScroll = () => hdr.classList.toggle('scrolled', scrollY > 60);
       addEventListener('scroll', onScroll, { passive: true });
 
-      /* §4.2, generalised — the gold belongs to whatever is the visitor's
-         next step at this scroll position, and there is only ever one of
-         it (I1). These four sections own a gold action of their own: the
-         hero button, the play button, the app's check-in button, and the
-         demo form's submit. While ANY of them is on screen the header CTA
-         stays a ghost; it takes the gold only in the gaps between them.
-         An offset comparison could not do this — it only knew about the
-         hero, which is how five gold rules and three gold buttons ended
-         up sharing viewports with it. */
-      const goldOwners = new Set();
-      const goldObs = new IntersectionObserver(es => {
-        es.forEach(e => e.isIntersecting ? goldOwners.add(e.target.id) : goldOwners.delete(e.target.id));
-        hdrCta.classList.toggle('armed', goldOwners.size === 0);
-      }, { threshold: 0 });
-      /* #payroll is in this list because of the scrubber THUMB, which is
-         gold and is that section's one invitation to act. It is a
-         pseudo-element, so no scan of background colours will ever find
-         it — it has to be listed by hand. */
-      ['top', 'payroll', 'app', 'demo'].forEach(id => goldObs.observe(document.getElementById(id)));
+      /* The gold hand-off observer that used to live here is GONE — the header CTA
+         is permanently gold now. See the #hdrCta comment in the stylesheet for the
+         decision, what it costs against invariant I1, and how to put it back. */
 
       document.getElementById('menuBtn').addEventListener('click', () =>
         document.getElementById('modules').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' }));
@@ -2937,13 +3015,13 @@
          Static data — this demonstrates the behaviour, it does not
          call the product. Salma's raise lands in April. */
       const SERIES = [
-        { en: 'January 2026', ar: 'يناير ٢٠٢٦', v: '12,000.00' },
-        { en: 'February 2026', ar: 'فبراير ٢٠٢٦', v: '12,000.00' },
-        { en: 'March 2026', ar: 'مارس ٢٠٢٦', v: '12,000.00' },
-        { en: 'April 2026', ar: 'أبريل ٢٠٢٦', v: '14,200.00' },
-        { en: 'May 2026', ar: 'مايو ٢٠٢٦', v: '14,200.00' },
-        { en: 'June 2026', ar: 'يونيو ٢٠٢٦', v: '14,200.00' },
-        { en: 'July 2026', ar: 'يوليو ٢٠٢٦', v: '14,200.00' }
+        { en: 'January 2026', ar: 'يناير 2026', v: '12,000.00' },
+        { en: 'February 2026', ar: 'فبراير 2026', v: '12,000.00' },
+        { en: 'March 2026', ar: 'مارس 2026', v: '12,000.00' },
+        { en: 'April 2026', ar: 'أبريل 2026', v: '14,200.00' },
+        { en: 'May 2026', ar: 'مايو 2026', v: '14,200.00' },
+        { en: 'June 2026', ar: 'يونيو 2026', v: '14,200.00' },
+        { en: 'July 2026', ar: 'يوليو 2026', v: '14,200.00' }
       ];
       const scrub = document.getElementById('scrub');
       const dFig = document.getElementById('datingFig');

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Rubik:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=block"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+    }
+
+    body {
+      background: #F5F4F0;
+      font-family: Archivo, sans-serif;
+      color: #121212;
+      padding: 76px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      /* The one permitted gradient: a warm radial wash, top-right, under 4%. */
+      background-image: radial-gradient(1100px 700px at 88% -12%, rgba(245, 197, 24, .16), transparent 62%);
+    }
+
+    .mark {
+      width: 268px;
+      color: #121212;
+    }
+
+    .mark svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    h1 {
+      font-size: 62px;
+      font-weight: 700;
+      letter-spacing: -.035em;
+      line-height: 1.06;
+      max-width: 15ch;
+    }
+
+    .sub {
+      margin-top: 20px;
+      font-size: 25px;
+      font-weight: 400;
+      color: #595B54;
+      letter-spacing: -.01em;
+    }
+
+    .foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .eq {
+      font-family: 'IBM Plex Mono', monospace;
+      font-variant-numeric: tabular-nums;
+      font-size: 21px;
+      font-weight: 500;
+      color: #121212;
+      background: #FFFFFF;
+      border: 1px solid #E3E1DA;
+      border-radius: 12px;
+      padding: 13px 20px;
+      box-shadow: 0 1px 2px rgba(18, 18, 18, .04), 0 8px 24px rgba(18, 18, 18, .06);
+    }
+
+    .ar {
+      font-size: 22px;
+      color: #6A6C64;
+      direction: rtl;
+      font-family: Rubik, Archivo, sans-serif;
+    }
+
+    /* The single gold element: a signal rule, not decoration on the page itself —
+       a share card has no action to spend it on, so it marks the claim. */
+    .rule {
+      width: 108px;
+      height: 6px;
+      background: #F5C518;
+      border-radius: 999px;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="mark">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3987 687" role="img" aria-label="Rakeez">
+      <g transform="translate(-75.0 1.0)" fill="currentColor">
+        <path
+          d="M75 686V-1H474Q550 -1 601 27.5Q652 56 677.5 105.5Q703 155 703 216Q703 282 672.5 333.5Q642 385 587 414L725 686H525L411 444H254V686ZM254 311H439Q476 311 498.5 286.5Q521 262 521 221Q521 194 511 175Q501 156 483 145.5Q465 135 439 135H254Z M708 686 966 -1H1181L1439 686H1248L1207 567H933L892 686ZM976 433H1163L1114 288Q1110 277 1104.5 260.5Q1099 244 1093.5 225.5Q1088 207 1083 188Q1078 169 1073 155H1066Q1062 174 1054.5 198Q1047 222 1039.5 246Q1032 270 1026 288Z M1471 686V-1H1650V304L1922 -1H2144L1888 280L2149 686H1937L1764 402L1650 507V686Z M2193 686V-1H2760V139H2372V268H2711V405H2372V546H2767V686Z M2842 686V-1H3409V139H3021V268H3360V405H3021V546H3416V686Z M3440 686V619L3781 139H3465V-1H4054V66L3713 546H4062V686Z" />
+      </g>
+    </svg>
+  </div>
+
+  <div>
+    <div class="rule"></div>
+    <h1>HR and payroll for Egyptian companies.</h1>
+    <p class="sub">Your accountant's figures, recorded and paid.</p>
+  </div>
+
+  <div class="foot">
+    <div class="eq">net &minus; deductions = payable</div>
+    <div class="ar">نظام الموارد البشرية والأجور للشركات المصرية</div>
+  </div>
+</body>
+
+</html>
