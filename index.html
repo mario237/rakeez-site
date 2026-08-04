@@ -1916,6 +1916,20 @@
         display: none;
       }
 
+      /* The equation is a wrapping flex row, and at this width it broke after the
+         `=` — leaving the operator dangling at the end of a line and the answer
+         alone on the next. Stacked, with the operators centred between full-width
+         terms, it reads as the calculation it is instead of as a bad line break. */
+      .eq {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+
+      .eq .op {
+        text-align: center;
+      }
+
       .dating-out {
         flex-direction: column;
         align-items: flex-start;
