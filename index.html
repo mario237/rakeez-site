@@ -1806,13 +1806,69 @@
         grid-column: span 3;
       }
 
+      /* The pill nav is the only flex child carrying `margin-inline-start: auto`,
+         so hiding it used to collapse the whole header against the logo — logo,
+         28px, language switcher. The auto margin has to move to whatever is still
+         visible. */
+      .hdr .wrap {
+        gap: 14px;
+        /* `.wrap` is `position: relative` everywhere, and the open menu is absolute.
+           Anchored to the wrap it hangs from the wrap's own bottom edge — 23px above
+           the header's — and paints over the logo, which sits before it in the DOM.
+           Made static, the panel measures against .hdr and starts at the hairline. */
+        position: static;
+      }
+
+      .hdr-act {
+        margin-inline-start: auto;
+      }
+
       .nav {
         display: none;
       }
 
+      /* Opened by #menuBtn. Absolute against `.hdr .wrap`, which is already
+         `position: relative` and — under 1000px, always below --maxw — exactly as
+         wide as the viewport. So the panel is full-bleed and its 24px padding
+         lines its links up with the logo above them. */
+      .nav.open {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 2px;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        margin: 0;
+        padding: 10px 24px 16px;
+        background: rgba(245, 244, 240, .97);
+        backdrop-filter: blur(14px) saturate(1.4);
+        -webkit-backdrop-filter: blur(14px) saturate(1.4);
+        border-bottom: 1px solid var(--rk-hair);
+        box-shadow: var(--e1);
+      }
+
+      /* The sliding pill measures offsetLeft against a row. In a column it lands in
+         the wrong place, and an open menu has no active-section indicator to give. */
+      .nav.open .nav-pill {
+        display: none;
+      }
+
+      .nav.open a {
+        padding: 13px 14px;
+        border-radius: var(--r-btn);
+        font-size: 16px;
+        color: var(--rk-carbon);
+      }
+
+      .nav.open a.on {
+        background: var(--rk-carbon);
+        color: var(--rk-on-dark);
+      }
+
       .menu-btn {
         display: flex;
-        margin-inline-start: auto;
       }
 
       .hero {
@@ -1914,8 +1970,8 @@
       <div class="hdr-act">
         <button class="lang" id="langBtn" type="button">العربية</button>
         <a href="#demo" class="btn btn-sm" id="hdrCta" data-i18n="nav_cta">Book a demo</a>
-        <button class="menu-btn" id="menuBtn" type="button" aria-label="Skip to what it does"
-          data-i18n-aria="aria_menu">
+        <button class="menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-controls="nav"
+          aria-expanded="false" data-i18n-aria="aria_menu">
           <svg class="ico ico-20" viewBox="0 0 24 24">
             <path d="M4 7h16M4 12h16M4 17h16" />
           </svg>
@@ -2613,7 +2669,7 @@
           </div>
           <div class="ar-line">
             <span class="tag">AR</span>
-            <span class="ar">أجر</span>
+            <span class="ar">مرتب</span>
           </div>
           <div class="ar-line">
             <span class="tag">EN</span>
@@ -2629,7 +2685,7 @@
           </div>
           <div class="ar-line last">
             <span class="tag">AR</span>
-            <span class="ar">نظام الموارد البشرية والأجور للشركات المصرية</span>
+            <span class="ar">نظام الموارد البشرية والمرتبات للشركات المصرية</span>
           </div>
         </div>
       </div>
@@ -2808,13 +2864,14 @@
            which spec §5 makes binding on this page. Two rules bite hardest here, and
            this dictionary broke BOTH until 2026-08-03:
 
-           · **الرواتب / الراتب ARE BANNED.** The glossary is explicit — "Salary | الأجر |
+           · **الرواتب / الراتب ARE BANNED.** The glossary is explicit — "Salary | المرتب |
              **Not الراتب**". Sixteen strings said رواتب. The distinction now held:
-               – payroll as THE SHEET or THE REPORT  → «كشف المرتبات». This is the ONE
-                 sanctioned use of مرتبات in the whole product, and it is Mario's own pick.
-               – payroll as the general activity/field → «أجور», which is also what the
+               – payroll as THE SHEET or THE REPORT  → «كشف المرتبات», Mario's own pick.
+                 It used to be the ONE place مرتبات appeared while every other string said
+                 الأجر; on 2026-08-04 the whole product moved to مرتب and the split closed.
+               – payroll as the general activity/field → «مرتبات», which is also what the
                  brand book's own Arabic tagline uses.
-               – a salary, or a payslip                → «أجر» / «قسيمة الأجر».
+               – a salary, or a payslip                → «مرتب» / «قسيمة المرتب».
            · **NUMERALS STAY WESTERN 0-9, never Arabic-Indic** (glossary rule 2). 13 strings
              used Arabic-Indic digits. The worst was the effective-dating scrubber, the
              page's flagship argument, which showed «يناير 2026» directly beside its own
@@ -2824,7 +2881,7 @@
         nav_pay: "كشف المرتبات", nav_mod: "المزايا", nav_app: "التطبيق", nav_ar: "العربية", nav_data: "بياناتك",
         nav_cta: "احجز عرضًا",
 
-        hero_eye: "موارد بشرية وأجور · مصر",
+        hero_eye: "موارد بشرية ومرتبات · مصر",
         hero_h1: "سجل واحد لموظفيك ووقتهم وأموالهم.",
         hero_lead: "يحفظ ركيز كل ما يخص كل من يعمل لديك — التعيين والحضور والإجازات والعمولات والمصروفات وكشف المرتبات — في نظام واحد، بالعربية والإنجليزية. أرقام محاسبك، مُسجّلة ومصروفة.",
         hero_cta1: "احجز عرضًا", hero_cta2: "شاهد ما يفعله",
@@ -2838,7 +2895,7 @@
 
         tr1_h: "مبني لمصر", tr1_p: "شركات مصرية، وأسبوع عمل مصري، وعطلات مصرية.",
         tr2_h: "عربي وإنجليزي", tr2_p: "كل شاشة، في الاتجاهين. ليست طبقة ترجمة.",
-        tr3_h: "سجلات خمس سنوات", tr3_p: "العقود والمستندات وتاريخ الأجور محفوظة بالمدة التي يطلبها القانون.",
+        tr3_h: "سجلات خمس سنوات", tr3_p: "العقود والمستندات وتاريخ المرتبات محفوظة بالمدة التي يطلبها القانون.",
         tr4_h: "بياناتك ملكك", tr4_p: "كل صف مرتبط بشركتك. دون استثناء، ومُختبَر.",
 
         pr_eye: "ما الذي يحلّ محله", pr_h: "خمسة أشياء تعيش في ملف إكسل، ولا ينبغي لها.",
@@ -2853,8 +2910,8 @@
         p3_p: "ارفع قالب Word الخاص بك مرة واحدة. يملؤه ركيز ببيانات الموظف ويعيده إليك — بصياغتك وتنسيقك، بالعربية.",
         p3_a: "العقود",
         p4_q: "«لا أحد يستطيع استرجاع مارس الماضي.»",
-        p4_p: "الأجور تعيش كسلسلة مؤرّخة، لا كرقم واحد يُستبدل. افتح أي شهر وستجد أرقامه كما كانت فعلًا.",
-        p4_a: "تاريخ الأجور",
+        p4_p: "المرتبات تعيش كسلسلة مؤرّخة، لا كرقم واحد يُستبدل. افتح أي شهر وستجد أرقامه كما كانت فعلًا.",
+        p4_a: "تاريخ المرتبات",
         p5_q: "«نهاية الشهر تعيش في رأس شخص واحد.»",
         p5_p: "الاستقطاعات وأرصدة الإجازات وكشف المرتبات والتصدير عملية واحدة يشغّلها أي شخص لديه الصلاحية — وسجل التدقيق يقول من فعل.",
         p5_a: "كشف المرتبات والتقارير",
@@ -2862,13 +2919,13 @@
         pay_eye: "كشف المرتبات", pay_h: "أنت تعرف الصافي. ونحن كذلك.",
         pay_p: "حين ينضم أحدهم إلى شركة مصرية، الرقم الوحيد الذي يعرفه فعلًا هو ما يصل إلى حسابه. اطلب منه الإجمالي، فتخترع الموارد البشرية رقمًا بإضافة استقطاعات لا يعرفها أحد — ثم يُتعامل مع الرقم المخترع كأنه حقيقة.",
         eq_net: "الصافي", eq_ded: "الاستقطاعات", eq_pay: "المستحق",
-        pay_p2: "هذا هو الكشف كله. الصافي هو ما اتفقت عليه مع الشخص. والاستقطاعات هي التي سجّلتها أنت — سلفة، أو جزاء، أو أيام دون أجر. والمستحق هو ناتج الطرح.",
+        pay_p2: "هذا هو الكشف كله. الصافي هو ما اتفقت عليه مع الشخص. والاستقطاعات هي التي سجّلتها أنت — سلفة، أو جزاء، أو أيام دون مرتب. والمستحق هو ناتج الطرح.",
         no_1: "ركيز لا يحسب ضريبة الدخل ولا التأمينات ولا مكافأة نهاية الخدمة. محاسبك يفعل ذلك، وركيز يسجّل النتيجة.",
         no_2: "لا شيء يستنتج إجماليًا من صافٍ، ولا صافيًا من إجمالي. الرقم الذي يكتبه إنسان بيانات؛ والرقم الذي يخمّنه البرنامج مسؤولية.",
-        no_3: "وما تحصل عليه: الكشف، وقسيمة الأجر، والتاريخ، وسجل التدقيق، وملف إكسل بالشكل الذي طلبه محاسبك.",
+        no_3: "وما تحصل عليه: الكشف، وقسيمة المرتب، والتاريخ، وسجل التدقيق، وملف إكسل بالشكل الذي طلبه محاسبك.",
 
         dt_h: "أعد تشغيل مارس في يوليو. ستحصل على مارس.",
-        dt_p: "الأجر سلسلة مؤرّخة، لا قيمة حالية. حرّك الشهر وراقب رقم الشخص نفسه وهو يبقى كما كان في حينه.",
+        dt_p: "المرتب سلسلة مؤرّخة، لا قيمة حالية. حرّك الشهر وراقب رقم الشخص نفسه وهو يبقى كما كان في حينه.",
         dt_asof: "قراءة السجل بتاريخ",
         dt_who: "سلمى هاني", dt_role: "محاسِبة أولى", dt_unit: "ج.م صافٍ، شهريًا",
         dt_cap: "علاوة سلمى بدأت في أبريل. ومارس ما زال يقرأ 12,000.00 — في يوليو، وفي كل شهر بعده.",
@@ -2886,10 +2943,10 @@
         b3_p: "أنواع إجازات تحدّدها أنت، وأرصدة تُرحَّل، ومسار اعتماد يسجّل من وافق.",
         b3_t1: "الأرصدة", b3_t2: "الاعتمادات",
         b4_h: "كشف المرتبات",
-        b4_p: "الصافي والاستقطاعات والمستحق. أجور مؤرّخة، وقسائم، وتصدير.",
-        b4_t1: "الاستقطاعات", b4_t2: "قسائم الأجر", b4_t3: "إكسل",
+        b4_p: "الصافي والاستقطاعات والمستحق. مرتبات مؤرّخة، وقسائم، وتصدير.",
+        b4_t1: "الاستقطاعات", b4_t2: "قسائم المرتب", b4_t3: "إكسل",
         b5_h: "العمولات",
-        b5_p: "خطط لكل دور، ومستحقات على ساعة مستحقة‑واجبة‑مدفوعة، وتقرير يُظهر الحساب. تُصرف منفصلة عن الأجر.",
+        b5_p: "خطط لكل دور، ومستحقات على ساعة مستحقة‑واجبة‑مدفوعة، وتقرير يُظهر الحساب. تُصرف منفصلة عن المرتب.",
         b5_t1: "الخطط", b5_t2: "المستحقات", b5_t3: "التقرير",
         b6_h: "العقود والمستندات",
         b6_p: "قالب Word الخاص بك، يُملأ ويُعاد إليك بالعربية. ومستندات الموظفين خلف روابط تنتهي صلاحيتها، محفوظة خمس سنوات.",
@@ -2911,7 +2968,7 @@
         ap_p: "كل سؤال يحمله الموظفون إلى الموارد البشرية — كم قبضت، وكم بقي من إجازتي، وهل سُجّل حضوري — يُجاب عليه من هاتفه، بالعربية.",
         ap1_h: "سجّل حضورك حيث العمل",
         ap1_p: "الفرع، أو زيارة موقع، أو مكتب عميل. يُسجَّل الموقع مع الحضور.",
-        ap2_h: "قسائم الأجر دون طلب",
+        ap2_h: "قسائم المرتب دون طلب",
         ap2_p: "الصافي والاستقطاعات والمستحق — والأشهر التي قبله. دون بريد ودون طلب.",
         ap3_h: "إجازة تُطلب وتُتابَع",
         ap3_p: "الرصيد، والطلب، والاعتماد، وأين وصل — دون الذهاب إلى أي مكتب.",
@@ -2921,7 +2978,7 @@
         // from rakeez-mobile/lib/l10n/app_ar.arb — payNetSalary, payDeducted, payDeductions,
         // payReasonGiven, tabMorePay. A marketing page inventing its own words for screens
         // the visitor will later open is how the two drift apart.
-        s1_h: "أجري", s1_k: "المستحق · مارس", s1_net: "الأجر الشهري (الصافي)",
+        s1_h: "مرتبي", s1_k: "المستحق · مارس", s1_net: "المرتب الشهري (الصافي)",
         s1_ded: "خصومات هذا الشهر", s1_dh: "الخصومات", s1_d1: "سلفة · مارس",
         s1_why: "السبب المذكور", s1_ok: "مسجّل",
         s2_h: "تسجيل الحضور", s2_loc: "فرع الشيخ زايد · على بعد 40 م", s2_btn: "سجّل حضورك هنا",
@@ -2935,24 +2992,24 @@
         ar_2: "خط عربي حقيقي في كل المقاسات، دون تثخين مصطنع ودون تباعد حروف.",
         ar_3: "مصطلح واحد متفق عليه عبر التطبيق والعقود والتقارير — فتستخدم القسيمة واللائحة الكلمة نفسها.",
 
-        dg_eye: "بياناتك", dg_h: "أجور وأرقام قومية. ونتعامل معها على هذا الأساس.",
+        dg_eye: "بياناتك", dg_h: "مرتبات وأرقام قومية. ونتعامل معها على هذا الأساس.",
         d1_h: "مستأجر واحد، وحدّ واحد",
         d1_p: "كل سجل يحمل اسم شركتك وكل استعلام محصور بها. ليست عادة برمجية — بل قاعدة مفروضة في طبقة البيانات، مع اختبار على كل نموذج يثبت أن شركة لا تستطيع قراءة صفوف أخرى.",
         d2_h: "مستندات خلف روابط تنتهي",
         d2_p: "العقود والبطاقات والشهادات لا تُقدَّم أبدًا من عنوان يمكن تخمينه. الروابط موقّعة ومحدودة بوقت، ولا تُصدر إلا لمن يستحق الملف.",
         d3_h: "تاريخ لا يُعاد كتابته بهدوء",
-        d3_p: "الأجور والعقود والاعتمادات سلاسل مؤرّخة. تغيير رقم اليوم لا يعدّل رقم العام الماضي أبدًا، ويبقى سجل من غيّر ماذا.",
+        d3_p: "المرتبات والعقود والاعتمادات سلاسل مؤرّخة. تغيير رقم اليوم لا يعدّل رقم العام الماضي أبدًا، ويبقى سجل من غيّر ماذا.",
         d4_h: "المال مخزَّن كمال",
-        d4_p: "كل مبلغ محفوظ بالقروش كعدد صحيح، لا ككسر عشري يطاله خطأ تقريب. برنامج أجور يضيّع نصف قرش هو برنامج لا يمكنك استخدامه.",
+        d4_p: "كل مبلغ محفوظ بالقروش كعدد صحيح، لا ككسر عشري يطاله خطأ تقريب. برنامج مرتبات يضيّع نصف قرش هو برنامج لا يمكنك استخدامه.",
 
         cu_eye: "عميل",
-        cu_q: "«كانت الأجور في ملف، والحضور في ملف آخر، والعمولات في ثالث لا يفهمه إلا شخص واحد. الآن هي شاشة واحدة — وأستطيع فتح مارس الماضي.»",
+        cu_q: "«كانت المرتبات في ملف، والحضور في ملف آخر، والعمولات في ثالث لا يفهمه إلا شخص واحد. الآن هي شاشة واحدة — وأستطيع فتح مارس الماضي.»",
         /* The customer's own name, from their site's own siteName. Latin in
            both languages, same reason the Rakeez brand string is. */
         cu_a: "Tailor Investments · القاهرة · يستخدمون ركيز منذ 2026",
 
         ct_eye: "احجز عرضًا", ct_h: "شاهده وشركتك بداخله.",
-        ct_p: "أخبرنا بعدد موظفيك وكيف تدير الأجور اليوم. سنعرض لك ركيز مهيّأً بالطريقة التي تعمل بها شركتك فعلًا، لا جولة عامة.",
+        ct_p: "أخبرنا بعدد موظفيك وكيف تدير المرتبات اليوم. سنعرض لك ركيز مهيّأً بالطريقة التي تعمل بها شركتك فعلًا، لا جولة عامة.",
         ct_1: "ثلاثون دقيقة، ونظام حقيقي بدل الشرائح.",
         ct_2: "بالعربية أو بالإنجليزية، كما تفضّل.",
         ct_3: "وسنقول لك بصراحة إن كان ركيز غير مناسب لك.",
@@ -2961,7 +3018,7 @@
         ct_btn: "احجز عرضي", ct_note: "نرد خلال يوم عمل واحد. ولا نشرة بريدية.",
         ct_ok: "تمام — سنتواصل معك خلال يوم عمل واحد لتجهيز العرض.",
 
-        ft_tag: "موارد بشرية وأجور للشركات المصرية. أرقام محاسبك، مُسجّلة ومصروفة.",
+        ft_tag: "موارد بشرية ومرتبات للشركات المصرية. أرقام محاسبك، مُسجّلة ومصروفة.",
         ft_copy: "© 2026 ركيز. جميع الحقوق محفوظة.",
         ft_made: "تطوير: <a href=\"https://predevsolutions.com\" target=\"_blank\" rel=\"noopener\">PreDevSolutions</a>",
 
@@ -2969,10 +3026,10 @@
            they stayed English through every earlier pass — announced to exactly the
            users least able to work around it. */
         aria_sections: "الأقسام",
-        aria_menu: "انتقل إلى المزايا",
+        aria_menu: "القائمة",
         aria_month: "الشهر",
         aria_s1: "الشاشة 1", aria_s2: "الشاشة 2", aria_s3: "الشاشة 3",
-        doc_title: "ركيز — الموارد البشرية والأجور للشركات المصرية"
+        doc_title: "ركيز — الموارد البشرية والمرتبات للشركات المصرية"
       };
 
       const EN = {};
@@ -3040,9 +3097,6 @@
          is permanently gold now. See the #hdrCta comment in the stylesheet for the
          decision, what it costs against invariant I1, and how to put it back. */
 
-      document.getElementById('menuBtn').addEventListener('click', () =>
-        document.getElementById('modules').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' }));
-
       /* ══ Pill nav · the active pill slides, 200ms ══════════════ */
       const nav = document.getElementById('nav');
       const pill = document.getElementById('navPill');
@@ -3068,6 +3122,24 @@
         if (s) secObs.observe(s);
       });
       addEventListener('resize', () => movePill(document.querySelector('.nav a.on')));
+
+      /* ══ Mobile menu · the same <nav>, opened as a panel ═══════
+         The button used to jump to #modules and nothing else, which is why it read
+         as broken: it carries a burger, and a burger promises the sections. It now
+         opens the nav it already sits next to — no second list to keep in sync, and
+         the i18n and the section observer keep working untouched. */
+      const menuBtn = document.getElementById('menuBtn');
+
+      function setMenu(open) {
+        nav.classList.toggle('open', open);
+        menuBtn.setAttribute('aria-expanded', open);
+      }
+      menuBtn.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
+      nav.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+      addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+      /* Leaving mobile width with the panel open would otherwise strand `.open` on
+         the row nav, where it means nothing until you come back. */
+      matchMedia('(max-width: 1000px)').addEventListener('change', e => { if (!e.matches) setMenu(false); });
 
       /* ══ Reveal · 320ms, staggered 60ms, fires once ════════════ */
       const revObs = new IntersectionObserver((es, o) => {

@@ -1,0 +1,13 @@
+# Rakeez site · Apache (cPanel). Deploying is still copying files.
+#
+# The paths are ROOT-RELATIVE and must stay that way: Apache serves the error
+# document at the URL that failed, so /a/b/c.html gets 404.html rendered under
+# /a/b/, and a relative path would 404 inside the 404.
+ErrorDocument 403 /403.html
+ErrorDocument 404 /404.html
+ErrorDocument 500 /500.html
+
+# 403 is otherwise the most likely error on a static site: a bare directory with
+# no index. Turning listings off is what produces it — better a branded 403 than
+# a file index of the docroot.
+Options -Indexes

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>403 — Rakeez</title>
+  <meta name="robots" content="noindex">
+  <!-- ⚠️ ROOT-RELATIVE PATHS ARE LOAD-BEARING. Apache serves this file at the URL the
+       visitor asked for, which can be any depth (/a/b/c). A relative href would then
+       resolve against /a/b/ and 404 inside the 404. -->
+  <link rel="icon" type="image/svg+xml" href="/rakeez-favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Rubik:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap"
+    rel="stylesheet">
+  <meta name="theme-color" content="#F5F4F0">
+
+  <style>
+    /* Tokens copied from index.html, not imported — three error pages that each
+       stand alone beat a shared stylesheet that can 404 while serving a 404. */
+    :root {
+      --rk-canvas: #F5F4F0;
+      --rk-carbon: #121212;
+      --rk-t2: #595B54;
+      --rk-hair: #E3E1DA;
+      --rk-on-dark: #F5F4F0;
+      --f-latin: 'Archivo', system-ui, sans-serif;
+      --f-arabic: 'Rubik', system-ui, sans-serif;
+      --f-mono: 'IBM Plex Mono', ui-monospace, monospace;
+      --r-btn: 12px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--rk-canvas);
+      color: var(--rk-carbon);
+      font-family: var(--f-latin);
+      font-size: 17px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    svg {
+      display: block;
+    }
+
+    header,
+    main,
+    footer {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      height: 74px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--rk-hair);
+      max-width: none;
+    }
+
+    header .in {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header svg {
+      height: 21px;
+      width: auto;
+      color: var(--rk-carbon);
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-block: clamp(56px, 12vh, 120px);
+      /* 1200 + its own 2×24 padding. The header and footer centre a 1200 inner box
+         inside a full-bleed 24px-padded bar so their rules span the viewport; matching
+         that from the outside is what puts this text on the same axis as the wordmark. */
+      max-width: 1248px;
+    }
+
+    /* I5 — every figure is Plex Mono, tabular. Carbon, never gold: I3 forbids
+       gold type on a light ground. */
+    .code {
+      font-family: var(--f-mono);
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: .14em;
+      color: var(--rk-t2);
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(30px, 5vw, 46px);
+      font-weight: 700;
+      letter-spacing: -.02em;
+      line-height: 1.14;
+      max-width: 18ch;
+    }
+
+    /* dir="rtl" is required for the sentence to render correctly and stays. The
+       alignment that comes with it does not: it threw the Arabic to the right edge
+       of a 1200px column while the English sat at the left one. `left` is PHYSICAL
+       on purpose — `start` resolves against the element's own rtl direction and
+       lands back on the right. The page is ltr; both languages share its rag. */
+    .ar,
+    .ar-in {
+      text-align: left;
+    }
+
+    .ar {
+      font-family: var(--f-arabic);
+      font-weight: 500;
+      font-size: clamp(20px, 3.4vw, 28px);
+      line-height: 1.5;
+      margin-top: 10px;
+    }
+
+    .lead {
+      color: var(--rk-t2);
+      margin-top: 20px;
+      max-width: 48ch;
+    }
+
+    .lead .ar-in {
+      display: block;
+      font-family: var(--f-arabic);
+    }
+
+    /* One action, carbon. `.btn-gold` was deleted from the site on purpose and is
+       not coming back for an error page. */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-self: flex-start;
+      margin-top: 34px;
+      padding: 14px 24px;
+      border-radius: var(--r-btn);
+      background: var(--rk-carbon);
+      color: var(--rk-on-dark);
+      font-size: 15px;
+      font-weight: 600;
+      transition: background 120ms cubic-bezier(.2, 0, 0, 1);
+    }
+
+    .btn:hover {
+      background: #2A2A2A;
+    }
+
+    .btn .sep {
+      opacity: .45;
+    }
+
+    .btn .ar-in {
+      font-family: var(--f-arabic);
+      font-weight: 500;
+    }
+
+    :focus-visible {
+      outline: 2px solid #2E5BFF;
+      outline-offset: 2px;
+    }
+
+    footer {
+      padding-block: 24px;
+      border-top: 1px solid var(--rk-hair);
+      color: var(--rk-t2);
+      font-size: 14px;
+      max-width: none;
+    }
+
+    footer .in {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="in">
+      <a href="/" aria-label="Rakeez">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3987 687" role="img" aria-label="Rakeez">
+          <title>Rakeez</title>
+          <g transform="translate(-75.0 1.0)" fill="currentColor">
+            <path
+              d="M75 686V-1H474Q550 -1 601 27.5Q652 56 677.5 105.5Q703 155 703 216Q703 282 672.5 333.5Q642 385 587 414L725 686H525L411 444H254V686ZM254 311H439Q476 311 498.5 286.5Q521 262 521 221Q521 194 511 175Q501 156 483 145.5Q465 135 439 135H254Z M708 686 966 -1H1181L1439 686H1248L1207 567H933L892 686ZM976 433H1163L1114 288Q1110 277 1104.5 260.5Q1099 244 1093.5 225.5Q1088 207 1083 188Q1078 169 1073 155H1066Q1062 174 1054.5 198Q1047 222 1039.5 246Q1032 270 1026 288Z M1471 686V-1H1650V304L1922 -1H2144L1888 280L2149 686H1937L1764 402L1650 507V686Z M2193 686V-1H2760V139H2372V268H2711V405H2372V546H2767V686Z M2842 686V-1H3409V139H3021V268H3360V405H3021V546H3416V686Z M3440 686V619L3781 139H3465V-1H4054V66L3713 546H4062V686Z" />
+          </g>
+        </svg>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <p class="code">403 · FORBIDDEN</p>
+    <h1>This page isn&rsquo;t open to you.</h1>
+    <p class="ar" lang="ar" dir="rtl">ليس لديك صلاحية للوصول إلى هذه الصفحة.</p>
+    <p class="lead">
+      Nothing is broken — the address exists, but it is not public. If somebody sent you the link, ask them for access.
+      <span class="ar-in" lang="ar" dir="rtl">لا يوجد خطأ — العنوان موجود لكنه غير متاح للعامة. إذا أرسل لك أحدهم الرابط، فاطلب منه الصلاحية.</span>
+    </p>
+    <a class="btn" href="/">
+      <span>Back to the homepage</span>
+      <span class="sep" aria-hidden="true">·</span>
+      <span class="ar-in" lang="ar" dir="rtl">العودة إلى الصفحة الرئيسية</span>
+    </a>
+  </main>
+
+  <footer>
+    <div class="in">© 2026 Rakeez · <span lang="ar" dir="rtl">ركيز</span></div>
+  </footer>
+</body>
+
+</html>
