@@ -1842,9 +1842,15 @@
         right: 0;
         margin: 0;
         padding: 10px 24px 16px;
-        background: rgba(245, 244, 240, .97);
-        backdrop-filter: blur(14px) saturate(1.4);
-        -webkit-backdrop-filter: blur(14px) saturate(1.4);
+        /* ⚠️ OPAQUE, AND WITHOUT A BACKDROP FILTER OF ITS OWN. This was
+           `rgba(245,244,240,.97)` + the header's blur recipe, and over the dark app and
+           demo sections their white headings read straight through it — Chrome composites
+           a backdrop-filtered child of a backdrop-filtered parent far more transparently
+           than its alpha claims, because the parent's filter has already established the
+           backdrop root. Only visible over a dark section, which is why it survived the
+           local pass and turned up on the deployed page. The header behind it is blurred
+           already; a menu does not need to be see-through. */
+        background: var(--rk-canvas);
         border-bottom: 1px solid var(--rk-hair);
         box-shadow: var(--e1);
       }
