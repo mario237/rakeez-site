@@ -2209,7 +2209,7 @@
           <p class="q" data-i18n="p5_q">"Month-end lives in one person's head."</p>
           <span class="rule"></span>
           <p data-i18n="p5_p">Deductions, leave balances, the payroll sheet and the export are one process anybody with
-            the right role can run — and an audit trail says who did.</p>
+            the right role can run — and roles decide who can.</p>
           <span class="ans">
             <svg class="ico ico-20" viewBox="0 0 24 24">
               <path d="M5 12h14M13 6l6 6-6 6" />
@@ -2274,8 +2274,8 @@
               <svg class="ico ico-20" viewBox="0 0 24 24">
                 <path d="M20 6 9 17l-5-5" />
               </svg>
-              <span data-i18n="no_3">What you do get: the sheet, the payslip, the history, the audit trail, and the
-                Excel export in the shape your accountant asked for.</span>
+              <span data-i18n="no_3">What you do get: the sheet, the salary history, the deductions with their reasons, and
+                the Excel export in the shape your accountant asked for.</span>
             </li>
           </ul>
         </div>
@@ -2381,8 +2381,8 @@
             <path d="M3 10h18M8 3v4M16 3v4" />
           </svg>
           <h3 data-i18n="b3_h">Leave &amp; requests</h3>
-          <p data-i18n="b3_p">Leave types you define, balances that carry, and an approval path with a record of who
-            said yes.</p>
+          <p data-i18n="b3_p">Leave types you define, with the allowance you set, and an approval path with a record of
+            who said yes.</p>
           <ul>
             <li data-i18n="b3_t1">Balances</li>
             <li data-i18n="b3_t2">Approvals</li>
@@ -2395,10 +2395,10 @@
             <path d="M2 11h20M6 15h4" />
           </svg>
           <h3 data-i18n="b4_h">Payroll sheet</h3>
-          <p data-i18n="b4_p">Net, deductions, payable. Effective-dated salaries, payslips and the export.</p>
+          <p data-i18n="b4_p">Net, deductions, payable. Effective-dated salaries, deductions with reasons, and the export.</p>
           <ul>
             <li data-i18n="b4_t1">Deductions</li>
-            <li data-i18n="b4_t2">Payslips</li>
+            <li data-i18n="b4_t2">Salary history</li>
             <li data-i18n="b4_t3">Excel</li>
           </ul>
         </article>
@@ -2452,9 +2452,9 @@
             <path d="M3 11l18-8-8 18-2-8z" />
           </svg>
           <h3 data-i18n="b8_h">Announcements</h3>
-          <p data-i18n="b8_p">Tell everyone, or one branch, and see it land in the app.</p>
+          <p data-i18n="b8_p">Tell everyone, and see who has read it — in the panel and in the app.</p>
           <ul>
-            <li data-i18n="b8_t1">Targeted</li>
+            <li data-i18n="b8_t1">Read tracking</li>
             <li data-i18n="b8_t2">In-app</li>
           </ul>
         </article>
@@ -2486,8 +2486,9 @@
             <path d="M19 8v6M22 11h-6" />
           </svg>
           <h3 data-i18n="b10_h">Recruitment</h3>
-          <p data-i18n="b10_p">Post a job, take applications with the CV attached, and move people through your own
-            stages — with every applicant kept against the company that posted it.</p>
+          <p data-i18n="b10_p">Post a job, take applications with the CV attached, and move each one from new to
+            shortlisted, interviewed, rejected or hired — with every applicant kept against the
+            company that posted it.</p>
           <ul>
             <li data-i18n="b10_t1">Job posts</li>
             <li data-i18n="b10_t2">Applications</li>
@@ -2528,7 +2529,7 @@
                 <path d="M8 8h8M8 12h8M8 16h4" />
               </svg>
               <div>
-                <b data-i18n="ap2_h">Payslips without asking</b>
+                <b data-i18n="ap2_h">Your pay, without asking</b>
                 <p data-i18n="ap2_p">Net, deductions, payable — and the months before it. No email, no request.</p>
               </div>
             </li>
@@ -2677,7 +2678,7 @@
                 <path d="M20 6 9 17l-5-5" />
               </svg>
               <span data-i18n="ar_3">One agreed vocabulary across the app, the contracts and the reports — so the
-                payslip and the policy use the same word.</span>
+                payroll sheet and the policy use the same word.</span>
             </li>
           </ul>
         </div>
@@ -2881,7 +2882,7 @@
          silently stayed English. The parity check below makes any
          recurrence loud instead of invisible. */
       const AR = {
-        /* ⚠️ VOCABULARY IS GOVERNED BY rakeez-portal/docs/localisation/GLOSSARY.md,
+        /* ⚠️ VOCABULARY IS GOVERNED BY rakeez-portal/docs/design-system/GLOSSARY.md,
            which spec §5 makes binding on this page. Two rules bite hardest here, and
            this dictionary broke BOTH until 2026-08-03:
 
@@ -2892,7 +2893,11 @@
                  الأجر; on 2026-08-04 the whole product moved to مرتب and the split closed.
                – payroll as the general activity/field → «مرتبات», which is also what the
                  brand book's own Arabic tagline uses.
-               – a salary, or a payslip                → «مرتب» / «قسيمة المرتب».
+               – a salary                              → «مرتب».
+               – ⚠️ **PAYSLIP IS BANNED AS A CLAIM, in both languages.** No payslip object
+                 exists in the product — pay_screen.dart:15 says "IT IS NOT A PAYSLIP AND
+                 MUST NEVER BECOME ONE". Five instances were removed on 2026-08-31; the
+                 store listings lost theirs in an earlier pass. Do not reintroduce «قسيمة».
            · **NUMERALS STAY WESTERN 0-9, never Arabic-Indic** (glossary rule 2). 13 strings
              used Arabic-Indic digits. The worst was the effective-dating scrubber, the
              page's flagship argument, which showed «يناير 2026» directly beside its own
@@ -2934,7 +2939,7 @@
         p4_p: "المرتبات تعيش كسلسلة مؤرّخة، لا كرقم واحد يُستبدل. افتح أي شهر وستجد أرقامه كما كانت فعلًا.",
         p4_a: "تاريخ المرتبات",
         p5_q: "«نهاية الشهر تعيش في رأس شخص واحد.»",
-        p5_p: "الخصومات وأرصدة الإجازات وكشف المرتبات والتصدير عملية واحدة يشغّلها أي شخص لديه الصلاحية — وسجل التدقيق يقول من فعل.",
+        p5_p: "الخصومات وأرصدة الإجازات وكشف المرتبات والتصدير عملية واحدة يشغّلها أي شخص لديه الصلاحية — والصلاحيات تحدّد من يشغّلها.",
         p5_a: "كشف المرتبات والتقارير",
 
         pay_eye: "كشف المرتبات", pay_h: "أنت تعرف الصافي. ونحن كذلك.",
@@ -2943,7 +2948,7 @@
         pay_p2: "هذا هو الكشف كله. الصافي هو ما اتفقت عليه مع الشخص. والخصومات هي التي سجّلتها أنت — سلفة، أو جزاء، أو أيام دون مرتب. والمستحق هو ناتج الطرح.",
         no_1: "ركيز لا يحسب ضريبة الدخل ولا التأمينات ولا مكافأة نهاية الخدمة. محاسبك يفعل ذلك، وركيز يسجّل النتيجة.",
         no_2: "لا شيء يستنتج إجماليًا من صافٍ، ولا صافيًا من إجمالي. الرقم الذي يكتبه إنسان بيانات؛ والرقم الذي يخمّنه البرنامج مسؤولية.",
-        no_3: "وما تحصل عليه: الكشف، وقسيمة المرتب، والتاريخ، وسجل التدقيق، وملف إكسل بالشكل الذي طلبه محاسبك.",
+        no_3: "وما تحصل عليه: الكشف، وسجل المرتبات، والخصومات وأسبابها، وملف إكسل بالشكل الذي طلبه محاسبك.",
 
         dt_h: "أعد تشغيل مارس في يوليو. ستحصل على مارس.",
         dt_p: "المرتب سلسلة مؤرّخة، لا قيمة حالية. حرّك الشهر وراقب رقم الشخص نفسه وهو يبقى كما كان في حينه.",
@@ -2961,11 +2966,11 @@
         b2_p: "سجّل حضورك من الهاتف مع تسجيل الموقع، في الفرع أو في الموقع. الورديات والتأخير والغياب — لكل شخص ولكل فرع، مع صورة وخريطة مع كل تسجيل.",
         b2_t1: "تسجيل بالموقع", b2_t2: "الورديات", b2_t3: "صورة وخريطة", b2_t4: "التأخير والغياب",
         b3_h: "الإجازات والطلبات",
-        b3_p: "أنواع إجازات تحدّدها أنت، وأرصدة تُرحَّل، ومسار اعتماد يسجّل من وافق.",
+        b3_p: "أنواع إجازات تحدّدها أنت، بالرصيد الذي تقرّره، ومسار اعتماد يسجّل من وافق.",
         b3_t1: "الأرصدة", b3_t2: "الاعتمادات",
         b4_h: "كشف المرتبات",
-        b4_p: "الصافي والخصومات والمستحق. مرتبات مؤرّخة، وقسائم، وتصدير.",
-        b4_t1: "الخصومات", b4_t2: "قسائم المرتب", b4_t3: "إكسل",
+        b4_p: "الصافي والخصومات والمستحق. مرتبات مؤرّخة، وخصومات بأسبابها، وتصدير.",
+        b4_t1: "الخصومات", b4_t2: "سجل المرتبات", b4_t3: "إكسل",
         b5_h: "العمولات",
         b5_p: "خطط لكل دور، ومستحقات على ساعة مستحقة‑واجبة‑مدفوعة، وتقرير يُظهر الحساب. تُصرف منفصلة عن المرتب.",
         b5_t1: "الخطط", b5_t2: "المستحقات", b5_t3: "التقرير",
@@ -2975,21 +2980,21 @@
         b7_h: "المصروفات والموازنة",
         b7_p: "موازنة شهرية، وفواتير متكررة تذكّر بنفسها، ودفتر إنفاق وتقرير. القيمة المضافة تُكتب من الفاتورة، ولا تُحسب.",
         b7_t1: "الموازنات", b7_t2: "الفواتير المتكررة", b7_t3: "التصنيفات",
-        b8_h: "الإعلانات", b8_p: "أبلغ الجميع، أو فرعًا واحدًا، وشاهدها تصل داخل التطبيق.",
-        b8_t1: "موجّهة", b8_t2: "داخل التطبيق",
+        b8_h: "الإعلانات", b8_p: "أبلغ الجميع، وتابع من قرأ — في اللوحة وداخل التطبيق.",
+        b8_t1: "تتبّع القراءة", b8_t2: "داخل التطبيق",
         b9_h: "التقارير والتصدير",
         b9_p: "كشف المرتبات والحضور والعمولات والمصروفات — تُقرأ بتاريخ، وتُصفّى بالفرع، وتخرج إلى إكسل بالشكل الذي يعمل به محاسبك بالفعل.",
         b9_t1: "كشف المرتبات", b9_t2: "الحضور", b9_t3: "العمولات", b9_t4: "تصدير إكسل",
 
         b10_h: "التوظيف",
-        b10_p: "انشر وظيفة، واستقبل الطلبات ومعها السيرة الذاتية، وحرّك المتقدّمين بين مراحلك أنت — وكل متقدّم محفوظ لدى الشركة التي نشرت الوظيفة.",
+        b10_p: "انشر وظيفة، واستقبل الطلبات ومعها السيرة الذاتية، وانقل كل متقدّم من جديد إلى مرشّح أو تمت المقابلة أو غير مستكمل أو تم التعيين — وكل متقدّم محفوظ لدى الشركة التي نشرت الوظيفة.",
         b10_t1: "إعلانات الوظائف", b10_t2: "طلبات التوظيف", b10_t3: "السير الذاتية",
 
         ap_eye: "الخدمة الذاتية", ap_h: "التطبيق الذي سيفتحه فريقك فعلًا.",
         ap_p: "كل سؤال يحمله الموظفون إلى الموارد البشرية — كم قبضت، وكم بقي من إجازتي، وهل سُجّل حضوري — يُجاب عليه من هاتفه، بالعربية.",
         ap1_h: "سجّل حضورك حيث العمل",
         ap1_p: "الفرع، أو زيارة موقع، أو مكتب عميل. يُسجَّل الموقع مع الحضور.",
-        ap2_h: "قسائم المرتب دون طلب",
+        ap2_h: "مرتبك دون طلب",
         ap2_p: "الصافي والخصومات والمستحق — والأشهر التي قبله. دون بريد ودون طلب.",
         ap3_h: "إجازة تُطلب وتُتابَع",
         ap3_p: "الرصيد، والطلب، والاعتماد، وأين وصل — دون الذهاب إلى أي مكتب.",
@@ -3011,7 +3016,7 @@
         ar_p: "أغلب برامج الموارد البشرية التي تُباع في مصر منتج إنجليزي صُبّت فيه العربية لاحقًا — انعكاس رديء، وتباعد حروف كأنه لاتيني، وصياغة كتبها من كان متاحًا. ركيز بُني باللغتين معًا.",
         ar_1: "تخطيط كامل من اليمين إلى اليسار — منعكس كما ينبغي، مع ترك الأرقام والساعات وأعمدة المال كما هي.",
         ar_2: "خط عربي حقيقي في كل المقاسات، دون تثخين مصطنع ودون تباعد حروف.",
-        ar_3: "مصطلح واحد متفق عليه عبر التطبيق والعقود والتقارير — فتستخدم القسيمة واللائحة الكلمة نفسها.",
+        ar_3: "مصطلح واحد متفق عليه عبر التطبيق والعقود والتقارير — فيستخدم كشف المرتبات واللائحة الكلمة نفسها.",
 
         dg_eye: "بياناتك", dg_h: "مرتبات وأرقام قومية. ونتعامل معها على هذا الأساس.",
         d1_h: "مستأجر واحد، وحدّ واحد",
