@@ -1591,31 +1591,6 @@
       line-height: 1.55;
     }
 
-    /* ══ CUSTOMER ════════════════════════════════════════════════ */
-    .quote {
-      max-width: 74ch;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .quote blockquote {
-      font-size: clamp(20px, 2.5vw, 30px);
-      font-weight: 600;
-      letter-spacing: -.025em;
-      line-height: 1.32;
-    }
-
-    html[dir="rtl"] .quote blockquote {
-      letter-spacing: 0;
-      line-height: 1.6;
-    }
-
-    .quote .attr {
-      margin-top: 20px;
-      font-size: 14px;
-      color: var(--rk-t3);
-    }
-
     /* ══ CTA · dark band ═════════════════════════════════════════ */
     .cta-grid {
       display: grid;
@@ -2761,19 +2736,6 @@
     </div>
   </section>
 
-  <!-- ═══ CUSTOMER ═════════════════════════════════════════════ -->
-  <section class="band" style="padding-block:clamp(52px,6vw,84px)">
-    <div class="wrap">
-      <div class="quote reveal">
-        <p class="eyebrow" data-i18n="cu_eye">Customer</p>
-        <blockquote style="margin-top:16px" data-i18n="cu_q">"We had the salaries in one spreadsheet, attendance in
-          another, and commission in a third that only one person understood. Now it is one screen — and I can open
-          last March."</blockquote>
-        <p class="attr" data-i18n="cu_a">Tailor Investments · Cairo · using Rakeez since 2026</p>
-      </div>
-    </div>
-  </section>
-
   <!-- ═══ CTA · dark band ══════════════════════════════════════ -->
   <section class="band dark" id="demo">
     <div class="wrap">
@@ -3039,12 +3001,6 @@
         d3_p: "المرتبات والعقود والاعتمادات سلاسل مؤرّخة. تغيير رقم اليوم لا يعدّل رقم العام الماضي أبدًا، ويبقى سجل من غيّر ماذا.",
         d4_h: "المال مخزَّن كمال",
         d4_p: "كل مبلغ محفوظ بالقروش كعدد صحيح، لا ككسر عشري يطاله خطأ تقريب. برنامج مرتبات يضيّع نصف قرش هو برنامج لا يمكنك استخدامه.",
-
-        cu_eye: "عميل",
-        cu_q: "«كانت المرتبات في ملف، والحضور في ملف آخر، والعمولات في ثالث لا يفهمه إلا شخص واحد. الآن هي شاشة واحدة — وأستطيع فتح مارس الماضي.»",
-        /* The customer's own name, from their site's own siteName. Latin in
-           both languages, same reason the Rakeez brand string is. */
-        cu_a: "Tailor Investments · القاهرة · يستخدمون ركيز منذ 2026",
 
         ct_eye: "احجز عرضًا", ct_h: "شاهده وشركتك بداخله.",
         ct_p: "أخبرنا بعدد موظفيك وكيف تدير المرتبات اليوم. سنعرض لك ركيز مهيّأً بالطريقة التي تعمل بها شركتك فعلًا، لا جولة عامة.",
